@@ -1,0 +1,25 @@
+{
+    "name": "react-df",
+    "description": "df is short for develop framework. we want to provide a series of tools helping develop and release project using React. Also, tools are sample configed.",
+    "version": "0.0.1",
+    "options": {
+        "outdir": "./apidocs",
+        "linkNatives": "true",        
+        "attributesEmit": "true",
+        "selleck": "true",
+        "paths": [
+            "./components/base/",
+            "./components/BSSFrame/",
+            "./components/const/",
+            "./components/panel/",
+            "./components/echarts/",
+            "./components/html/",
+            "./components/message/",
+            "./components/page/",
+            "./components/tabs/",
+            "./components/tencentMap/",
+            "./components/tree/",
+            "./components/utils/"
+        ]
+    }
+}
