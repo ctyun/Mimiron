@@ -1,6 +1,6 @@
 {
-    "name": "react-df",
-    "description": "df is short for develop framework. we want to provide a series of tools helping develop and release project using React. Also, tools are sample configed.",
+    "name": "Mimiron",
+    "description": "Mimiron API",
     "version": "0.1.0",
     "options": {
         "outdir": "./apidocs",

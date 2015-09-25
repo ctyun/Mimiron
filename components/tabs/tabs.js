@@ -1,16 +1,12 @@
 /**
- * @module Tabs
+ * @module tabs
  */
 var React = require('react/addons');
 //var Debug = require("../utils/debug");
 
 /**
  * 标签页组件
- * @class Tabs
- * @constructor
- * @param {String} maxHeight 最大高度, Tab超过此高度会在右边出现滚动条
- * @param {Children} Tab 传入标签, 格式参考Tab组件
- * @example
+ * ```
  * <Tabs maxHeight="300px">
         <Tab title="111" id="1">
             <p>456</p><p>456</p><p>456</p><p>456</p><p>456</p><p>456</p>
@@ -19,6 +15,8 @@ var React = require('react/addons');
             <p>789</p>
         </Tab>
     </Tabs>
+ * ```
+ * @class Tabs
  */
 var Tabs=React.createClass({
     displayName:'Tabs',
@@ -27,6 +25,12 @@ var Tabs=React.createClass({
     },
     getDefaultProps: function(){
         return{
+            /**
+             * @property {String} maxHeight 最大高度,超出此高度后出现滚动条
+             * @default "auto"
+             * @example
+             * "400px"
+             */
             maxHeight:"auto"
         }
     },

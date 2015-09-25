@@ -1,18 +1,18 @@
-/**
+/*
  * This is a Treeview component.
  * @module Treeview
  */
 
 
 
-/**
+/*
  * 这是TreeCommonMixin的说明
  * @class TreeCommonMixin
  */
 var TreeCommonMixin = {
     
 
-    /**
+    /*
      * Invoked once before the component is mounted.
      * The return value will be used as the initial value of this.state.
      * @private
@@ -36,7 +36,7 @@ var TreeCommonMixin = {
         //this.setupInitial && this.setupInitial();
         return state;
     },
-    /**
+    /*
      * 组件将要加载时执行
      * @private
      * @method componentWillMount
@@ -44,7 +44,7 @@ var TreeCommonMixin = {
     componentWillMount: function() {
         this.listenerCol = {};
     },
-    /**
+    /*
      * 组件将要卸载前执行
      * @private
      * @method componentWillUnmount
@@ -53,7 +53,7 @@ var TreeCommonMixin = {
         this.listenerCol = null;
     },
     
-    /**
+    /*
      * generate uid
      * @private
      * @method generateUid
@@ -66,7 +66,7 @@ var TreeCommonMixin = {
         return (S4() + S4() + delim + S4() + delim + S4() + delim + S4() + delim + S4() + S4() + S4());
     },
     
-    /**
+    /*
      * populate id field if not present
      * @private
      * @method normalizeItems
@@ -80,7 +80,7 @@ var TreeCommonMixin = {
         }
     },
     
-    /**
+    /*
      * 创建事件回掉
      * @private
      * @method on
@@ -92,7 +92,7 @@ var TreeCommonMixin = {
         this.listenerCol[eventName].push(callback);
     },
 
-    /**
+    /*
      * 执行事件
      * @private
      * @method fire
@@ -107,7 +107,7 @@ var TreeCommonMixin = {
         }
     },
 
-    /**
+    /*
      * Get key col name from ColModel
      * @private
      * @example sortCondition: { name:'id', direction:'asc|des|up|down' }
@@ -128,7 +128,7 @@ var TreeCommonMixin = {
     },
     
 
-    /**
+    /*
      * @private
      * sort dataArray using sortCondition
      * @example sortCondition: { name:'id', direction:'asc|des|up|down' }

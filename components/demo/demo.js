@@ -1,4 +1,6 @@
-
+/**
+ * @module demo
+ */
 //import 3rd party dependents
 var React = require('react');
 require('bootstrap');
@@ -85,6 +87,15 @@ var tree1Data = {
         }
     ]
 }
+
+/**
+ * 基本组件演示
+ * ```
+ * 示例:
+ * <Demo />
+ * ```
+ * @class Demo
+ */
 var Demo = React.createClass({
   displayName:'Demo',
   getInitialState:function(){

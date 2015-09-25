@@ -1,7 +1,6 @@
 /**
- * MessageBox MessageBox方法集合
  * @module message
- * @deprecated
+ * 
  */
 var $ = require('jquery');
 require("jquery-ui");
@@ -10,6 +9,7 @@ require("jquery-ui");
 /**
  * 这是一个MessageBox对象，提供显示消息的方法
  * @class message
+ * @deprecated
  */
 function MessageBox(){
     this.dialogId="bss_portal_dialog_id";

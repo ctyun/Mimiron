@@ -1,20 +1,18 @@
 /**
- * Modal组件
- * @module Modal
+ * @module message
  */
 var React=require("react/addons");
 var BSSForm = require("../html/form");
 /**
- * Modal组件
- * @class Modal
- * @example
  * ```
  *  <Modal title="i am title" body={this._modalBody} footer={this._ModalFooter}/>
- *	targetName:需要在触发模态框的元素需给属性data-toggle="modal" data-target="#targetName" 或者使用jquery:$("#targetName").modal
+ *  targetName:需要在触发模态框的元素需给属性data-toggle="modal" data-target="#targetName" 或者使用jquery:$("#targetName").modal
  *  title:标题
  *  body:中间显示的内容
  *  footer:底部显示的内容,一般来说至少需要一个确认按钮一个取消按钮
  * ```
+ * Modal组件
+ * @class Modal
  */
 var Modal=React.createClass({
     statics:{

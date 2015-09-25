@@ -1,13 +1,36 @@
+/**
+ * @module BSSFrame
+ */
+
 var React = require('react');
 
+/**
+ * 导航条组件
+ * ```
+ * 示例:
+ * <TopBar logout={this._logout} userName={this.props.userName}/>
+ * ```
+ * @class TopBar
+ */
 var TopBar = React.createClass({
     displayName: 'TopBar',
     getDefaultProps: function(){
         return{
+        	/**
+        	 * @property {Function} logout 注销按钮的回调函数
+        	 */
         	logout:function(){
         		return;
         	},
+        	/**
+        	 * @property {String} userName 显示的用户名
+        	 * @default "GUEST"
+        	 */
         	userName:"GUEST",
+        	/**
+        	 * @property {String} title 显示的标题
+        	 * @default "电信云公司业务系统"
+        	 */
         	title:"电信云公司业务系统",
         }
     },

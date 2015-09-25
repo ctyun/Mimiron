@@ -1,9 +1,14 @@
 /**
- * This is a Treeview component.
- * @module Treeview
- * @author WangYG 2015年8月3日 08:48:41
- * @example 
- * ```
+ * @module tree
+ */
+
+var React=require("react/addons");
+var treeCommonMixin = require("./treecommon");
+var Debug = require("../utils/debug");
+
+/**
+ * 树形组件
+ *```
    使用说明
    data: (object)树中展现的数据, 格式请参考demo.js, 每个节点可以有如下属性:
     -"name":显示的名称.
@@ -61,21 +66,7 @@
         ]
     }
     <Treeview data={tree1Data} selectType="checkbox"/>
-  ```
-*/
-
-
-var React=require("react/addons");
-var treeCommonMixin = require("./treecommon");
-var Debug = require("../utils/debug");
-
-
-
-
-
-/**
- * A treeview to show data list
- *
+ *```
  * @class Treeview
  * 
  */
@@ -83,7 +74,7 @@ var Treeview = React.createClass({
     name: 'treeview',
     mixins: [treeCommonMixin],
     statics:{
-        /**
+        /*
          * 用于保存树的json对象数组，传入的值为[json对象]
          *
          * @static
@@ -94,7 +85,7 @@ var Treeview = React.createClass({
          */
         treedata:[],
 
-        /**
+        /*
          * targetTreedata 目标树，注意, static方法不能给static方法提供返回值
          * @static
          * @property targetTreedata
@@ -103,7 +94,7 @@ var Treeview = React.createClass({
          */
         targetTreedata:null, 
 
-        /**
+        /*
          * 返回所有已选中的值
          * @static
          * @method getAllCheckedNodes
@@ -122,7 +113,7 @@ var Treeview = React.createClass({
             return checked;
         },
 
-        /**
+        /*
          * 建立树结构
          * @static
          * @method pushNodes
@@ -141,7 +132,7 @@ var Treeview = React.createClass({
             }
         },
 
-        /**
+        /*
          * 在树中查找指定节点
          * @static
          * @method findTreedata
@@ -161,7 +152,7 @@ var Treeview = React.createClass({
         }
     },
     
-    /**
+    /*
      * 定义属性
      * @private
      * @method getAttributes
@@ -181,7 +172,7 @@ var Treeview = React.createClass({
         return attributes;
     },
 
-    /**
+    /*
      * 定义外部属性默认值
      * @private
      * @method getDefaultProps
@@ -194,7 +185,7 @@ var Treeview = React.createClass({
         }
     },
 
-    /**
+    /*
      * 组件要加载前执行
      * @private
      * @method componentWillMount
@@ -204,7 +195,7 @@ var Treeview = React.createClass({
         this.state.nodes = this.getNodesFromTreeItem(this.state.treedataObject); //用于操作的节点
     },
 
-    /**
+    /*
      * 组件接收到参数时执行
      * @private
      * @method componentWillReceiveProps
@@ -234,7 +225,7 @@ var Treeview = React.createClass({
         this.forceUpdate(); //需要强制刷新,防止缓存?
     },
 
-    /**
+    /*
      * 组件完成加载后执行
      * @private
      * @method componentDidMount
@@ -245,7 +236,7 @@ var Treeview = React.createClass({
         });
     },
 
-    /**
+    /*
      * 将nodes节点的属性复制到children节点上,递归执行
      * @private
      * @method copyProps
@@ -267,7 +258,7 @@ var Treeview = React.createClass({
     },
     
 
-    /**
+    /*
      * 为treedata添加唯一的id
      * @private
      * @method prepareTreedata
@@ -288,7 +279,7 @@ var Treeview = React.createClass({
         return treedata;
     },
     
-    /**
+    /*
      * 处理子树节点
      * @private
      * @method processTreedataItem
@@ -319,7 +310,7 @@ var Treeview = React.createClass({
         }
     },
     
-    /**
+    /*
      * 处理子树节点
      * @private
      * @method getNodesFromTreeItem
@@ -354,8 +345,8 @@ var Treeview = React.createClass({
         }
         return nodes;
     },
-    
-    /**
+
+    /*
      * update select status under item
      * @private
      * @method updateTreeSelectStatus
@@ -412,7 +403,7 @@ var Treeview = React.createClass({
         }
     },
 
-    /**
+    /*
      * 处理节点点击事件
      * @private
      * @method onNodeClick
@@ -518,7 +509,7 @@ var Treeview = React.createClass({
         Treeview.treedata = this.state.treedata;
     },
 
-    /**
+    /*
      * React render
      * @private
      * @method render
@@ -556,7 +547,7 @@ var Treeview = React.createClass({
 
 
 
-/**
+/*
  * TreeviewNode component
  * @class TreeviewNode
  * 
@@ -565,7 +556,7 @@ var TreeviewNode = React.createClass({
     name: 'treeview-node',
     mixins: [treeCommonMixin],
     
-    /**
+    /*
      * 定义属性
      * @private
      * @method getAttributes
@@ -586,7 +577,7 @@ var TreeviewNode = React.createClass({
         return attributes;
     },
 
-    /**
+    /*
      * React render
      * @private
      * @method render
@@ -670,7 +661,7 @@ var TreeviewNode = React.createClass({
 
 
 
-/**
+/*
  * TreeviewCell component
  * @class TreeviewCell
  */
@@ -678,7 +669,7 @@ var TreeviewCell = React.createClass({
     name: 'treeview-cell',
     mixins: [treeCommonMixin],
     
-    /**
+    /*
      * 定义属性
      * @private
      * @method getAttributes
@@ -693,7 +684,7 @@ var TreeviewCell = React.createClass({
         ];
         return attributes;
     },
-    /**
+    /*
      * React render
      * @private
      * @method render
@@ -729,7 +720,7 @@ var TreeviewCell = React.createClass({
 });
 
 
-/**
+/*
  * TreeviewTextBox component
  * @class TreeviewTextBox
  */
@@ -737,7 +728,7 @@ var TreeviewTextBox = React.createClass({
     name: 'treeview-textbox',
     mixins: [treeCommonMixin],
     
-    /**
+    /*
      * 定义属性
      * @private
      * @method getAttributes
@@ -753,7 +744,7 @@ var TreeviewTextBox = React.createClass({
         return attributes;
     },
 
-    /**
+    /*
      * React render
      * @private
      * @method render

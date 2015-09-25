@@ -1,12 +1,15 @@
     /**
-     * Created by chenth on 15-7-24.
-     *查询面板,包装了form表单
-     *@module QueryPanel
-     *@example
+     *@module panel
+     */
+var React=require("react/addons");
+
+var BSSForm=require("../html/form");
+
+    /**
+     * 查询面板,包装了form表单
      *```
      * 使用方法
-     *var React = require('react');
-     *var components=require("components");
+     *var React = components.React;
      *var QueryPanel=components.QueryPanel;
      *var Input=components.Input;
      *var AutocompleteDemo=React.createClass(
@@ -22,12 +25,6 @@
      *  </QueryPanel>
      *
      *```
-     */
-var React=require("react/addons");
-
-var BSSForm=require("../html/form");
-
-    /**
      * @class QueryPanel
      *
      */
@@ -37,7 +34,7 @@ var QueryPanel=React.createClass({
                 dis:false
             };
         },
-    /**
+    /*
      * 表达提交回调方法
      * @param param
      */

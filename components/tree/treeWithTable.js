@@ -1,7 +1,6 @@
-/*
- * WangYG 2015年8月5日 15:20:48
-*/
-
+/**
+ * @module tree
+ */
 
 var React=require("react/addons");
 var Treeview = require("./treeview");
@@ -15,6 +14,21 @@ var PageButton=require("../page/page");
  *  -(param1) uid:选中节点的id
  * treeFlod: 当数中父节点展开时的操作(一般为ajax请求,渲染子集)
  *  -(param1) uid:展开节点的id
+ */
+/**
+ * 树和表格的组合组件
+ * **注意: 此组件尚未经过测试**
+ * ```
+ * <TreeWithTable treeCheck={this.treeTableCheck} treeData={this.state.treeTableData}/>
+ * -treeData: 树形组件的数据, 请参考Treeview组件
+ * -treeCheck: 节点点击的回调函数
+ *     --(携带参数1) uid:选中节点的id
+ *     --(携带参数2) status:选中节点的状态
+ * -treeFlod: 节点点击的回调函数
+ *     --(携带参数1) uid:选中节点的id
+ *     --(携带参数2) status:选中节点的状态
+ * ```
+ * @class TreeWithTable
  */
 
 var TreeWithTable = React.createClass({

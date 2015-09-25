@@ -1,8 +1,10 @@
     /**
-     * Created by chenth on 15-7-24.
+     * @module panel
+     */
+var React=require("react/addons");
+
+    /**
      * 工具栏面板
-     * @module ToolBarPanel
-     * @example
      * ```
      * 使用方法
      *var React = require('react');
@@ -19,10 +21,6 @@
      *<Button btnName="增删查改"/>
      *</ToolBarPanel>
      * ```
-     */
-var React=require("react/addons");
-
-    /**
      * @class ToolBarPanel
      */
 var ToolBarPanel=React.createClass({

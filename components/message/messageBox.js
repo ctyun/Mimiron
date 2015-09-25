@@ -1,11 +1,5 @@
 /**
- * 消息提示框组件
- * @module MessageBox
- * @example
- * ```
- * <Button btnName="触发MessageBox" doAction={MessageBox.show.bind(null,"i am title","i am message")} cssClass="btn-info" />
- * !!请勿实例化此组件,仅可使用show方法显示提示框!!
- * ```
+ * @module message
  */
 
 var React=require("react/addons");
@@ -15,6 +9,10 @@ var Button=require("../html/button");
 
 /**
  * 消息提示框组件
+ * ```
+ * <Button btnName="触发MessageBox" doAction={MessageBox.show.bind(null,"i am title","i am message")} cssClass="btn-info" />
+ * !!请勿实例化此组件,仅可使用show方法显示提示框!!
+ * ```
  * @class MessageBox
  */
 var MessageBox = React.createClass({

@@ -28,7 +28,7 @@ var components = {
 	// QueryPanel:require("./panel/query-panel"),
 	// ToolBarPanel:require("./panel/tool-panel"),
 	// TablePanel:require("./panel/table-panel"),
-	// BSSFrame : require("./BSSFrame/frame"),
+	BSSFrame : require("./BSSFrame/frame"),
 	TopBar : require("./BSSFrame/topbar"),
 	SideBar : require("./BSSFrame/sidebar"),
 

@@ -1,8 +1,13 @@
     /**
-     * Created by chenth on 15-7-24.
-     * 封装表格面板组件
      *@module TablePanel
-     *@example
+     */
+var React=require("react/addons");
+var BSSPanel=require("./panel");
+
+var Grid=require("../page/grid");
+var PageButton=require("../page/page");
+    /**
+     * 封装表格面板组件
      *```
      * 使用方法
      *var React = require('react');
@@ -42,13 +47,6 @@
      *         checkType:"radio",
      *     }
      *```
-     */
-var React=require("react/addons");
-var BSSPanel=require("./panel");
-
-var Grid=require("../page/grid");
-var PageButton=require("../page/page");
-    /**
      * @class TablePanel
      */
 var TablePanel=React.createClass({

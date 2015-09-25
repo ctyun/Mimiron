@@ -1,16 +1,28 @@
-
-var React = require('react');
 /**
- * @module Header
- * @description using for ./panel.js
- * @param {string} root 根节点名称
- * @param {string} pageTitle 本页标题
+ * @module panel
+ */
+var React = require('react');
+
+/**
+ * BSS页面头部组件, 在BSSPanel中使用, 一般不单独使用.
+ * ```
+ * <Header pageTitle={name} />
+ * ```
+ * @class Header
  */
 var Header = React.createClass({
     displayName: 'Header',
     getDefaultProps : function(){
     	return {
+            /**
+             * @property {String} root 根节点名称
+             * @default "首页"
+             */
     		root:"首页",
+            /**
+             * @property {String} pageTitle 本页标题
+             * @default "(空)"
+             */
     		pageTitle:"(空)",
     	}
     },

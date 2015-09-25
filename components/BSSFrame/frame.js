@@ -1,11 +1,16 @@
+/**
+ * @module BSSFrame
+ */
+
 var React = require('react');
 var TopBar = require("./topbar");
 var SideBar = require("./sidebar");
-/*
+/**
  * 用于天翼云业务管理系统的页面框架
- * 
+ * @class BSSFrame
+ * @deprecated 直接使用Topbar和Sidebar.
  */
-var Frame = React.createClass({
+var BSSFrame = React.createClass({
 	displayName: 'Frame',
 	getDefaultProps: function(){
         return{
@@ -28,4 +33,4 @@ var Frame = React.createClass({
 	}
 });
 
-module.exports = Frame;
+module.exports = BSSFrame;
