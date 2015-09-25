@@ -1,26 +1,7 @@
 /**
- * WordCloud Chart ,using EChart
- * @module WordCloud
+ * ECharts 图表组件
+ * @module ECharts
  * @author czdujianbin 2015-09-21 14:01:41
- * @example
-```
-var data = [
-    {
-        name: "Macys",
-        value: 6181
-    },
-    {
-        name: "Amy Schumer",
-        value: 4386
-    }
-  ];
-  
-  simple use:
-  <WordCloud data={data} />
- 
-  Advance use:
-  <WordCloud title="WordCloud" subtitle="WordCloud subtitile" height="800px" width="100%" theme="macarons" data={data} />
-```
  */
 
 
@@ -33,19 +14,28 @@ var Tools = require('../../../utils/tools');
 
 /**
  * Basic Line Chart
+ * ```
+ * 
+ * var data = [
+ *     {
+ *         name: "Macys",
+ *         value: 6181
+ *     },
+ *     {
+ *         name: "Amy Schumer",
+ *         value: 4386
+ *     }
+ *   ];
+ *   
+ *   simple use:
+ *   <WordCloud data={data} />
+ *  
+ *   Advance use:
+ *   <WordCloud title="WordCloud" subtitle="WordCloud subtitile" height="800px" width="100%" theme="macarons" data={data} />
+ *   
+ * ```
  * @class WordCloud
- * @constructor
- * @param {String} height 
- * chart's height
- * @param {String} width  
- * chart's width
- * @param {Object} data 
- * Data array in the series. <br/>
- * @param {String} title 
- * Title, at most one title control is allowed in one chart.
- * @param {String} subtitle 
- * subtitle text, '\n' represents a line feed.
- * @return {Object} return basic line chart component
+ * @extends AbstractECharts
  */
 var WordCloud = React.createClass({
     

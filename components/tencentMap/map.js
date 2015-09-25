@@ -1,25 +1,38 @@
 /**
  * 地图模块(使用腾讯地图)
  * @module TencentMap
- * @example
- * var markers =  [{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}] <br/>
- * <TencentMap id="map1" mapData={markers} height={"300px"} width={"300px"} zoom={13} centerPoint={{x:116.397128,y:39.916527}}></TencentMap>
- * 
  */
 var React = require('react');
 var $ = require('jQuery');
 
 /**
  * 地图基础类
- * @class TencentMap
- * @constructor
- * @param {String} id 组件id
- * @param {String} height 高度 默认300px
- * @param {String} width  宽度 默认100%
- * @param {int} zoom  放大倍数，默认为7
- * @param {Object} centerPoint  传入初始化地图中心点位置 x:经度,y:维度 eg:centerPoint={{x:116.397128,y:39.916527}} 默认中心点为北京天安门
- * @param {Object} mapData 传入初始化位置标签 x:经度,y:维度,description:描述 eg:[{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}]
+ * ```
  * 
+ * var markers =  [{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}] <br/>
+ * <TencentMap id="map1" mapData={markers} height={"300px"} width={"300px"} zoom={13} centerPoint={{x:116.397128,y:39.916527}}></TencentMap>
+ * 
+ * ```
+ * @class TencentMap
+ */
+
+/**
+ * @property {String} id 组件id
+ */
+/**
+ * @property {String} height 高度 默认300px
+ */
+/**
+ * @property {String} width  宽度 默认100%
+ */
+/**
+ * @property {int} zoom  放大倍数，默认为7
+ */
+/**
+ * @property {Object} centerPoint  传入初始化地图中心点位置 x:经度,y:维度 eg:centerPoint={{x:116.397128,y:39.916527}} 默认中心点为北京天安门
+ */
+/**
+ * @property {Object} mapData 传入初始化位置标签 x:经度,y:维度,description:描述 eg:[{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}]
  */
 var TencentMap = React.createClass({
 

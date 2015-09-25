@@ -1,28 +1,7 @@
 /**
- * StackedColumn Chart ,using EChart
- * @module StackedColumn
+ * ECharts 图表组件
+ * @module ECharts
  * @author czdujianbin 2015-09-23 14:36:41
- * @example
-```
-var data = [
-    {
-        name : "测试1",
-       data : [90, 113, 140, 30, 70, 60]
-    },
-      {
-          name : "测试2",
-          data : [190, 213, 240, 230, 70, 260]
-      },
-  ];
- 
-  var xAxisName = ['周一','周二','周三','周四','周五','周六','周日'];
-  
-  simple use:
-  <StackedColumn data={data} xAxisName={xAxisName}/>
- 
-  Advance use:
-  <StackedColumn title="曲线测试" subtitle="这是一个副标题测试" height="800px" width="100%" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-```
  */
 
 
@@ -35,33 +14,30 @@ var Tools = require('../../../utils/tools');
 
 /**
  * StackedColumn Chart
+ * ```
+ * 
+ * var data = [
+ *     {
+ *         name : "测试1",
+ *        data : [90, 113, 140, 30, 70, 60]
+ *     },
+ *       {
+ *           name : "测试2",
+ *           data : [190, 213, 240, 230, 70, 260]
+ *       },
+ *   ];
+ * 
+ *   var xAxisName = ['周一','周二','周三','周四','周五','周六','周日'];
+ * 
+ *   simple use:
+ *   <StackedColumn data={data} xAxisName={xAxisName}/>
+ * 
+ *   Advance use:
+ *   <StackedColumn title="曲线测试" subtitle="这是一个副标题测试" height="800px" width="100%" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+ *   
+ * ```
  * @class StackedColumn
- * @constructor
- * @param {String} height 
- * chart's height
- * @param {String} width  
- * chart's width
- * @param {Object} data 
- * Data array in the series. <br/>
- * In line and column, length of the array is equal to the length of category axis text label array xAxisName, and there is one-to-one correspondence between them. <br/>
- * The array item is usually value, such as:[12, 34, 56, ..., 10, 23] <br/>
- * When the data corresponding to a category does not exist (ps: 'no data' is not equal to 0), you can use '-' to indicate 'no data'. <br/>
- * In line, 'no data' is showed by a breakpoint; in column, 'no data' is showed by a missing column, such as:[12, '-', 56, ..., 10, 23]
- * @param {Object} xAxisName 
- * category axis: specifies the category list. 
- * @param {String} title 
- * Title, at most one title control is allowed in one chart.
- * @param {String} subtitle 
- * subtitle text, '\n' represents a line feed.
- * @param {String} smooth 
- * smoothed line, value(true/false), while smooth is true, lineStyle.type can not be dashed.
- * @param {String} trigger 
- * Type of trigger. Defaults to 'item'.Valid values are: 'item' | 'axis'.
- * @param {String} tooltipFormatter
- * tooltip's formatter: {string} (Template).(Template: a (series name), b(category value), c (value) ) eg : tooltipFormatter="Temperature : <br/>{b}km : {c}°C"
- * @param {Integer} maxPoints
- * configure how many points will be showed in a chart
- * @return {Object} return basic line chart component
+ * @extends AbstractECharts
  */
 var StackedColumn = React.createClass({
     

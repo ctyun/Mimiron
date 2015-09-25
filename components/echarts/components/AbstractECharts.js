@@ -1,18 +1,26 @@
-/*
- * Created by czdujianbin on 15-9-22.
+/**
+ * ECharts 图表组件
+ * @module ECharts
+ * @author czdujianbin 2015-09-22
  */
 
 var React = require('react/addons');
 var Tools = require('../../utils/tools');
 
-/*
+/**
  * Abstract ECharts
+ * @class AbstractECharts
  */
 var AbstractECharts = {
 
     statics:{
 
         chartRefs:[],
+        /**
+         * 获得该组件的报表引用
+         * @static
+         * @method getChart
+         */
         getChart:function(){
             return this.state.chart;
         }
@@ -64,19 +72,50 @@ var AbstractECharts = {
     
     getDefaultProps: function() {
         return {
+            /**
+             * @property {String} theme 主题类型，默认defalut
+             */
             theme:"defalut",
+
+            /**
+             * @property {String} height 图表高度，默认500px
+             */
             height:"500px",
+            /**
+             * @property {String} width 图表宽度，默认100%
+             */
             width:"100%",
 
+            /**
+             * @property {String} title 主标题
+             */
             title:"",
+            /**
+             * @property {String} subtitle 副标题
+             */
             subtitle:"",
             
+            /**
+             * @property {Array} xAxisName 横坐标名称
+             */
             xAxisName:[],
+            /**
+             * @property {String} smooth 曲线是否平滑,可选值：(true|false) 默认true
+             */
             smooth:true,
 
+            /**
+             * @property {String} maxPoints 一个图最大能够显示的坐标点，超过部分将隐藏起来，可以通过滚动条查看数据,默认20个点
+             */
             maxPoints:20,
 
+            /**
+             * @property {Array} data 传入的数据，具体传入格式请看对应的类说明
+             */
             data:[],
+            /**
+             * @property {Object} cssClass 默认样式
+             */
             cssClass:{
                 border:"1px solid #ccc",
                 padding:"10px"
@@ -85,8 +124,6 @@ var AbstractECharts = {
     },
 
     componentDidMount: function () {
-
-        //AbstractECharts.chartRefs[this.refs.myDiv] = this;
 
         AbstractECharts.statics.chartRefs.push(this);
 

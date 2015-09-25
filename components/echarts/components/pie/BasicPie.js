@@ -1,30 +1,7 @@
 /**
- * BasicPie Chart ,using EChart
- * @module BasicPie
+ * ECharts 图表组件
+ * @module ECharts
  * @author czdujianbin 2015-09-22 17:01:41
- * @example
-```
-  var data = [
-        {
-            name:'访问来源',
-            data:[
-                {value:335, name:'直接访问'},
-                {value:310, name:'邮件营销'},
-                {value:234, name:'联盟广告'},
-                {value:135, name:'视频广告'},
-                {value:1548, name:'搜索引擎'}
-            ]
-        }
-    ];
- 
-  var xAxisName = ['周一','周二','周三','周四','周五','周六','周日'];
-  
-  simple use:
-  <BasicPie data={data} />
- 
-  Advance use:
-  <BasicPie  title="BasicPie" subtitle="BasicPie subtitle" height="800px" width="100%"  theme="macarons" data={data} />
-```
  */
 
 
@@ -37,19 +14,32 @@ var Tools = require('../../../utils/tools');
 
 /**
  * Basic Pie Chart
+ * ```
+ * 
+ *   var data = [
+ *         {
+ *             name:'访问来源',
+ *             data:[
+ *                 {value:335, name:'直接访问'},
+ *                 {value:310, name:'邮件营销'},
+ *                 {value:234, name:'联盟广告'},
+ *                 {value:135, name:'视频广告'},
+ *                 {value:1548, name:'搜索引擎'}
+ *             ]
+ *         }
+ *     ];
+ * 
+ *   var xAxisName = ['周一','周二','周三','周四','周五','周六','周日'];
+ * 
+ *   simple use:
+ *   <BasicPie data={data} />
+ * 
+ *   Advance use:
+ *   <BasicPie  title="BasicPie" subtitle="BasicPie subtitle" height="800px" width="100%"  theme="macarons" data={data} />
+ *   
+ * ```
  * @class BasicPie
- * @constructor
- * @param {String} height 
- * chart's height
- * @param {String} width  
- * chart's width
- * @param {Object} data 
- * Data array in the series. <br/>
- * @param {String} title 
- * Title, at most one title control is allowed in one chart.
- * @param {String} subtitle 
- * subtitle text, '\n' represents a line feed.
- * @return {Object} return basic line chart component
+ * @extends AbstractECharts
  */
 var BasicPie = React.createClass({
     
