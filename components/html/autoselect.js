@@ -1,22 +1,19 @@
 /**
- * Created by chenth on 15-7-15.
- * 自动填充下拉列表
- * @module AutoSelect
- *
- * @example
+ * @module html
+ */
+var React=require("react/addons");
+var Select=require("./select");
+var AjaxUtils = require('../utils/ajax');
+/**
  * ```
-
- *使用方法
- * var React = require('react');
- * var components=require("components");
- *var AutoSelect=components.AutoSelect;
+ * 使用方法
+ * var React = components.React;
+ * var AutoSelect=components.AutoSelect;
  * var AutoSelectDemo=React.createClass(
  *     render:function(){
  *         return (<AutoSelect url="api/test/autoselect" disName="动态select" onSelect={this.autoSeleect} defaultValue="333" />);
  *     }
  * );
- *
- *
  * 使用说明
  * 通过url自动加载select
  *  <AutoSelect url="api/test/autoselect" disName="动态select" onSelect={this.autoSeleect} defaultValue="333" />
@@ -25,12 +22,8 @@
  *  defaultValue:默认要显示的值
  *  onSelect：选重下拉列表的值所触发的事件
  * ```
- */
-var React=require("react/addons");
-var Select=require("./select");
-var AjaxUtils = require('../utils/ajax');
-/**
  * @class AutoSelect
+ * @uses Select
  */
 var AutoSelect=React.createClass({
     getInitialState : function(){
@@ -49,11 +42,18 @@ var AutoSelect=React.createClass({
       });
   },
 componentWillReceiveProps:function(){
+  /**
+   * @property {String} url 取数据的URL
+   */
         var url=this.props.url;
         this._fetch(url);
     },
 
 _onSelect:function(v){
+  /**
+   * 
+   * @property {Function} onSelect 选中选项时的回调函数, 包含一个参数:选中的value
+   */
         if(this.props.onSelect){
             this.props.onSelect(v);
         }

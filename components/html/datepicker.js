@@ -1,8 +1,11 @@
 /**
- * Created by chenth on 15-7-15.
- * 日期控件
- * @module DataPicker
- * @example
+ * @module html
+ */
+var React = require('react/addons');
+var $ = require('jquery');
+require("jquery-ui");
+/**
+ * 日期选择组件
  * ```
  * 使用方法
  * var React = require('react');
@@ -19,14 +22,7 @@
  *  name:日期组件显示的名称
  *  dateFormat：日期格式类型 yy-mm格式化为年－月,yy-mm-dd格化为年－月－日
  *  要想获取该日期所选择的值，调用DatePicker.getDataValue()方法
- *
  * ```
- *
- */
-var React = require('react/addons');
-var $ = require('jquery');
-require("jquery-ui");
-/**
  * @class DatePicker
  *
  */

@@ -1,20 +1,5 @@
 /**
- * Created by chenth on 15-7-15.
- * 自动完成
- * @module Autocomplete
- * @example
- * ```
- * 使用方法
- * var React = require('react');
- * var components=require("components");
- * var Autocomplete=components.Autocomplete;
- * var AutocompleteDemo=React.createClass(
- *     render:function(){
- *         return (<Autocomplete name="动态下拉" url="/api/test/ajax" />);
- *     }
- * );
- * ```
- *
+ * @module html
  */
 var React=require("react/addons");
 
@@ -26,21 +11,24 @@ var AjaxUtils = require('../utils/ajax');
 
 var AutocompleteCache = {};//查询结果缓存
 /**
+ * 自动完成
+ * ```
+ * 使用方法
+ * var React = require('react');
+ * var components=require("components");
+ * var Autocomplete=components.Autocomplete;
+ * var AutocompleteDemo=React.createClass(
+ *     render:function(){
+ *         return (<Autocomplete name="动态下拉" url="/api/test/ajax" />);
+ *     }
+ * );
+ * ```
  * @class Autocomplete
  */
 var Autocomplete=React.createClass({
     statics:{
-        /**
-         *
-         * 获取数据后端ajax 请求地址
-         * @static
-         * @property url
-         * @type String
-         * @default ""
-         *
-         */
         url:'',
-        id:'autocomplete_id',
+        id:'autocomplete_id', 
         ajax:function(value,suc){
             var v={
                 value:value
@@ -51,7 +39,6 @@ var Autocomplete=React.createClass({
          * 返回所有已选中的值
          * @static
          * @method getValue
-         *
          * @return {String} 返回所有的已选择的值
          */
         getValue:function(){
@@ -66,13 +53,23 @@ var Autocomplete=React.createClass({
     },
 
     render:function(){
+        /**
+         * @property {String} url ajax请求URL
+         */
         var url=this.props.url;
         Autocomplete.url=url;
 
         var disName="";
+        /**
+         * @property {String} id id
+         */
         if(this.props.id){
             Autocomplete.id=this.props.id;
         }
+        /**
+         * @property {String} name 显示的名称
+         * @required
+         */
         if(this.props.name){
             disName=this.props.name;
         }
