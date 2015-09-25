@@ -1,28 +1,28 @@
-####################################ע�͹淶#######################################
+####################################注释规范#######################################
 
-1.����ע�͹淶:
+1.基本注释规范:
 
-����module, class, functionӦ�ò���/**��*/�ķ�ʽ����ע��, �ֱ�˵�����ҪԪ��, ����: һ��functionӦ��˵��������, ���Ծ�����(��@example����), ����Ҫ, ҲӦ�ö��乹�캯����ȫ���������н���, ��ʽΪ@param {type} name discription
+对于module, class, function应该采用/**…*/的方式进行注释, 分别说明其必要元素, 例如: 一个function应该说明其作用, 可以举例子(用@example修饰), 如需要, 也应该对其构造函数的全部变量进行解释, 格式为@param {type} name discription
 
-2.����ע��:
+2.内联注释:
 
-���ڱȽϸ��ӵ�д��, ������Ҫ����ʱ����, Ӧ��ʹ�������ķ�������ע��(//), ���ⷢ�������ֲ���˼�����.
-
-
-###############################����YUIdoc��ע��˵��#################################
+对于比较复杂的写法, 或者重要的临时变量, 应该使用内联的方法进行注释(//), 避免发生看名字猜意思的情况.
 
 
-1.ʹ��
+###############################关于YUIdoc的注解说明#################################
 
-ע�ͷ�����YUI���Զ�ʶ��  /** �����ע��  */
+
+1.使用
+
+注释方法：YUI会自动识别  /** 这里的注解  */
 
 /**
  * 
- * ������д��Ӧ��ǩ
+ * 这里填写相应标签
  *
  */
 
-2.��˵��
+2.简单说明
 
 Example moudle Block:
 
@@ -34,10 +34,10 @@ Example moudle Block:
  * 
  */
 
-ps.ģ���עһ������ļ����ͷλ�ã����һ��ģ���ж���ļ�����ô���ÿ���ļ����ļ�ͷ������ģ���ע���Ա�����Щ�ļ�������ͬһ��ģ��
+ps.模块标注一般放在文件的最开头位置，如果一个模块有多个文件，那么需对每个文件的文件头都加上模块标注，以表明这些文件都属于同一个模块
 
 
-Example Class Block��
+Example Class Block：
 
 /**
 * This is the description for my class.
@@ -47,7 +47,7 @@ Example Class Block��
 */
 
 
-Example Method Block��
+Example Method Block：
 
 /**
 * My method description.  Like other pieces of your comment blocks, 
@@ -64,7 +64,7 @@ Example Method Block��
 
 
 
-Example Property Block��
+Example Property Block：
 
 /**
 * My property description.  Like other pieces of your comment blocks, 
@@ -76,16 +76,16 @@ Example Property Block��
 */
 
 
-3.�������õ�ע��
+3.其他常用的注释
 
-˽����   @private 
-��̬���� @static
-��  ��   @example
-��  ��   @author XXXX
+私有类   @private 
+静态方法 @static
+例  子   @example
+作  者   @author XXXX
 
 
-4.�������
+4.相关资料
 
-1.YUIdoc��ҳ��http://yui.github.io/yuidoc/
-2.YUIdoc��ǩ��ϸ˵����http://yui.github.io/yuidoc/syntax/index.html
-3.�����ļ�˵���� http://yui.github.io/yuidoc/args/index.html#json
+1.YUIdoc主页：http://yui.github.io/yuidoc/
+2.YUIdoc标签详细说明：http://yui.github.io/yuidoc/syntax/index.html
+3.配置文件说明： http://yui.github.io/yuidoc/args/index.html#json

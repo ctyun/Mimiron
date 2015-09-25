@@ -1,9 +1,11 @@
 /**
- * Created by chenth on 15-7-15.
+ * @module html
+ */
+var React=require("react/addons");
+var Select=require("./select");
+var AjaxUtils = require('../utils/ajax');
+/**
  * 二级联动select
- * @module CascadeSelect
- *
- * @example
  * ```
  * 使用方法
  * var React = require('react');
@@ -21,42 +23,15 @@
  * firsDefaultValue:一级显示值
  * data:一级下拉填充数据
  * url:一级下拉选择时，二级下拉联动时后台请求的url
- *
  * ```
- */
-var React=require("react/addons");
-var Select=require("./select");
-var AjaxUtils = require('../utils/ajax');
-/**
  * @class CascadeSelect
  */
 var CascadeSelect=React.createClass({
 getInitialState : function(){
     return {
-        /**
-         *显示的数据
-         * @static
-         * @property data
-         * @type Array
-         * @default []
-         */
-        data:[],
-        /**
-         * ajax 调用后台的url
-         * @static
-         * @property url
-         * @type String
-         * @default ""
-         */
-        url:this.props.url,
-        /**
-         * 连动select默认值
-         * @static
-         * @property secondDefaultValue
-         * @type String
-         * @default ""
-         */
-        secondDefaultValue:""
+        data:[], //显示的数据
+        url:this.props.url, //ajax 调用后台的url
+        secondDefaultValue:"" //连动select默认值
     };
 },
 _fetch:function(value){

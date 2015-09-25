@@ -27,8 +27,8 @@ How to start
 How to use the yuidoc to create documents
 ------
 0. please read the document < YUIDOC-README.md > 
-1. install yuidoc: npm install yuidocjs -g
-2. execute command in the root directory: in the root: yuidoc
+1. install yuidoc: `npm install yuidocjs -g`
+2. execute command in the root directory: in the root: `yuidoc`
 
 Notice
 ------

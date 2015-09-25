@@ -1,6 +1,17 @@
+/*
+ *@module html
+ */
 var React = require('react/addons');
 
-
+/**
+ * 文本区
+ * ```
+ *  <Textarea rows="4" onChange={this.textareaChange}>
+        12234
+    </Textarea>
+ * ```
+ * @class Textarea
+ */
 var Textarea=React.createClass({
     displayName:'Textarea',
 
@@ -10,8 +21,19 @@ var Textarea=React.createClass({
     },
     getDefaultProps: function(){
         return{
+            /**
+             * @property {String} name 显示在左边的名称
+             * @default ""
+             */
             name:"",
+            /**
+             * @property {String} rows 行数
+             * @default "3"
+             */
             rows:"3",
+            /**
+             * @property {Function} onChange 文本编辑时的回调函数
+             */
             onChange: new Function(),
         }
     },

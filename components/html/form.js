@@ -1,9 +1,13 @@
 /**
+ * @module html
  *
- * Created by chenth on 15-7-28.
+ */
+
+var React=require("react/addons");
+var Button=require("../html/button");
+var $=require("jquery");
+/**
  * 表单组件
- * @module BSSForm
- *@example
  *```
  *使用方法
  *var React = require('react');
@@ -32,15 +36,7 @@
  *   禁用提交按钮时显示的名称
  *
  * 此组件使用可参考QueryPanel使用
- *
  *```
- *
- */
-
-var React=require("react/addons");
-var Button=require("../html/button");
-var $=require("jquery");
-/**
  * @class BSSForm
  */
 var BSSForm=React.createClass({

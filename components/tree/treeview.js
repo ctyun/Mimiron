@@ -3,10 +3,8 @@
  * @module Treeview
  * @author WangYG 2015年8月3日 08:48:41
  * @example 
- *
-   <pre>
+ * ```
    使用说明
-   <Treeview data={tree1Data} selectType="checkbox"/>
    data: (object)树中展现的数据, 格式请参考demo.js, 每个节点可以有如下属性:
     -"name":显示的名称.
     -"uid":唯一的Id,注意,此ID必须唯一, 如果留空,则自动生成一个.
@@ -28,53 +26,42 @@
         -status:目标节点操作状态, 'flod'为收起操作, 'unckeck'为展开操作.
    expandLevel: (int)展开级别
    maxHeight:(string) 比如:"300px"
-  
+
+    var tree1Data = {
+        treedata: [
+            {
+                "name": "Top Level",
+                "uid": "uid1",
+                "children": [
+                    {
+                        "name": "Level 2: A",
+                        "uid": "uid2",
+                        "children": [
+                            {
+                                "name": "Son of A"
+                            },
+                            {
+                                "name": "Daughter of A"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "Level 2: B"
+                    },
+                    {
+                        "name": "Level 2: C",
+                        "children": [
+                            {
+                                "name": "Son of C"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+    <Treeview data={tree1Data} selectType="checkbox"/>
   ```
-    Getting nodes from treedata item
-    Example input treedata:
-    [
-        {
-            "name": "Top Level",
-            "uid": "uid1",
-            "children": [
-                {
-                    "name": "Level 2: A",
-                    "uid": "uid2",
-                    "children": [
-                        {
-                            "name": "Son of A"
-                        },
-                        {
-                            "name": "Daughter of A"
-                        }
-                    ]
-                },
-                {
-                    "name": "Level 2: B"
-                },
-                {
-                    "name": "Level 2: C",
-                    "children": [
-                        {
-                            "name": "Son of C"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-    output nodes:
-    [
-        { display:'Top Level', level:1 },
-        { display:'Level 2: A', level:2 },
-        { display:'Son of A', level:3 },
-        { display:'Daughter of A', level:3 },
-        { display:'Level 2: B', level:2 },
-        { display:'Level 2: C', level:2 },
-        { display:'Son of C', level:3 }
-    ]
-  ```
- </pre>
 */
 
 

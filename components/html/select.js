@@ -1,8 +1,9 @@
 /*
- *  Created by chenth on 15-7-15.
- *  下拉列表组件
- *@module Select
- *@example
+ *@module html
+ */
+var React=require("react/addons");
+/**
+ * 下拉列表组件
  *```
  * 使用方法
  *var React = require('react');
@@ -25,9 +26,6 @@
  *  noEmptyMsg:true
  *  不显示默认提示
  * ```
- */
-var React=require("react/addons");
-/**
  * @class Select
  *
  */
