@@ -152,7 +152,13 @@ var Input=React.createClass({
          * ```
          * @property {String} reg 正则规则
          */
-        return <span>{name}<input  id={this.props.id} name={this.props.name} errorMsg={this.props.errorMsg} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null}/></span>;
+        /**
+         * @property {String} name 同html中的name
+         */
+        /**
+         * @property {String} placeholder 同html
+         */
+        return <span>{name}<input  id={this.props.id} name={this.props.name} errorMsg={this.props.errorMsg} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder}/></span>;
     }
 });
 module.exports=Input;

@@ -24,13 +24,17 @@ var components = {
 	//require("./utils/webpackPatch"),
 
 	//import combined components
-	// BSSPanel:require("./panel/panel"),
-	// QueryPanel:require("./panel/query-panel"),
-	// ToolBarPanel:require("./panel/tool-panel"),
-	// TablePanel:require("./panel/table-panel"),
+	BSSPanel:require("./panel/panel"),
+	QueryPanel:require("./panel/query-panel"),
+	ToolBarPanel:require("./panel/tool-panel"),
+	TablePanel:require("./panel/table-panel"),
+	
+
+	//import BSS related components
 	BSSFrame : require("./BSSFrame/frame"),
 	TopBar : require("./BSSFrame/topbar"),
 	SideBar : require("./BSSFrame/sidebar"),
+	Login : require("./BSSFrame/login"),
 
 	//import packed components
 	TencentMap : require('./tencentMap/map'),

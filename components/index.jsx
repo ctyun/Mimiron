@@ -388,56 +388,42 @@ var wordCloudData =  [
 //   </div>
 //   , document.getElementById('content'));
   
-var BSSFrame = require("./BSSFrame/frame");
-var Demo = require("./demo/demo");
+
+// var BSSFrame = require("./BSSFrame/frame");
+// var Demo = require("./demo/demo");
+// React.render(
+//   <div style={{"overflow":"auto"}}>
+//   <Demo />
+//     <p>ECharts 原生用法，支持直接baidu echarts 直接拷贝option</p>
+//     <ECharts height="400px" width="800px" option={option}/>
+//     <p>BasicLine 简单用法</p>
+//     <BasicLine data={data} xAxisName={xAxisName}/>
+//     <p>BasicLine 进阶用法</p>
+//     <BasicLine title="BasicLine" subtitle="这是一个副标题测试" height="300px" width="600px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+//     <p>StackedLine 简单用法</p>
+//     <StackedLine data={data} xAxisName={xAxisName}/>
+//     <p>StackedLine 进阶用法</p>
+//     <StackedLine title="StackedLine" subtitle="这是一个副标题测试" height="300px" width="600px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
+//     <p>BasicArea 简单用法</p>
+//     <BasicArea data={data} xAxisName={xAxisName}/>
+//     <p>BasicArea 进阶用法</p>
+//     <BasicArea title="BasicArea" subtitle="这是一个副标题测试" height="300px" width="600px" data={data} xAxisName={xAxisName} smooth={true}/>
+//     <p>IrregularLine</p>
+//     <IrregularLine title="IrregularLine" subtitle="IrregularLine" height="400px" width="800px" data={data2} smooth={true} />
+//     <p>BasicColumn</p>
+//     <BasicColumn title="BasicColumn" subtitle="BasicColumn" height="400px" width="800px" data={data} xAxisName={xAxisName} smooth={true}/>
+//     <p>StackedColumn</p>
+//     <StackedColumn title="StackedColumn" subtitle="StackedColumn" height="400px" width="800px" trigger="axis" data={data} xAxisName={xAxisName} smooth={true}/>
+//     <p>BasicPie</p>
+//     <BasicPie title="StackedColumn" subtitle="StackedColumn" height="400px" width="800px"  data={pieData} />
+//     <p>WordCloud</p>
+//     <WordCloud title="WordCloud" subtitle="WordCloud" height="400px" width="800px"  data={wordCloudData} />
+//   </div>
+//   , document.getElementById('content'));
+
+
+var Login = require("./BSSFrame/login");
+
 React.render(
-
-  <div style={{"overflow":"auto"}}>
-  <Demo />
-
-    <p>ECharts 原生用法，支持直接baidu echarts 直接拷贝option</p>
-    <ECharts height="400px" width="800px" option={option}/>
-
-    <p>BasicLine 简单用法</p>
-    <BasicLine data={data} xAxisName={xAxisName}/>
-
-    <p>BasicLine 进阶用法</p>
-    <BasicLine title="BasicLine" subtitle="这是一个副标题测试" height="300px" width="600px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-    
-
-    <p>StackedLine 简单用法</p>
-    <StackedLine data={data} xAxisName={xAxisName}/>
-
-    <p>StackedLine 进阶用法</p>
-    <StackedLine title="StackedLine" subtitle="这是一个副标题测试" height="300px" width="600px" trigger="item" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-    
-
-    <p>BasicArea 简单用法</p>
-    <BasicArea data={data} xAxisName={xAxisName}/>
-
-    <p>BasicArea 进阶用法</p>
-    <BasicArea title="BasicArea" subtitle="这是一个副标题测试" height="300px" width="600px" data={data} xAxisName={xAxisName} smooth={true}/>
-
-
-    <p>IrregularLine</p>
-    <IrregularLine title="IrregularLine" subtitle="IrregularLine" height="400px" width="800px" data={data2} smooth={true} />
-
-    <p>BasicColumn</p>
-    <BasicColumn title="BasicColumn" subtitle="BasicColumn" height="400px" width="800px" data={data} xAxisName={xAxisName} smooth={true}/>
-
-    <p>StackedColumn</p>
-    <StackedColumn title="StackedColumn" subtitle="StackedColumn" height="400px" width="800px" trigger="axis" data={data} xAxisName={xAxisName} smooth={true}/>
-
-
-
-    <p>BasicPie</p>
-    <BasicPie title="StackedColumn" subtitle="StackedColumn" height="400px" width="800px"  data={pieData} />
-
-
-    <p>WordCloud</p>
-    <WordCloud title="WordCloud" subtitle="WordCloud" height="400px" width="800px"  data={wordCloudData} />
-
-
-  </div>
-
+  <Login />
   , document.getElementById('content'));
