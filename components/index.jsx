@@ -425,5 +425,5 @@ var wordCloudData =  [
 var Login = require("./BSSFrame/login");
 
 React.render(
-  <Login />
-  , document.getElementById('content'));
+  <BSSPanel />
+  , document.body);
