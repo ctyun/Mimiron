@@ -63,4 +63,4 @@ Reference
 
 发布方法
 -------
-`webpack --config webpack.config.min.js` 去*dist/*目录下取打包完成文件.
+`npm run release` 去*dist/*目录下取打包完成文件.

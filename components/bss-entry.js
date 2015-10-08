@@ -4,6 +4,8 @@
 
 //FIXME require CSS here
 
+window.hasModule=0; //this is due to a unhandled error information: hasModule is not defined
+
 var components = {
 	React : require('react'),
 	//import base components
