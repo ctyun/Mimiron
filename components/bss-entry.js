@@ -35,6 +35,7 @@ var components = {
 	TopBar : require("./BSSFrame/topbar"),
 	SideBar : require("./BSSFrame/sidebar"),
 	Login : require("./BSSFrame/login"),
+	BasePage: require("./BSSFrame/basepage"),
 
 	//import packed components
 	TencentMap : require('./tencentMap/map'),
@@ -42,7 +43,10 @@ var components = {
 	MessageBox : require("./message/messageBox"),
 
 	//DEMO
-	Demo : require("./demo/demo")
+	Demo : require("./demo/demo"),
+
+	//deprecated
+	Report : require("./deprecated/component/report/report")
 };
 
 components.version = require('../package.json').version;

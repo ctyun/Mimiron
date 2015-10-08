@@ -23,10 +23,14 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+                //exclude: /node_modules/,
                 //exclude: path.join(__dirname, 'node_modules'),
                 include: path.join(__dirname, 'components'),
                 loader: 'react-hot!babel-loader'
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
             }
         ]
     },
