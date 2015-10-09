@@ -38,7 +38,6 @@ var Tools = {
 
     loadScript : function(url, callback) {
         var script = document.createElement("script");
-        script.type = "text/javascript";
         // IE
         if (script.readyState) {
             script.onreadystatechange = function () {
@@ -52,6 +51,14 @@ var Tools = {
                 callback();
             };
         }
+
+        var rgJS = /^(.+)\.js$/ig;
+        var rgJSX = /^(.+)\.jsx$/ig;
+        if(rgJS.test(url))
+            script.type = "text/javascript";
+        if(rgJSX.test(url))
+            script.type = "text/jsx";
+
         script.src = url;
         document.body.appendChild(script);
     },
@@ -69,7 +76,7 @@ var Tools = {
 
             //加载脚本
             var script = document.createElement("script");
-            script.type = "text/javascript";
+
             // IE
             if (script.readyState) {
                 script.onreadystatechange = function () {
@@ -85,6 +92,14 @@ var Tools = {
                     callback();
                 };
             }
+
+            var rgJS = /^(.+)\.js$/ig;
+            var rgJSX = /^(.+)\.jsx$/ig;
+            if(rgJS.test(url))
+                script.type = "text/javascript";
+            if(rgJSX.test(url))
+                script.type = "text/jsx";
+
             script.src = url;
             document.body.appendChild(script);
         }
