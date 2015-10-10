@@ -10,7 +10,6 @@ var AjaxUtils = {
           method:"GET"
       };
       APIUtils.request(req).then(function(d){
-          console.log("in ajax suscall");
           sucCall(d);
       });
   },
