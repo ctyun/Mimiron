@@ -44,6 +44,9 @@ var components = {
 	Modal:require("./message/modal"),
 	MessageBox : require("./message/messageBox"),
 
+	//utils
+	Tools : require("./utils/tools"),
+
 	//DEMO
 	Demo : require("./demo/demo"),
 
