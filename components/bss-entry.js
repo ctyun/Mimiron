@@ -48,7 +48,8 @@ var components = {
 	Demo : require("./demo/demo"),
 
 	//deprecated
-	Report : require("./deprecated/component/report/report")
+	Report : require("./deprecated/component/report/report"),
+	Metadata : require("./deprecated/component/metadata/metadata")
 };
 
 components.version = require('../package.json').version;

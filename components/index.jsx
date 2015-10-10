@@ -1,8 +1,7 @@
-window.hasModule = 0; //this is due to a unhandled error information: hasModule is not defined
 
 var React = require("react");
 var components = require("./bss-entry.js");
-var Report = components.Report;
+var Metadata = components.Metadata;
 
 var ThisPage = React.createClass({
     componentDidMount: function(){
@@ -13,7 +12,7 @@ var ThisPage = React.createClass({
     		name:"config",
     		id:null
     	};
-        return(<Report params={params}/>);
+        return(<components.Sidebar/>);
     }
 });
 React.render(<ThisPage />, document.getElementById('content'));

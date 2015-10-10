@@ -50,7 +50,7 @@ var ReactCommonAction={
      */
     _doChange:function(obj){ //onChange event
         var p=this.state.paramReactCommonAction;
-        for(o in obj ){
+        for(var o in obj ){
             p[o]=obj[o];
         }
         this.state.paramReactCommonAction=p;
