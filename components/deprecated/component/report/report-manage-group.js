@@ -209,8 +209,6 @@ var ManageReportGroup = React.createClass({
 
         //获得勾选的值
         var checkedValues = Grid.getCheckedValue();
-
-        Debug.log(checkedValues,"checkedValues");
         
         //阻止按钮再次给点击提交
         this.setSubmitDisabled(true);
@@ -311,7 +309,6 @@ var ManageReportGroup = React.createClass({
                         reportModelClientBO.map(function(reportModel) {
                             selectReportModelData.push(reportModel.reportModelMetaBO.reportModelId);
                         });
-                        Debug.log(selectReportModelData,"selectReportModelData");
                         self.setState({
                             selectReportModelData:selectReportModelData
                         });
@@ -339,8 +336,6 @@ var ManageReportGroup = React.createClass({
 
         //获得勾选的值
         var checkedValues = Grid.getCheckedValue();
-
-        Debug.log(checkedValues,"editReportGroup  checkedValues");
 
         var param = {
             groupId:this.state.editGroupId,

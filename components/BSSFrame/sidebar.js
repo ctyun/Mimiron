@@ -131,7 +131,6 @@ var SideBar = React.createClass({
     },
     componentDidUpdate : function(){
         if(this.state.selectFlag){
-            Debug.log(this.state.menu,"will click");
             this.state.selectFlag = false;
             window.setTimeout("clickMenu()",100);
         }

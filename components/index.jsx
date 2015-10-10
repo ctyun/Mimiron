@@ -12,7 +12,7 @@ var ThisPage = React.createClass({
     		name:"config",
     		id:null
     	};
-        return(<components.SideBar/>);
+        return(<components.TopBar/>);
     }
 });
 React.render(<ThisPage />, document.getElementById('content'));

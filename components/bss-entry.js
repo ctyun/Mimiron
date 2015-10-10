@@ -50,7 +50,9 @@ var components = {
 	//deprecated
 	Report : require("./deprecated/component/report/report"),
 	Metadata : require("./deprecated/component/metadata/metadata"),
-	Login : require("./deprecated/component/login/login")
+	Login : require("./deprecated/component/login/login"),
+	ManageReportGroup: require("./deprecated/component/report/report-manage-group"),
+	ReportShow : require("./deprecated/component/report/report-show")
 };
 
 components.version = require('../package.json').version;
