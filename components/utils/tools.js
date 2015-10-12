@@ -66,6 +66,31 @@ var Tools = {
         document.body.appendChild(script);
     },
 
+    loadCSS : function(url, callback) {
+        var node = document.createElement("link");
+
+        if(!callback) callback  = function(){}
+
+        // IE
+        if (node.readyState) {
+            node.onreadystatechange = function () {
+                if (node.readyState == "loaded" || node.readyState == "complete") {
+                    node.onreadystatechange = null;
+                    callback();
+                }
+            };
+        } else { // others
+            node.onload = function () {
+                callback();
+            };
+        }
+
+        node.rel = 'stylesheet';
+        node.type = "text/css";
+        node.href = url;
+        document.getElementsByTagName('head')[0].appendChild(node);
+    },
+
 
     loadScriptsWithNoCallback : function(url) {
         var script = document.createElement("script");
@@ -130,7 +155,57 @@ var Tools = {
         return false;
 
         
+    },
+
+
+
+    loadCSSWithLock : function(cssName, url, callback) {
+
+        if(this.cssName === true){
+            return true;
+        }
+
+        if(this.cssName == undefined){
+            this.cssName = false;
+
+            var _this = this;
+
+            //加载脚本
+            var node = document.createElement("link");
+
+            if(!callback) callback  = function(){}
+
+            // IE
+            if (node.readyState) {
+                node.onreadystatechange = function () {
+                    if (node.readyState == "loaded" || node.readyState == "complete") {
+                        node.onreadystatechange = null;
+                        _this.cssName = true;//加载完成
+                        callback();//回调
+                    }
+                };
+            } else { // others
+                node.onload = function () {
+                    _this.cssName = true;//加载完成
+                    callback();
+                };
+            }
+
+            node.rel = 'stylesheet';
+            node.type = "text/css";
+            node.href = url;
+
+            document.body.appendChild(node);
+        }
+
+        return false;
+
+        
     }
+
+
+
+
 
 }
 

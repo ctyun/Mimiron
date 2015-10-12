@@ -9,8 +9,6 @@ require("jquery-ui");
  * ```
  * 使用方法
  * var React = require('react');
- * var components=require("components");
- *var DataPicker=components.DataPicker;
  * var DataPickerDemo=React.createClass(
  *     render:function(){
  *         return (<DataPicker id="startTime_id"  name="时间" dateFormat="yy-mm"/>);
@@ -33,7 +31,7 @@ var DatePicker=React.createClass({
         /**
          * @static
          * @method
-         * @param id  日期控件所在id
+         * @param id  日期控件所在id 
          * @returns {string} 返回选择的日期值
          */
         getDataValue:function(id){
@@ -56,6 +54,9 @@ var DatePicker=React.createClass({
     componentDidMount:function(){
         var node=this.getDOMNode();
         this.state.elem=node;
+        $('#'+this.props.id).datepicker({dateFormat:foramt,changeMonth: true,
+            changeYear: true
+        });
     },
     render:function(){
         if(this.props.id){
@@ -69,9 +70,8 @@ var DatePicker=React.createClass({
         if(this.props.name){
             name=this.props.name;
         }
-        $('#'+this.props.id).datepicker({dateFormat:foramt,changeMonth: true,
-            changeYear: true
-            });
+        console.log( $('#'+this.props.id));
+
         return (<span>{name}<input type='text'  className="form-control input-md" id={this.props.id}  /></span>);
     }
 });

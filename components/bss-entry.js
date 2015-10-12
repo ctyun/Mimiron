@@ -48,10 +48,11 @@ var components = {
 	Tools : require("./utils/tools"),
 
 	//DEMO
-	Demo : require("./demo/demo"),
+	Demo : require("./demo/demo-all-components"),
 
 	//deprecated
-	Report : require("./deprecated/component/report/report")
+	Report : require("./deprecated/component/report/report"),
+	Metadata : require("./deprecated/component/metadata/metadata")
 };
 
 components.version = require('../package.json').version;

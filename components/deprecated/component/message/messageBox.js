@@ -19,7 +19,7 @@ var MessageBox = React.createClass({
 		title : null,
 		message : null,
 		show : function(title,message){
-			mb = (<Modal id="MessageBoxModal" title={title} submitAction={Modal.hide.bind(null,"MessageBoxModal")} >
+			var mb = (<Modal id="MessageBoxModal" title={title} submitAction={Modal.hide.bind(null,"MessageBoxModal")} >
 			        <span>{message}</span> <br/>
 					<br/>
 			      </Modal>);

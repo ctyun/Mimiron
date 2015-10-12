@@ -102,7 +102,7 @@ var Metadata = React.createClass({
     setMetadata : function(data){ 
         Debug.log(data,"setMetadata");
         for(var i in data.result){
-          d = data.result[i];
+          var d = data.result[i];
           d.defaultQueryTypeShow = this.static.showMetaDataType[d.defaultQueryType];
         }
         this.setState({data:data.result,totalRows:data.totalCount});
