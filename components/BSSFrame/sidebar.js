@@ -17,7 +17,7 @@ var Link = React.createClass({
         }
     },
 	render: function(){
-		return(<a href={this.props.to}>
+		return(<a href={this.props.to} onClick={this._onClick}>
 				{this.props.children}
 			</a>)
 	}
@@ -55,7 +55,7 @@ var SideBar = React.createClass({
                     if (item.children && item.children.length>0) {
                         return (
                             <li key={key}>
-                                <a href="#" >
+                                <a href="#" onClick={self.dummyClick}>
                                     <span className="menu-title">{item.name}</span>
                                     <span className="fa fa-arrow arrow"></span>
                                 </a>
@@ -131,7 +131,6 @@ var SideBar = React.createClass({
     },
     componentDidUpdate : function(){
         if(this.state.selectFlag){
-            Debug.log(this.state.menu,"will click");
             this.state.selectFlag = false;
             window.setTimeout("clickMenu()",100);
         }
@@ -147,6 +146,9 @@ var SideBar = React.createClass({
 	            </div>
 	        </nav>
         </div>);
+    },
+    dummyClick: function(e){
+        e.preventDefault();
     }
 });
 

@@ -1,6 +1,5 @@
 
 var React = require('react/addons');
-var Link = require('react-router').Link;
 var components = require('../../vendors/components');
 var ActionButtonEdit = components.ActionButtonEdit;
 var ActionButtonDelete = components.ActionButtonDelete;
@@ -17,6 +16,20 @@ var FormInput=require("../html/input");
 var Button=require("../button/button");
 
 var QueryPanel=require("../panel/query-panel");
+
+var Link = React.createClass({
+  displayName: "Link",
+  getDefaultProps: function(){
+        return{
+          to:"#",
+        }
+    },
+  render: function(){
+    return(<a href={this.props.to}>
+        {this.props.children}
+      </a>)
+  }
+})
 
 var Manage = React.createClass({
   getInitialState: function() {
@@ -177,7 +190,6 @@ submitAction:function(param){
  * @return {[type]}   [description]
  */
   _doAddMenu:function(e){
-    console.log(this.state.menuName);
     if(this.state.menuName.length>0){
          this._toggleAddMenuConfirm();
       //console.log(this.state.menuName+";id="+this.state.menuId);

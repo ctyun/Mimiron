@@ -130,7 +130,6 @@ var TreeView = React.createClass({
     }
     this.props.addTableName(data.tableName,data.displayName);
   }else{
-    console.log(data);
   }
   
 }

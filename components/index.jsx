@@ -5,6 +5,8 @@ var components = require("./bss-entry.js");
 var Tools = require("./utils/tools.js");
 var Report = components.Report;
 
+var Demo = components.Demo;
+
 var ThisPage = React.createClass({
     componentDidMount: function(){
         Tools.loadScript("/static/theme/theme.js");
@@ -14,7 +16,7 @@ var ThisPage = React.createClass({
     		name:"config",
     		id:null
     	};
-        return(<Report params={params}/>);
+        return(<Demo/>);
     }
 });
 React.render(<ThisPage />, document.getElementById('content'));

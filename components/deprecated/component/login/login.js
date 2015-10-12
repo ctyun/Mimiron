@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+
 var React = require('react/addons');
 var Action = require('../../action/admin-user');
 var Store = require('../../store/admin-user');

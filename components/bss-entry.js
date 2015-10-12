@@ -36,7 +36,7 @@ var components = {
 	BSSFrame : require("./BSSFrame/frame"),
 	TopBar : require("./BSSFrame/topbar"),
 	SideBar : require("./BSSFrame/sidebar"),
-	Login : require("./BSSFrame/login"),
+	//Login : require("./BSSFrame/login"),
 	BasePage: require("./BSSFrame/basepage"),
 
 	//import packed components
@@ -52,7 +52,10 @@ var components = {
 
 	//deprecated
 	Report : require("./deprecated/component/report/report"),
-	Metadata : require("./deprecated/component/metadata/metadata")
+	Metadata : require("./deprecated/component/metadata/metadata"),
+	Login : require("./deprecated/component/login/login"),
+	ManageReportGroup: require("./deprecated/component/report/report-manage-group"),
+	ReportShow : require("./deprecated/component/report/report-show")
 };
 
 components.version = require('../package.json').version;

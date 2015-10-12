@@ -3,6 +3,8 @@
  */
 
 var React = require('react');
+var Ajax = require("../utils/ajax");
+var API = require("../const/API");
 
 /**
  * 导航条组件
@@ -19,9 +21,7 @@ var TopBar = React.createClass({
         	/**
         	 * @property {Function} logout 注销按钮的回调函数
         	 */
-        	logout:function(){
-        		return;
-        	},
+        	logout:null,
         	/**
         	 * @property {String} userName 显示的用户名
         	 * @default "GUEST"
@@ -34,8 +34,17 @@ var TopBar = React.createClass({
         	title:"电信云公司业务系统",
         }
     },
-    _logout: function(){
-    	return;
+    _logout: function(e){
+    	e.preventDefault();
+    	if(this.props.logout){
+    		this.props.logout()
+    		return
+    	}else{
+    		Ajax.get(API.LOGOUT,function(d){
+    			window.location.href = "/login";
+    		});
+
+    	}
     },
     render: function () {
         return (<div>
@@ -50,7 +59,7 @@ var TopBar = React.createClass({
 		                    <li className="dropdown topbar-user"><a data-hover="dropdown" href="#" className="dropdown-toggle"><span>{this.props.userName}</span>&nbsp;<span className="caret"></span></a>
 		                        <ul className="dropdown-menu dropdown-user pull-left">
 		                            <li><a href="extra-profile.html"><i className="fa fa-user"></i>个人设置</a></li>
-		                            <li><a onClick={this.props.logout}><i className="fa fa-key"></i>注销</a></li>
+		                            <li><a href="#" onClick={this._logout}><i className="fa fa-key"></i>注销</a></li>
 		                        </ul>
 		                    </li>
 		                    <li className="dropdown hidden-xs"><a id="theme-setting" href="javascript:;" data-hover="dropdown"><i
