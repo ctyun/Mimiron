@@ -16,13 +16,15 @@ var Header = require('./header');
  * var BSSPanelDemo=React.createClass(
  *     render:function(){
  *         return ( <BSSPanel pageTitle = "示例Panel">
-                 <QueryPanel submitAction={queryMetadata} jsonFormat={true} okButtonName="查询(请看console)">
-                 <Input disName=" 示范输入:" name="demoInput"/>
-                 </QueryPanel>
-                 <ToolBarPanel>
-                 <Button btnName="增删查改"/>
-                 </ToolBarPanel>
+                     <QueryPanel submitAction={this.queryMetadata} jsonFormat={true} okButtonName="查询(请看console)">
+                        <Input disName=" 示范输入:" name="demoInput"/>
+                     </QueryPanel>
+                     <ToolBarPanel>
+                        <Button btnName="增删查改"/>
+                     </ToolBarPanel>
                  </BSSPanel>);
+ *     },
+ *     queryMetadata: function(){
  *     }
  * );
  *```

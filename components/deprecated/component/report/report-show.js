@@ -105,7 +105,8 @@ _list:function(d,pageSize){
             titles.push(obj.displayName);
             jsonKey.push(obj.reportMetadataCode);
             var advancedProperties = eval('(' + obj.advancedProperties + ')');
-            isDummy.push(advancedProperties.isDummy);
+            if(advancedProperties) //注意对旧数据的兼容
+              isDummy.push(advancedProperties.isDummy);
         }
         self.setState({
         report: result,

@@ -6,27 +6,26 @@ var React = require('react');
 var TopBar = require("./topbar");
 var SideBar = require("./sidebar");
 /**
- * 用于天翼云业务管理系统的页面框架
+ * 用于天翼云业务管理系统的页面框架, 还没确定最终用法, 直接看代码吧.
  * @class BSSFrame
- * @deprecated 直接使用Topbar和Sidebar.
  */
 var BSSFrame = React.createClass({
 	displayName: 'Frame',
 	getDefaultProps: function(){
         return{
         	userName:"TEST",
-        	menu:null,
         }
     },
-    _logout: function(){
-    	alert("place logout function here");
-    },
+    componentDidMount: function(){
+	    Tools.loadScript(["../js/dist/frame/theme.js"]);
+	},
 	render: function(){
 		return(<div>
-			<TopBar logout={this._logout} userName={this.props.userName}/>
+			<TopBar userName={this.props.userName}/>
 			<div id="wrapper">
-				<SideBar list={this.props.menu} />
+				<SideBar />
 				<div id="page-wrapper">
+					{this.props.children}
 				</div>
 			</div>
 		</div>)

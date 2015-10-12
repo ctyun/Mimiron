@@ -155,16 +155,16 @@ var Metadata = React.createClass({
     },
     onSelectMetaData : function(v){
       if(v=="12"){    //枚举
-        dispChooseEnumType = "";
-        dispTypeinEnumValue = "none";
+        var dispChooseEnumType = "";
+        var dispTypeinEnumValue = "none";
       }
       else if(v=="14"){   //静态枚举
-        dispTypeinEnumValue = "";
-        dispChooseEnumType = "none";
+        var dispTypeinEnumValue = "";
+        var dispChooseEnumType = "none";
       }
       else{
-        dispChooseEnumType = "none";
-        dispTypeinEnumValue = "none";
+        var dispChooseEnumType = "none";
+        var dispTypeinEnumValue = "none";
       }
       this.setState({dispChooseEnumType:dispChooseEnumType,dispTypeinEnumValue:dispTypeinEnumValue});
     },
@@ -173,7 +173,7 @@ var Metadata = React.createClass({
       switch(v){
         case "1": //选择父集
           var paramToPost = {"pageNo":1,"pageSize":999999};
-          data = this.state.data; //find the cheched Id
+          var data = this.state.data; //find the cheched Id
           var resourceTableName = "error"; //需要使用表名查找, 只能遍历目前所有data
           for(var i in data){
             if(data[i].reportMetadataId==Grid.getCheckedValue()[0]){

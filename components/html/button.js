@@ -17,7 +17,7 @@ var React = require('react/addons');
  * );
  *
  * 使用说明
- * <Button actions=[] code="" btnName="增加" disabled={this.state.dis} disabledName="正在请求......" doAction={this._doAction}/>
+ * <Button doAction={this.clickButton} code="" btnName="增加" disabledName="正在请求......" />
  * disabled:些属性判断按钮是否可用disabled：true此按钮不可用
  * disabledName：不可用时显示的名称
  * doAction:当点击该按钮时调用parent中的方法去执行

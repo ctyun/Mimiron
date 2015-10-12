@@ -53,14 +53,16 @@ var DatePicker=React.createClass({
 
         };
     },
+    getDefaultProps: function(){
+        return{
+            id:'DataPicker',
+        }
+    },
     componentDidMount:function(){
         var node=this.getDOMNode();
         this.state.elem=node;
     },
     render:function(){
-        if(this.props.id){
-            DatePicker.id=this.props.id;
-        };
         var foramt="yy-mm-dd";
         if(this.props.dateFormat){
             foramt=this.props.dateFormat;
@@ -72,6 +74,7 @@ var DatePicker=React.createClass({
         $('#'+this.props.id).datepicker({dateFormat:foramt,changeMonth: true,
             changeYear: true
             });
+        console.log(this.props.id);
         return (<span>{name}<input type='text'  className="form-control input-md" id={this.props.id}  /></span>);
     }
 });

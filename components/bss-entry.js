@@ -21,6 +21,7 @@ var components = {
 	CheckboxGroup : require("./html/CheckboxGroup"),
 	Checkbox : require("./html/Checkbox"),
 	Textarea : require("./html/Textarea"),
+	DatePicker: require("./html/DatePicker"),
 
 	//import ES6 patch ,no longer use, use babel-loader instead
 	//require("./utils/webpackPatch"),
@@ -36,8 +37,8 @@ var components = {
 	BSSFrame : require("./BSSFrame/frame"),
 	TopBar : require("./BSSFrame/topbar"),
 	SideBar : require("./BSSFrame/sidebar"),
+
 	//Login : require("./BSSFrame/login"),
-	BasePage: require("./BSSFrame/basepage"),
 
 	//import packed components
 	TencentMap : require('./tencentMap/map'),
