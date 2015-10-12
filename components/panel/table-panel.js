@@ -1,5 +1,5 @@
     /**
-     *@module TablePanel
+     *@module panel
      */
 var React=require("react/addons");
 var BSSPanel=require("./panel");
