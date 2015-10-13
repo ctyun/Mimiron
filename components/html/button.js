@@ -12,7 +12,7 @@ var React = require('react/addons');
  *var Button=components.Button;
  *var ButtonDemo=React.createClass(
  *     render:function(){
- *         return ( <Button actions=[] code="" btnName="增加" disabled={this.state.dis} disabledName="正在请求......" doAction={this._doAction}/>);
+ *         return ( <Button  btnName="增加" disabledName="正在请求......" doAction={this._doAction} />);
  *     }
  * );
  *

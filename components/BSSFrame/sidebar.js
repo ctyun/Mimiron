@@ -6,6 +6,8 @@ var React = require('react');
 var API = require("../const/API");
 var Debug = require("../utils/debug");
 var Ajax = require("../utils/ajax");
+
+var H5 = require("../utils/h5");
 /*
  * 由Route取代, 这里是临时使用
  */
@@ -20,7 +22,9 @@ var Link = React.createClass({
 		return(<a href={this.props.to} onClick={this._onClick}>
 				{this.props.children}
 			</a>)
-	}
+	},
+    _onClick: function(){
+    }
 })
 
 /**
@@ -44,69 +48,23 @@ var SideBar = React.createClass({
     componentWillMount: function(){
         var self = this;
         //从API中取登录用户可用的菜单
+        var result = H5.localStorage.get("SideBar");
+        if(result){
+            this.FormSidebar(self,result);
+            window.setTimeout("clickMenu()",200); //理论上可以立即操作, 但是实践中, jquery可以找到目标元素, 但是点击没有任何反应.
+            return;
+        }
     	Ajax.get(API.SIDE_BAR_MENU,function(d){
     		if(d){
                 self.state.list = d.children;
             }
-            var list = self.props.list || self.state.list;
-            var menu = (list && list.length) ? list.map(function(item, key) {
-                if (item.children&&item.children.length==0&&item.url&&item.url.length>0) {
-                    return <li key={key}><Link to={item.url}><span className="menu-title">{item.name}</span></Link></li>
-                } else {
-                    if (item.children && item.children.length>0) {
-                        return (
-                            <li key={key}>
-                                <a href="#" onClick={self.dummyClick}>
-                                    <span className="menu-title">{item.name}</span>
-                                    <span className="fa fa-arrow arrow"></span>
-                                </a>
-                                <ul className="nav nav-second-level mtn collapse">
-                                    {item.children.map(function(sub, subKey) {
-
-                                        if (sub.url&&sub.url.length>0) {
-                                            return <li key={subKey}>
-                                                <Link to={sub.url}><i className="fa fa-angle-right"></i><span className="submenu-title">{sub.name}</span></Link>
-                                            </li>
-                                        } else {
-                                            if (sub.children && sub.children.length>0) {
-                                                return (
-                                                    <li key={subKey}>
-                                                        <a href="#" >
-                                                            <i className="fa fa-angle-right"></i>
-                                                            <span className="submenu-title">{sub.name}</span>
-                                                            <span className="fa fa-arrow arrow"></span>
-                                                        </a>
-                                                        <ul className="nav nav-third-level mtn collapse">
-                                                        {sub.children.map(function(third, thirdKey) {
-                                                            return <li key={thirdKey}>
-                                                                <Link to={third.url}>
-                                                                    <i className="fa fa-angle-double-right"></i>
-                                                                    <span className="submenu-title">{third.name}</span>
-                                                                </Link>
-                                                            </li>
-                                                        })}
-                                                        </ul>
-                                                    </li>
-                                                )
-                                            }
-                                        }
-                                        if(sub.url&&sub.url.length>0){
-                                            return <li key={subKey}>
-                                             <Link to={sub.url}>{sub.name}</Link>
-                                            </li>
-                                        }
-                                    })}
-                                </ul>
-                            </li>
-                        )
-                    }
-                }
-            }) : false;
-            self.setState({menu:menu,selectFlag:true});
-    	});
+            self.FormSidebar(self,self.state.list);
+            H5.localStorage.set("SideBar",self.state.list);
+        });
     },
     componentDidMount: function(){
         window.clickMenu = function(){
+            console.log("in clickMenu");
             var url = window.location.pathname.split("/");
             url = "/"+url[1]+"/"+url[2]; 
             var targetOpt = $("a[href='"+url+"']");
@@ -131,8 +89,7 @@ var SideBar = React.createClass({
         //clickMenu();
     },
     componentDidUpdate : function(prevProps,prevState){
-        if(this.state.selectFlag && (prevState.menu!=this.state.menu)){
-            this.state.selectFlag = false;
+        if(this.state.selectFlag){
             window.setTimeout("clickMenu()",200); //理论上可以立即操作, 但是实践中, jquery可以找到目标元素, 但是点击没有任何反应.
         }
     },
@@ -149,7 +106,64 @@ var SideBar = React.createClass({
         </div>);
     },
     dummyClick: function(e){
-        e.preventDefault();
+        //e.preventDefault();
+    },
+    FormSidebar: function(self,result){
+        var list = self.props.list || result;
+        var menu = (list && list.length) ? list.map(function(item, key) {
+            if (item.children&&item.children.length==0&&item.url&&item.url.length>0) {
+                return <li key={key}><Link to={item.url}><span className="menu-title">{item.name}</span></Link></li>
+            } else {
+                if (item.children && item.children.length>0) {
+                    return (
+                        <li key={key}>
+                            <a href="#" onClick={self.dummyClick}>
+                                <span className="menu-title">{item.name}</span>
+                                <span className="fa fa-arrow arrow"></span>
+                            </a>
+                            <ul className="nav nav-second-level mtn collapse">
+                                {item.children.map(function(sub, subKey) {
+
+                                    if (sub.url&&sub.url.length>0) {
+                                        return <li key={subKey}>
+                                            <Link to={sub.url}><i className="fa fa-angle-right"></i><span className="submenu-title">{sub.name}</span></Link>
+                                        </li>
+                                    } else {
+                                        if (sub.children && sub.children.length>0) {
+                                            return (
+                                                <li key={subKey}>
+                                                    <a href="#" >
+                                                        <i className="fa fa-angle-right"></i>
+                                                        <span className="submenu-title">{sub.name}</span>
+                                                        <span className="fa fa-arrow arrow"></span>
+                                                    </a>
+                                                    <ul className="nav nav-third-level mtn collapse">
+                                                    {sub.children.map(function(third, thirdKey) {
+                                                        return <li key={thirdKey}>
+                                                            <Link to={third.url}>
+                                                                <i className="fa fa-angle-double-right"></i>
+                                                                <span className="submenu-title">{third.name}</span>
+                                                            </Link>
+                                                        </li>
+                                                    })}
+                                                    </ul>
+                                                </li>
+                                            )
+                                        }
+                                    }
+                                    if(sub.url&&sub.url.length>0){
+                                        return <li key={subKey}>
+                                         <Link to={sub.url}>{sub.name}</Link>
+                                        </li>
+                                    }
+                                })}
+                            </ul>
+                        </li>
+                    )
+                }
+            }
+        }) : false;
+        self.setState({menu:menu,selectFlag:true});
     }
 });
 

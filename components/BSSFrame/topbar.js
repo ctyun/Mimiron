@@ -5,6 +5,7 @@
 var React = require('react');
 var Ajax = require("../utils/ajax");
 var API = require("../const/API");
+var H5 = require("../utils/h5");
 
 /**
  * 导航条组件
@@ -36,6 +37,7 @@ var TopBar = React.createClass({
     },
     _logout: function(e){
     	e.preventDefault();
+    	H5.localStorage.clear("SideBar");
     	if(this.props.logout){
     		this.props.logout()
     		return
