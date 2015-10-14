@@ -25,7 +25,7 @@ var ReactCommonAction={
         param=decodeURIComponent(param,true);
         var json={};
         var vs=param.split("&");
-        for(i in vs){
+        for(var i in vs){
             var obj= vs[i].split("=");
             json[obj[0]]=obj[1];
         };
@@ -50,7 +50,7 @@ var ReactCommonAction={
      */
     _doChange:function(obj){ //onChange event
         var p=this.state.paramReactCommonAction;
-        for(o in obj ){
+        for(var o in obj ){
             p[o]=obj[o];
         }
         this.state.paramReactCommonAction=p;

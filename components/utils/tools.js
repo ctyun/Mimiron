@@ -180,7 +180,6 @@ var Tools = {
         return false;
     },
     loadJSX: function(url){
-        console.log(url);
         if(!window.Mimiron.runScripts){
             console.info("如果你想使用utils.loadJSX异步加载jsx文件, 你必须先通过JSXTransform.js暴露window.Mimiron.runScripts方法!");
             return;
@@ -217,8 +216,6 @@ var Tools = {
         //         window.Mimiron.runScripts();
         //     };
         // }
-        console.log("to appendChild");
-        console.log(script);
         document.body.appendChild(script);
 
         window.Mimiron.runScripts();

@@ -8,7 +8,7 @@
  	selectCommonParam : function(keys){
         var p = this.state.paramReactCommonAction;
         var selected = {};
-        for(i in keys){
+        for(var i in keys){
             selected[keys[i]]=p[keys[i]];
         }
         return selected;
