@@ -34,25 +34,6 @@ Notice
 ------
 the components are under develop, so you may see many dirty codes in them.
 
-Known bugs
-------
-1. in packing, there are double warnings: 
-```
-WARNING in ./~/jquery/dist/jquery.js
-There is another module with an equal name when case is ignored.
-This can lead to unexpected behavior when compiling on a filesystem with other c
-ase-semantic.
-Rename module if multiple modules are expected or use equal casing if one module
- is expected.
-
-WARNING in ./~/jQuery/dist/jquery.js
-There is another module with an equal name when case is ignored.
-This can lead to unexpected behavior when compiling on a filesystem with other c
-ase-semantic.
-Rename module if multiple modules are expected or use equal casing if one module
- is expected.
- ```
- we still can not figure them.
 
 
 Reference
@@ -64,3 +45,4 @@ Reference
 发布方法
 -------
 `npm run release` 去*dist/*目录下取打包完成文件.
+

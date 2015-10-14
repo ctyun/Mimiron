@@ -311,11 +311,11 @@ function runScripts() {
     return;
   }
 
-  console.warn(
-    'You are using the in-browser JSX transformer. Be sure to precompile ' +
-    'your JSX for production - ' +
-    'http://facebook.github.io/react/docs/tooling-integration.html#jsx'
-  );
+  // console.warn(
+  //   'You are using the in-browser JSX transformer. Be sure to precompile ' +
+  //   'your JSX for production - ' +
+  //   'http://facebook.github.io/react/docs/tooling-integration.html#jsx'
+  // );
 
   loadScripts(jsxScripts);
 }

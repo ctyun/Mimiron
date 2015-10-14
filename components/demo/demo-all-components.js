@@ -452,7 +452,7 @@ var Demo = React.createClass({
 
 	              	</Tab>
 
-	              	<Tab title="html" id="html">
+	              	<Tab title="html" id="html" isActive={true}>
 
 	              		<div style={infoCSS}>Autocomplete</div>
 	                  	<Autocomplete name="动态下拉" url="/api/test/ajax" />
@@ -510,7 +510,7 @@ var Demo = React.createClass({
 
 	              	</Tab>
 
-	              	<Tab title="echarts" id="echarts" isActive={true}>
+	              	<Tab title="echarts" id="echarts">
 
 	              	
 	              			<div style={infoCSS}>ECharts</div>
@@ -547,9 +547,6 @@ var Demo = React.createClass({
 
 							<div style={infoCSS}>WordCloud</div>
 							<WordCloud title="WordCloud" subtitle="WordCloud" height="400px" width="800px"  data={wordCloudData} />
-
-
-						
 
 	              	</Tab>
 

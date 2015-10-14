@@ -8,6 +8,7 @@ var Debug = require("../utils/debug");
 var Ajax = require("../utils/ajax");
 
 var H5 = require("../utils/h5");
+var Route = require("../BSSFrame/Route");
 /*
  * 由Route取代, 这里是临时使用
  */
@@ -19,18 +20,40 @@ var Link = React.createClass({
         }
     },
 	render: function(){
-		return(<a href={this.props.to} onClick={this._onClick}>
+		return(<a href={"#"+this.props.to} onClick={this._onClick}>
 				{this.props.children}
 			</a>)
 	},
     _onClick: function(){
+        Route.goJSX(this.props.to);
+        this.renewSelect(this.props.to);
+    },
+    renewSelect: function(){
+        $("li").removeClass("active");
+        console.log(this.props.to);
+        $("a[href='#"+this.props.to+"']").parent().addClass("active");
     }
 })
 
 /**
- * 侧边目录组件, 为了实现多页面应用, 应该加一个参数, 设置选中哪个菜单项.
+ *
+ * 侧边目录组件, 可以实现异步不刷新加载.jsx文件, 正确使用此组件需要下列条件:
+ * 1. 使用\static\third目录下的JSXTransformer.js
+ * 2. 在全局暴露Mimiron.RouteConfig, 保存路由信息, 例子如下:
  * ```
- * 示例:
+ * Mimiron.RouteConfig = {
+    "../js/pages/index.jsx":/^\/$/ig,
+    "../js/pages/sample.jsx":/sample$/ig,
+    "../js/pages/login.jsx":/login$/ig,
+    "../js/pages/manage-report-group.jsx":/report\/manageReportGroup/ig,
+    "../js/pages/report-manage.jsx":/report\/manage$/ig,
+    "../js/pages/report-config.jsx":/report\/config/ig,
+    "../js/pages/metadata.jsx":/report\/metadata/ig,
+    "../js/pages/show-report.jsx":/showReport\/[^\/*]/ig
+    }
+ * ```
+ * ```
+ * 组件示例:
  * <SideBar list={this.props.menu} />
  * ```
  * @class SideBar
@@ -42,7 +65,7 @@ var SideBar = React.createClass({
 		return {
             selectFlag:false,
 			menu:null,
-            list:[{"id":"bc373cb764484ab69dc27d827ec0e539","name":"签到查询管理","url":"","parentId":"-1","level":null,"children":[{"id":"0c7e6c00307b4063934cc6e293e580dd","name":"签到查询","url":"/mp/sign","parentId":"bc373cb764484ab69dc27d827ec0e539","level":null,"children":[],"btnRight":{}}],"btnRight":{}},{"id":"576ac42df3574c2b97b1eda80e553451","name":"通用报表查询","url":"","parentId":"-1","level":null,"children":[{"id":"75ff6fc071dd44d69b3677522eb26df0","name":"统计报表","url":"","parentId":"576ac42df3574c2b97b1eda80e553451","level":null,"children":[{"id":"75cee05cb0ac4047b44797d8ce31a21c","name":"云公司列收统计表","url":"/showReport/b857b799e2c646199efeaf4ca46993c9","parentId":"75ff6fc071dd44d69b3677522eb26df0","level":null,"children":[],"btnRight":{}},{"id":"c7909c55be7d4b43be5a11b00dca45a1","name":"合同列收","url":"/showReport/c3573aabc59f4324afc3fcbe8109460b","parentId":"75ff6fc071dd44d69b3677522eb26df0","level":null,"children":[],"btnRight":{}},{"id":"479527286c4343d7b12e31e1e39f6650","name":"电商日发展量统计","url":"/showReport/212550b3f1bd4e5e9f9cde1470b36046","parentId":"75ff6fc071dd44d69b3677522eb26df0","level":null,"children":[],"btnRight":{}},{"id":"b6b1a11956354d7c890c39f56156d68e","name":"客户列收统计表","url":"/showReport/304ffddde6954447b770abb489719e69","parentId":"75ff6fc071dd44d69b3677522eb26df0","level":null,"children":[],"btnRight":{}},{"id":"b4bbf43e86d04939ab144fc32efaebc2","name":"加班餐月统计表","url":"/showReport/e33972f5ccd340fd81e29e7284184c3f","parentId":"75ff6fc071dd44d69b3677522eb26df0","level":null,"children":[],"btnRight":{}},{"id":"99eb01f394c8496c904e1a49ec40d39e","name":"O2O结算报表","url":"/showReport/3eed9d09d86b456d8d0fc05dada24682","parentId":"75ff6fc071dd44d69b3677522eb26df0","level":null,"children":[],"btnRight":{}},{"id":"70865455a6244300b18de7f4d2b52fa6","name":"到期用户统计","url":"/showReport/52fb732fcd1a46daba796f15b918688a","parentId":"75ff6fc071dd44d69b3677522eb26df0","level":null,"children":[],"btnRight":{}},{"id":"f36145ed72fd495596db9f9fc74a317a","name":"报表组(正在测试)","url":"/showReportGroup/1","parentId":"75ff6fc071dd44d69b3677522eb26df0","level":null,"children":[],"btnRight":{}}],"btnRight":{}},{"id":"1c84d894db2747579f407262c53c8e2b","name":"报表组管理","url":"/report/manageReportGroup","parentId":"576ac42df3574c2b97b1eda80e553451","level":null,"children":[],"btnRight":{}},{"id":"3d24158fb8c3424e922d7fe18987af18","name":"报表元数据管理","url":"/report/metadata","parentId":"576ac42df3574c2b97b1eda80e553451","level":null,"children":[],"btnRight":{}},{"id":"9e0e3e45c1da487e9dae4640113fb0ec","name":"通用报表配置管理","url":"/report/config","parentId":"576ac42df3574c2b97b1eda80e553451","level":null,"children":[],"btnRight":{}},{"id":"f617cdec57414b46b24a836272ddae86","name":"通用报表模板管理","url":"/report/manage","parentId":"576ac42df3574c2b97b1eda80e553451","level":null,"children":[],"btnRight":{}}],"btnRight":{}},{"id":"0fe92edb3aee463baa98d0d98d733832","name":"基础管理","url":"","parentId":"-1","level":null,"children":[{"id":"1c5d0409bde94898a7533b21f0ef3337","name":"用户组管理","url":"/group/query","parentId":"0fe92edb3aee463baa98d0d98d733832","level":null,"children":[],"btnRight":{}},{"id":"ac4686b108884fb5879098f6fa635e22","name":"菜单管理","url":"/module/query","parentId":"0fe92edb3aee463baa98d0d98d733832","level":null,"children":[],"btnRight":{}},{"id":"66901e23eba74d00b3f03ba4aff3a7b5","name":"日志管理","url":"/log/querySystemOpertationLogInit","parentId":"0fe92edb3aee463baa98d0d98d733832","level":null,"children":[],"btnRight":{}},{"id":"0524f63884f3440e9c1c5a9d2280357c","name":"角色管理","url":"/role/query","parentId":"0fe92edb3aee463baa98d0d98d733832","level":null,"children":[],"btnRight":{}},{"id":"e572fcbd2b5c42e0b3ce6281e4e2fb7e","name":"代码管理","url":"/codeInfo/query","parentId":"0fe92edb3aee463baa98d0d98d733832","level":null,"children":[],"btnRight":{}},{"id":"2ed2a975faba41f3a6d8440f2772e3ef","name":"用户管理","url":"/user/query","parentId":"0fe92edb3aee463baa98d0d98d733832","level":null,"children":[],"btnRight":{}},{"id":"1e2ecc37fedb4fc6b74f73bd828e4600","name":"部门管理","url":"/department/query","parentId":"0fe92edb3aee463baa98d0d98d733832","level":null,"children":[],"btnRight":{}}],"btnRight":{}}],
+            list:[{}],
 		}
 	},
     componentWillMount: function(){
@@ -63,10 +86,10 @@ var SideBar = React.createClass({
         });
     },
     componentDidMount: function(){
-        window.clickMenu = function(){
-            console.log("in clickMenu");
-            var url = window.location.pathname.split("/");
-            url = "/"+url[1]+"/"+url[2]; 
+        window.clickMenu = function(url){
+            var url = url||window.location.hash;
+            url = url.split("/");
+            url = "#/"+url[1]+"/"+url[2]; 
             var targetOpt = $("a[href='"+url+"']");
             if(targetOpt){
                 if(targetOpt.parent().parent().prev().prop("tagName")=="A"){
