@@ -6,7 +6,11 @@
 
 window.hasModule=0; //this is due to a unhandled error information: hasModule is not defined
 
+
 var components = {
+	//暴露到window上的公共变量
+	Mimiron: require("./utils/publicVars"),
+
 	React : require('react'),
 	//import base components
 	Button:require("./html/button"),
@@ -37,6 +41,7 @@ var components = {
 	BSSFrame : require("./BSSFrame/frame"),
 	TopBar : require("./BSSFrame/topbar"),
 	SideBar : require("./BSSFrame/sidebar"),
+	Route : require("./BSSFrame/route"),
 
 	//Login : require("./BSSFrame/login"),
 

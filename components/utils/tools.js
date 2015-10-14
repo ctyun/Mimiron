@@ -94,7 +94,6 @@ var Tools = {
 
     loadScriptsWithNoCallback : function(url) {
         var script = document.createElement("script");
-
         var length = url.length;
         for(var i = 0;i < length; i++){ //自适应插入.jsx文件
             var script = document.createElement("script");
@@ -110,21 +109,15 @@ var Tools = {
     },
 
     loadScriptWithLock : function(scriptName, url, callback) {
-
         if(this.scriptName === true){
             return true;
         }
-
         if(this.scriptName == undefined){
             this.scriptName = false;
-
             var _this = this;
-
             //加载脚本
             var script = document.createElement("script");
-
             if(!callback) callback  = function(){}
-
             // IE
             if (script.readyState) {
                 script.onreadystatechange = function () {
@@ -140,7 +133,6 @@ var Tools = {
                     callback();
                 };
             }
-
             var rgJS = /^(.+)\.js$/ig;
             var rgJSX = /^(.+)\.jsx$/ig;
             if(rgJS.test(url))
@@ -151,30 +143,19 @@ var Tools = {
             script.src = url;
             document.body.appendChild(script);
         }
-
-        return false;
-
-        
+        return false; 
     },
 
-
-
     loadCSSWithLock : function(cssName, url, callback) {
-
         if(this.cssName === true){
             return true;
         }
-
         if(this.cssName == undefined){
             this.cssName = false;
-
             var _this = this;
-
             //加载脚本
             var node = document.createElement("link");
-
             if(!callback) callback  = function(){}
-
             // IE
             if (node.readyState) {
                 node.onreadystatechange = function () {
@@ -190,23 +171,58 @@ var Tools = {
                     callback();
                 };
             }
-
             node.rel = 'stylesheet';
             node.type = "text/css";
             node.href = url;
 
             document.body.appendChild(node);
         }
-
         return false;
+    },
+    loadJSX: function(url){
+        console.log(url);
+        if(!window.Mimiron.runScripts){
+            console.info("如果你想使用utils.loadJSX异步加载jsx文件, 你必须先通过JSXTransform.js暴露window.Mimiron.runScripts方法!");
+            return;
+        }
+        //先删除其他无用的jsx
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i++) {
+            if (/^text\/jsx(;|$)/.test(scripts.item(i).type)&&scripts.item(i).src.indexOf("?only")!=-1) {
+                document.body.removeChild(scripts.item(i));
+            }
+        }
+        //删除head中最后一个scrpit标签
+        var scripts = document.head.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i++) {
+            document.head.removeChild(scripts[i]);
+        }
 
-        
+        var script = document.createElement("script");
+        script.type = "text/jsx";
+        script.src = url+"?only";
+        // // 加载完成后调用runScript
+        // if (script.readyState) { //IE
+        //     script.onreadystatechange = function () {
+        //         if (script.readyState == "loaded" || script.readyState == "complete") {
+        //             script.onreadystatechange = null;
+        //             _this.scriptName = true;//加载完成
+        //             window.Mimiron.runScripts();//回调
+        //         }
+        //     };
+        // } else { // others
+        //     script.onload = function () {
+        //         _this.scriptName = true;//加载完成
+        //         console.log("called") //called
+        //         window.Mimiron.runScripts();
+        //     };
+        // }
+        console.log("to appendChild");
+        console.log(script);
+        document.body.appendChild(script);
+
+        window.Mimiron.runScripts();
     }
-
-
-
-
-
 }
 
 
