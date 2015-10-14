@@ -34,6 +34,10 @@ var TablePanel = require("../panel/table-panel");
 var MessageBox = require("../message/messageBox");
 var Modal = require("../message/modal");
 
+//tree
+var Treeview =  require("../tree/treeview");
+var TreeWithTable = require("../tree/treeWithTable");
+
 //TencentMap
 var TencentMap = require("../tencentMap/map");
 
@@ -359,6 +363,42 @@ var wordCloudData =  [
 ];
 
 
+
+var tree1Data = {
+	treedata: [
+       {
+           "name": "Top Level",
+           "uid": "uid1",
+           "children": [
+               {
+                   "name": "Level 2: A",
+                   "uid": "uid2",
+                   "children": [
+                       {
+                           "name": "Son of A"
+                       },
+                       {
+                           "name": "Daughter of A"
+                       }
+                   ]
+               },
+               {
+                   "name": "Level 2: B"
+               },
+               {
+                   "name": "Level 2: C",
+                   "children": [
+                       {
+                           "name": "Son of C"
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+}
+
+
   	var infoCSS = {
   		"margin-top":"10px",
   		"margin-bottom":"10px",
@@ -419,6 +459,9 @@ var Demo = React.createClass({
 		alert("doChangeAction");
 	},
 
+	treeTableCheck:function(){
+		alert("treeTableCheck");
+	},
   	render:function(){
 
 
@@ -426,7 +469,7 @@ var Demo = React.createClass({
 	        <div style={{padding:"10px 20px"}}>
 	            <center><h1>Mimiron基础组件库</h1></center>
 	            <Tabs>
-	              	<Tab title="panel" id="panel" >
+	              	<Tab title="panel" id="panel" isActive={true} >
 
 		              	<div style={infoCSS}>Header</div>
 		              	<Header pageTitle = "标题" />
@@ -435,7 +478,7 @@ var Demo = React.createClass({
 		              	<BSSPanel pageTitle = "示例Panel"></BSSPanel>
 
 
-						<div style={infoCSS}>ToolBarPanel</div>
+						<div style={infoCSS}>TablePanel</div>
 						<TablePanel {...tableProps}/>
 
 
@@ -471,7 +514,7 @@ var Demo = React.createClass({
 
 
 						<div style={infoCSS}>CheckboxGroup & Checkbox</div>
-						 <CheckboxGroup name="demo-checkboxgroup" inline={false} multi={true}>
+						<CheckboxGroup name="demo-checkboxgroup" inline={false} multi={true}>
 					       <Checkbox id="1" dispName="checkbox1" value="1" onClick={this.checkboxClick}/>
 					       <Checkbox id="2" dispName="checkbox2" value="2" onClick={this.checkboxClick}/>
 					    </CheckboxGroup>
@@ -484,8 +527,11 @@ var Demo = React.createClass({
 						<div style={infoCSS}>Input</div>
 					    <Input disName="名称" doChange={this.doChangeAction}  />
 
-						<div style={infoCSS}>Select</div>
-					    <Select data={[{value:'1',text:'显示2'},{value:'2',text:'显示1'}]} defaultValue="2" onSelect={this.onSelectAction}/>
+                        <div style={infoCSS}>Select</div>
+                        <Select data={[{value:'1',text:'显示2'},{value:'2',text:'显示1'}]} defaultValue="2" onSelect={this.onSelectAction}/>
+
+
+                     
 
 						<div style={infoCSS}>Textarea</div>
 					    <Textarea rows="4" onChange={this.doChangeAction}>
@@ -510,7 +556,7 @@ var Demo = React.createClass({
 
 	              	</Tab>
 
-	              	<Tab title="echarts" id="echarts" isActive={true}>
+	              	<Tab title="echarts" id="echarts" >
 
 	              	
 	              			<div style={infoCSS}>ECharts</div>
@@ -553,6 +599,16 @@ var Demo = React.createClass({
 
 	              	</Tab>
 
+
+	              	<Tab title="tree" id="tree" >
+	      				<div style={infoCSS}>Treeview</div>
+   						<Treeview data={tree1Data} selectType="checkbox" expandLevel={3}/>
+
+	      				<div style={infoCSS}>TreeWithTable</div>
+   						<TreeWithTable treeCheck={this.treeTableCheck} />
+	              	</Tab>
+
+
 	            </Tabs>
 
 	        </div>
@@ -563,6 +619,3 @@ var Demo = React.createClass({
 
 module.exports=Demo;
 
-/*
-<div style={infoCSS}>DataPicker</div>
-					    <DatePicker id="startTime_id"  name="时间" dateFormat="yy-mm"/>*/
