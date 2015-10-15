@@ -15,7 +15,7 @@ var PageButton=require("../page/page");
      *var TablePanel=components.TablePanel;
      *var TablePanelDemo=React.createClass(
      *     render:function(){
-     *     tableProps:{
+     *     var tableProps={
      *         title:['选项','标题1','标题2','标题3'],
      *         jsonKey:['id','t1','t2','t3'],
      *         data:[{id:1,

@@ -8,9 +8,6 @@ var Report = components.Report;
 var Demo = components.Demo;
 
 var ThisPage = React.createClass({
-    componentDidMount: function(){
-        Tools.loadScript("/static/theme/theme.js");
-    },
     render: function(){
     	var params = {
     		name:"config",

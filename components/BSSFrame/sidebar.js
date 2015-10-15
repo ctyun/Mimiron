@@ -20,7 +20,7 @@ var Link = React.createClass({
         }
     },
 	render: function(){
-		return(<a href={"#"+this.props.to} onClick={this._onClick}>
+		return(<a href={this.props.to} onClick={this._onClick}>
 				{this.props.children}
 			</a>)
 	},
@@ -30,8 +30,7 @@ var Link = React.createClass({
     },
     renewSelect: function(){
         $("li").removeClass("active");
-        console.log(this.props.to);
-        $("a[href='#"+this.props.to+"']").parent().addClass("active");
+        $("a[href='"+this.props.to+"']").parent().addClass("active");
     }
 })
 
@@ -89,7 +88,7 @@ var SideBar = React.createClass({
         window.clickMenu = function(url){
             var url = url||window.location.hash;
             url = url.split("/");
-            url = "#/"+url[1]+"/"+url[2]; 
+            url = "/"+url[1]+"/"+url[2]; 
             var targetOpt = $("a[href='"+url+"']");
             if(targetOpt){
                 if(targetOpt.parent().parent().prev().prop("tagName")=="A"){

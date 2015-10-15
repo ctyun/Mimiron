@@ -44,20 +44,19 @@ var TencentMap = require("../tencentMap/map");
 
 //echarts
 var ZRender = require('../vendors/zrender/index');
-
-
 var ECharts = require('../echarts/echarts');
-
 var BasicLine = require('../echarts/components/line/BasicLine');
 var StackedLine = require('../echarts/components/line/StackedLine');
 var BasicArea = require('../echarts/components/line/BasicArea');
 var StackedArea = require('../echarts/components/line/StackedArea');
 var IrregularLine = require('../echarts/components/line/IrregularLine');
-
 var BasicColumn = require('../echarts/components/bar/BasicColumn');
 var StackedColumn = require('../echarts/components/bar/StackedColumn');
 var BasicPie = require('../echarts/components/pie/BasicPie');
 var WordCloud = require('../echarts/components/wordCloud/WordCloud');
+
+//resources
+var Uploader = require("../resources/uploader");
 
 
 //code
@@ -423,7 +422,7 @@ var tree1Data = {
 
 
 /**
- * 基本组件演示
+ * 基本组件演示, 请看源码.
  * ```
  * 示例:
  * <Demo />
@@ -439,8 +438,8 @@ var Demo = React.createClass({
 		}
 	},
 
-	submitAction:function(){
-		alert("submitAction");
+	submitAction:function(param){
+		console.log(param);
 	},
 
 	doAction:function(){
@@ -489,7 +488,7 @@ var Demo = React.createClass({
 
 		              	<div style={infoCSS}>QueryPanel</div>
 		              	<QueryPanel submitAction={null} jsonFormat={true} okButtonName="查询">
-					     	<Input disName=" 示范输入:" name="demoInput"/>
+					     	<Input disName=" 示范输入:" name="demoInput" name="input1"/>
 					 	</QueryPanel>
 
 
@@ -504,7 +503,9 @@ var Demo = React.createClass({
 	                  	<AutoSelect url="api/test/autoselect" disName="动态select" onSelect={this.autoSeleect} defaultValue="333" />
 
 	                  	<div style={infoCSS}>BSSForm</div>
-	                  	<BSSForm submitAction={this.submitAction} jsonFormat={true} disabledName="不可用" disabledSubmitBtn={false} okButtonName="保存"></BSSForm>
+	                  	<BSSForm submitAction={this.submitAction} jsonFormat={true} disabledName="不可用" disabledSubmitBtn={false} okButtonName="保存">
+                            <Input disName="输入" name="input2" />
+                        </BSSForm>
 						
 						<div style={infoCSS}>Button</div>
 	                  	<Button btnName="增加"  disabledName="正在请求......" doAction={this.doAction}/>
@@ -557,56 +558,41 @@ var Demo = React.createClass({
 	              	</Tab>
 
 	              	<Tab title="echarts" id="echarts" >
-
-	              	
 	              			<div style={infoCSS}>ECharts</div>
 						  	<ECharts height="400px" width="800px" option={option}/>
 						  	<ECharts height="400px" width="800px" option={option1}/>
-
 						  	<div style={infoCSS}>BasicLine</div>
 						    <BasicLine title="BasicLine" subtitle="advance use" height="400px" width="800px" trigger="item"  data={data} xAxisName={xAxisName} smooth={true} tooltipFormatter="Temperature : <br/>{b}km : {c}°C"/>
-
 							<div style={infoCSS}>StackedLine</div>
 							<StackedLine title="StackedLine" subtitle="advance use" height="400px" width="500px" trigger="axis"  theme="macarons" data={data2} xAxisName={xAxisName2}  />
 							<StackedLine title="StackedLine" subtitle="advance use" height="400px" width="600px" theme="macarons" data={data} xAxisName={xAxisName} smooth={true}/>
-
-							
 							<div style={infoCSS}>BasicArea</div>
 							<BasicArea title="BasicArea" subtitle="BasicArea" height="400px" width="800px" data={data2} xAxisName={xAxisName2} smooth={true}/>
-
 							<div style={infoCSS}>StackedArea</div>
 							<StackedArea title="StackedArea" subtitle="StackedArea" height="400px" width="800px" data={data2} xAxisName={xAxisName2} smooth={true}/>
-
 							<div style={infoCSS}>IrregularLine</div>
 							<IrregularLine title="IrregularLine" subtitle="IrregularLine" height="400px" width="800px" data={data3} smooth={true} />
-
 							<div style={infoCSS}>BasicColumn</div>
 							<BasicColumn title="BasicColumn" subtitle="BasicColumn" height="400px" width="800px" data={data2} xAxisName={xAxisName2} smooth={true}/>
-
 							<div style={infoCSS}>StackedColumn</div>
 							<StackedColumn title="StackedColumn" subtitle="StackedColumn" height="400px" width="800px" trigger="axis" data={data2} xAxisName={xAxisName2} smooth={true}/>
-
-
 							<div style={infoCSS}>BasicPie</div>
 							<BasicPie title="StackedColumn" subtitle="StackedColumn" height="400px" width="800px"  data={pieData} />
-
-
 							<div style={infoCSS}>WordCloud</div>
 							<WordCloud title="WordCloud" subtitle="WordCloud" height="400px" width="800px"  data={wordCloudData} />
-
-
-						
-
 	              	</Tab>
 
 
 	              	<Tab title="tree" id="tree" >
 	      				<div style={infoCSS}>Treeview</div>
    						<Treeview data={tree1Data} selectType="checkbox" expandLevel={3}/>
-
 	      				<div style={infoCSS}>TreeWithTable</div>
    						<TreeWithTable treeCheck={this.treeTableCheck} />
 	              	</Tab>
+
+                    <Tab title="resources" id="resources" >
+                        <Uploader />
+                    </Tab>
 
 
 	            </Tabs>

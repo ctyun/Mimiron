@@ -34,7 +34,7 @@ var RegUtils = require('../utils/reg-utils');
  * var Input=components.Input;
  * var InputDemo=React.createClass(
  *     render:function(){
- *         return (<Input disName="名称" doChange={this._doChange}  />);
+ *         return (<Input disName="名称" doChange={this._doChange}  name="html_name" />);
  *     }
  * );
  *  使用说明
@@ -43,6 +43,7 @@ var RegUtils = require('../utils/reg-utils');
  *  doChange:值改变时调用的事件
  *  onClick:点击时调用的事件
  *  value:默认值
+ *  name: 同html的name
  *  ```
  *  @class Input
  */

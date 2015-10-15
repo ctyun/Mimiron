@@ -52,6 +52,7 @@ var components = {
 
 	//utils
 	Tools : require("./utils/tools"),
+	Ajax : require("./utils/ajax"),
 
 	//DEMO
 	Demo : require("./demo/demo-all-components"),
