@@ -1,4 +1,5 @@
 /apidocs
 /node_modules
 /.idea
-/dist
+*.js.map
+

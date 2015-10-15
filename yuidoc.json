@@ -19,7 +19,8 @@
             "./components/tabs/",
             "./components/tencentMap/",
             "./components/tree/",
-            "./components/utils/"
+            "./components/utils/",
+            "./components/demo/"
         ]
     }
 }

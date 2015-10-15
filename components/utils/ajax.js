@@ -7,6 +7,8 @@ var APIUtils = require('./api-utils');
  * Ajax调用工具方法
  * 用法示例:
  * ```
+ * var Ajax = components.Ajax
+ * 
  * Ajax.post(this.static.URL["query"],param,this.setMetadata);
  * Ajax.get(this.static.URL["add"]+param["resourceTableName"]+"/"+param["tableDispName"],this.addSuccess);
  * ```
