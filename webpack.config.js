@@ -10,8 +10,25 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: '/static/',        
+        publicPath: '/static/',
+        library: 'components', //https://webpack.github.io/docs/library-and-externals.html
+        libraryTarget: 'umd2'
     },
+    externals: {
+        // 'react': {
+        //   root: 'React',
+        //   commonjs2: 'react',
+        //   commonjs: 'react',
+        //   amd: 'react'
+        // },
+        'components':'components',
+        'jquery': {
+          root: 'jQuery',
+          commonjs2: 'jquery',
+          commonjs: 'jquery',
+          amd: 'jquery'
+        }
+      },
 
     module: {
         loaders: [

@@ -84,7 +84,7 @@ var BasicColumn = React.createClass({
             }
 
 
-            console.log(JSON.stringify(option));
+            //console.log(JSON.stringify(option));
             this.setDataZoom(option);
 
         }

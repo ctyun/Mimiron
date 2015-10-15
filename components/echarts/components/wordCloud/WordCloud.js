@@ -64,7 +64,7 @@ var WordCloud = React.createClass({
                 (option.series[0].data[i])["itemStyle"] = this.createRandomItemStyle();
             }
 
-            console.log(JSON.stringify(option));
+            //console.log(JSON.stringify(option));
         }
 
         //加载图表
