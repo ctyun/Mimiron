@@ -3,6 +3,7 @@
  */
 var React = require('react/addons');
 var Dropzone = require("dropzone");
+var API = require("../const/API");
 //var Debug = require("../utils/debug");
 
 /**
@@ -33,7 +34,7 @@ var Uploader=React.createClass({
     render:function(){
         return(
         	<div >
-                <form action="/file-upload"
+                <form action={API.UPLOAD}
                   className="dropzone"
                   id="my-awesome-dropzone">
                 </form>
