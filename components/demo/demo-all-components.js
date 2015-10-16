@@ -410,15 +410,27 @@ var tree1Data = {
         data:[{id:1,
           t1:'测试1',
           t2:'测试2',
+          t3:'测试3'},
+          {id:2,
+          t1:'测试1',
+          t2:'测试2',
+          t3:'测试3'},
+          {id:3,
+          t1:'测试1',
+          t2:'测试2',
           t3:'测试3'}],
-        doList:function(){},
+        doList:doList,
         pageSize:10,
         offset:1, //page:this.state.offset
-        totalRows:1,
+        totalRows:100,
         checkType:"radio",
     }
 
     var markers =  [{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}];
+
+    function doList(currentPage,pageSize){
+        console.log(currentPage,pageSize);
+    }
 
 
 /**

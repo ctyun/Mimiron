@@ -21,7 +21,6 @@ var API = require("../const/API");
  * @class Uploader
  */
 var Uploader=React.createClass({
-    displayName:'Upload',
     getInitialState:function(){
     	return{}
     },
