@@ -308,6 +308,7 @@ function runScripts() {
   }
 
   if (jsxScripts.length < 1) {
+    console.log("JSXTransformer will return");
     return;
   }
 
@@ -319,6 +320,9 @@ function runScripts() {
 
   loadScripts(jsxScripts);
 }
+
+window.Mimiron = window.Mimiron || {};
+window.Mimiron.runScripts = runScripts;
 
 // Listen for load event if we're in a browser and then kick off finding and
 // running of scripts.

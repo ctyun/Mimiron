@@ -52,6 +52,13 @@ var components = {
 
 	//utils
 	Tools : require("./utils/tools"),
+	Ajax : require("./utils/ajax"),
+
+	//page
+	Grid: require("./page/grid"),
+
+	//resources
+	Uploader : require("./resources/uploader"),
 
 	//DEMO
 	Demo : require("./demo/demo-all-components"),

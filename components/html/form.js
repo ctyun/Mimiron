@@ -6,6 +6,7 @@
 var React=require("react/addons");
 var Button=require("../html/button");
 var $=require("jquery");
+var Debug = require("../utils/debug");
 /**
  * 表单组件
  *```
@@ -15,21 +16,21 @@ var $=require("jquery");
  *var BSSForm=components.BSSForm;
  * var BSSFormDemo=React.createClass(
  *     render:function(){
- *         return ( <BSSForm submitAction={this.submitAction} jsonFormat=true disabledName＝"不可用" disabledSubmitBtn＝“false” okButtonName="保存"></BSSForm>);
+ *         return ( <BSSForm submitAction={this.submitAction} jsonFormat=true disabledName＝"不可用" disabledSubmitBtn＝"false" okButtonName="保存"></BSSForm>);
  *     }
  * );
  * 使用说明
  *
  * * <BSSForm submitAction={this.submitAction} jsonFormat=true disabledName＝"不可用" disabledSubmitBtn＝“false” okButtonName="保存"></BSSForm>
- * submitAction(必须）
- *   form表单按钮提交时回调方法
+ *  submitAction(必须）
+ *   form表单按钮提交时回调方法, 携带一个参数param, 保存表单的内容
  *  jsonFormat  true|false
  *    form表单序列化数据是否为json格式
- * okButtonName
+ *  okButtonName
  *   此参数非必须
  *  form表单按钮名称默认为查询
  *  disabledSubmitBtn:true|false 默认为false
- *      此参数非必须
+ *   此参数非必须
  *   是否在提交form表达时禁用提交按钮
  *  disabledName:
  *   此参数非必须
@@ -83,6 +84,8 @@ var BSSForm=React.createClass({
         };
        var node=this.state.elem;
         param=$(node).serialize();
+        window.node = node;
+        Debug.log(param,"in _submitAction param");
         if(this.props.submitAction){
             param=$(node).serialize();
             param=decodeURIComponent(param,true);
