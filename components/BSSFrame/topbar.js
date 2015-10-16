@@ -43,7 +43,7 @@ var TopBar = React.createClass({
     		return
     	}else{
     		Ajax.get(API.LOGOUT,function(d){
-    			window.location.href = "/login";
+    			window.location.href = "/";
     		});
 
     	}
@@ -60,8 +60,8 @@ var TopBar = React.createClass({
 		                <ul className="nav navbar navbar-top-links navbar-right mbn">
 		                    <li className="dropdown topbar-user"><a data-hover="dropdown" href="#" className="dropdown-toggle"><span>{this.props.userName}</span>&nbsp;<span className="caret"></span></a>
 		                        <ul className="dropdown-menu dropdown-user pull-left">
-		                            <li><a href="extra-profile.html"><i className="fa fa-user"></i>个人设置</a></li>
-		                            <li><a href="#" onClick={this._logout}><i className="fa fa-key"></i>注销</a></li>
+		                            <li><a href="extra-profile.html" onClick={alert.bind(this,"1")}><i className="fa fa-user"></i>个人设置</a></li>
+		                            <li><a href="#" data-keep="yes" onClick={this._logout}><i className="fa fa-key"></i>注销</a></li>
 		                        </ul>
 		                    </li>
 		                    <li className="dropdown hidden-xs"><a id="theme-setting" href="javascript:;" data-hover="dropdown"><i

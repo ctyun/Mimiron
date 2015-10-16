@@ -1,9 +1,11 @@
 var React = require('react/addons');
-var components = require('../../vendors/components');
+var components = require('components');
 var PortletHeader = components.PortletHeader;
 var SearchPane = components.SearchPane;
+var ActionButtonDelete = components.ActionButtonDelete;
 var Api = require('../../api/resource');
 var MessageBox=require("../message/message");
+var Dropzone=require("./dropzone-upload");
 
 var ResourceSearch = React.createClass({
     getInitialState: function() {
@@ -20,10 +22,14 @@ var ResourceSearch = React.createClass({
         $('#startTime').datepicker({dateFormat:'yy-mm'});
         return (
             <form className="grid-form" onSubmit={this.props.onSubmit} >
-                <div data-row-span="5">
+                <div data-row-span="7">
                     <div data-field-span="2">
                         <label>账期</label>
-                        <input type='text' id='startTime'  name='startTime' defaultValue={this.state.billPeriod} />
+                        <input type='text' id='startTime' name='startTime' readOnly='true' defaultValue={this.state.billPeriod} />
+                    </div>
+                    <div data-field-span="2">
+                        <label>节点</label>
+                        <input type='text' id='node' name='node' placeholder="请输入节点名称" />
                     </div>
                     <div data-field-span="1">
                         <button type="submit" className="btn btn-block btn-primary">查询</button>
@@ -31,6 +37,58 @@ var ResourceSearch = React.createClass({
                 </div>
             </form>
             )
+    }
+});
+
+var FileTable = React.createClass({
+    getInitialState : function(){
+        return {
+            tableHeadings : ['附件名', '操作']
+        }
+    },
+
+    render : function(){
+        var files = this.props.files;
+        var thead = this.state.tableHeadings.map(function(item,key){
+            return <th>{item}</th>
+        });
+        thead = <thead>{thead}</thead>;
+        var self = this;
+        var tbody = "未上传附件!";
+        if(files&&files.length>0){
+            tbody = files.map(function(file, key){
+                return <tr key={key}>
+                    <td><a className="list-group-item" href={file.filePath} target="_blank">{file.fileName}</a></td>
+                    <td><ActionButtonDelete children = "删除" onClick={self._delete.bind(null,file)} /></td>
+                </tr>
+            })
+        }
+
+        tbody = <tbody>{tbody}</tbody>;
+
+        return <div className="portlet portlet-white">
+            <table className="table table-hover table-bordered">
+                {thead}
+                {files&&files.length>0?files.map(function(file, key){
+                    return <tr key={key}>
+                                <td><a className="list-group-item" key={key} href={file.filePath} target="_blank">{file.fileName}</a></td>
+                                <td><ActionButtonDelete children = "删除" onClick={self._delete.bind(null,file)} /></td>
+                            </tr>
+                }): <td colSpan={2}><div className="text-center">请上传附件!</div></td>}
+            </table>
+        </div>
+    },
+
+    _delete: function(item, e) {
+        var self = this;
+        Api.deleteFile({resourceFileId: item.resourceFileId, filePath: item.filePath}).then(function(data){
+            if(data.returnObj === 800){
+                MessageBox.alert("删除成功!");
+                self.props.refresh();
+            }else{
+                MessageBox.alert("删除失败!");
+            }
+        });
     }
 });
 
@@ -98,44 +156,61 @@ var Resource = React.createClass({
     getInitialState : function(){
         var obj = {resource: [], data: []};
         obj.query = {fkAccountId: this.props.params.fkAccountId,
-                      fkUserId: this.props.params.fkUserId,
-                      billPeriod: this.getBillPeriod()};
-        obj.save = false;
-        obj.modify = true;
+            fkUserId: this.props.params.fkUserId,
+            billPeriod: this.props.params.billPeriod,
+            node: ""};
+        obj.addition = {fkAccountId: this.props.params.fkAccountId,
+            fkUserId: this.props.params.fkUserId,
+            billPeriod: this.props.params.billPeriod};
+        obj.uploadedFiles = [];
         return obj;
     },
     componentWillMount: function() {
         this.onSearch();
+        this._refreshFile();
     },
     render: function() {
         $('#save').hide();
         return <div>
-                <div className="page-content">
-                    <SearchPane visible="true">
-                        <ResourceSearch billPeriod={this.state.query.billPeriod} onSubmit={this._search} />
-                    </SearchPane>
-                    <div className="portlet portlet-white">
-                        <PortletHeader title="资源列表">
-                            <button className="btn btn-sm btn-success" id="modify" onClick={this._modify} > 修改 </button>
-                            <button className="btn btn-sm btn-success" id="save" onClick={this._submit} > 保存 </button>
-                            <button className="btn btn-sm btn-success" id="commit" onClick={this._commit} > 提交 </button>
-                        </PortletHeader>
-                        <ResourceTable resource={this.state.resource} change={this._usageChange}/>
-                    </div>
+            <div className="page-content">
+                <SearchPane visible="true">
+                    <ResourceSearch billPeriod={this.state.query.billPeriod} onSubmit={this._search} />
+                </SearchPane>
+                <div className="portlet portlet-white">
+                    <PortletHeader title="资源列表">
+                        <button className="btn btn-sm btn-success" id="modify" onClick={this._modify} > 修改 </button>
+                        <button className="btn btn-sm btn-success" id="save" onClick={this._submit} > 保存 </button>
+                        <button className="btn btn-sm btn-success" id="commit" onClick={this._commit} > 提交 </button>
+                    </PortletHeader>
+                    <ResourceTable resource={this.state.resource} change={this._usageChange}/>
+                </div>
+                <div className="portlet portlet-while">
+                    <PortletHeader title="附件列表">
+                    </PortletHeader>
+                    <Dropzone url="/api/resource/uploadFile" refresh={this._refreshFile} uploadedFiles={this.state.uploadedFiles} addition={this.state.addition} />
+                    <FileTable refresh={this._refreshFile} files={this.state.uploadedFiles} />
                 </div>
             </div>
-        },
+        </div>
+    },
 
     _search : function(e){
         e.preventDefault();e.stopPropagation();
         var query = this.state.query;
         query.billPeriod = $('#startTime').val();
+        query.node = $('#node').val();
+        var addition = this.state.addition;
+        addition.billPeriod = $('startTime').val();
         this.onSearch();
     },
 
     onSearch: function(){
         this.setState({resource: []});
         var self = this;
+        //默认查询按钮设置
+        $('#modify').show();
+        $('#save').hide();
+        $('#commit').show();
         Api.getResource({query : this.state.query}).then(function(data){
             var resource = data.returnObj;
             self.setState({resource : data.returnObj});
@@ -170,15 +245,23 @@ var Resource = React.createClass({
             method: "POST",
             url: "/api/resource/saveResourceUsage",
             data: JSON.stringify({billPeriod: self.state.query.billPeriod, data: self.state.data})
-        }).done(function(e){
-                MessageBox.alert("保存成功!");
-                $('#modify').show();
-                $('#save').hide();
-                self.onSearch();
+        }).done(function(data){
+                if(data.returnObj.statusCode === 800){
+                    MessageBox.alert("保存成功!");
+                    $('#modify').show();
+                    $('#save').hide();
+                    self.onSearch();
+                }
             });
     },
 
     _commit : function(){
+        var uploadedFiles = this.state.uploadedFiles;
+//        if(uploadedFiles|uploadedFiles.length===0){
+//            MessageBox.alert("未上传附件,请上传附件后再提交!");
+//            return;
+//        }
+        var self = this;
         $.ajax({
             contentType: 'application/json',
             dataType: 'json',
@@ -192,6 +275,13 @@ var Resource = React.createClass({
                 $('#commit').hide();
                 self.onSearch();
             });
+    },
+
+    _refreshFile: function(){
+        var self = this;
+        Api.getUploadedFiles({query : this.state.addition}).then(function(data){
+            self.setState({uploadedFiles: data.returnObj});
+        });
     },
 
     _usageChange : function(value){
@@ -211,13 +301,6 @@ var Resource = React.createClass({
         if(!match){
             data.push(value);
         }
-    },
-
-    getBillPeriod: function(){
-        var myDate = new Date();
-        var year = myDate.getFullYear(); //获取完整的年份(4位,1970-????)
-        var month = myDate.getMonth() + 1;
-        return year+"-"+(month<10?"0"+month:month);
     }
 });
 
