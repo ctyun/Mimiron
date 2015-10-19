@@ -9,14 +9,6 @@ var API = require("../const/API");
 /**
  * 上传工具组件
  * ```
- * <Tabs maxHeight="300px">
-        <Tab title="111" id="1">
-            <p>456</p><p>456</p><p>456</p><p>456</p><p>456</p><p>456</p>
-        </Tab>
-        <Tab title="222" id="2" isActive={true}>
-            <p>789</p>
-        </Tab>
-    </Tabs>
  * ```
  * @class Uploader
  */
@@ -26,18 +18,21 @@ var Uploader=React.createClass({
     },
     getDefaultProps: function(){
         return{
+            handler : API.UPLOAD,
         }
     },
     componentWillMount:function(){
     },
+    componentDidMount:function(){
+        var node=this.getDOMNode();
+        $(node).dropzone({ url: this.props.handler });
+    },
     render:function(){
         return(
-        	<div >
-                <form action={API.UPLOAD}
-                  className="dropzone"
-                  id="my-awesome-dropzone">
-                </form>
-			</div>);
+            <form
+              className="dropzone"
+              id="my-awesome-dropzone">
+            </form>);
 	}
 });
 module.exports=Uploader;

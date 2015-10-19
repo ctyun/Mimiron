@@ -5,12 +5,24 @@ var React=require("react/addons");
 var BSSForm = require("../html/form");
 /**
  * ```
- *  <Modal title="i am title" body={this._modalBody} footer={this._ModalFooter}/>
- *  targetName:需要在触发模态框的元素需给属性data-toggle="modal" data-target="#targetName" 或者使用jquery:$("#targetName").modal
- *  title:标题
- *  body:中间显示的内容
- *  footer:底部显示的内容,一般来说至少需要一个确认按钮一个取消按钮
+ * 示例:
+<Modal id="addTableModal" title="添加对话框" submitAction={this.ModalHandler} jsonFormat={true}>
+  <div className="content-left">
+      <Input disName="名称: " name="reportMetadataName" value={this.state.reportMetadataName}/> <br/>
+      <Select disName=" 元数据类型:" name="defaultQueryType" data={this.locals.selectMetaDataType} onSelect={this.onSelectMetaData} defaultValue={this.state.defaultQueryType}/> <br />
+  </div>
+</Modal> 
+ * 参数:
+ * hideDefaultButton: 是否隐藏提交按钮
+ * id: 唯一id, Modal.show和hide方法调用时需要传入
+ * title: 标题
+ * submitAction: 点击提交后的回调函数
+ * jsonFormat: 结果是否格式化为json
+ *  cssClass:(string) 默认为空, 可以传入:
+ *      "modal-lg":
+ * ...支持其他BSSform参数.
  * ```
+ * TODO: footer 
  * Modal组件
  * @class Modal
  */
@@ -23,7 +35,6 @@ var Modal=React.createClass({
          * @param  {String} id 对话框ID
          */
         show:function(id){
-            console.log($("#"+id));
             $("#"+id).modal();
         },
         /**
@@ -45,30 +56,38 @@ var Modal=React.createClass({
             id:"modal_id",
             title:"无标题",
             body:null,
-            footer:null
+            footer:null,
+            cssClass: "",
         };
+    },
+    doAndHide: function(params){
+        Modal.hide(this.props.id);
+        if(this.props.submitAction){
+            this.props.submitAction(params);
+        }
     },
     render: function(){
         //using css control to hide the modal
+        var cssClass="modal-dialog "+this.props.cssClass;
         return (
             <div className="modal fade" id={this.props.id} role="dialog" >
-                <div className="modal-dialog">
+                <div className={cssClass}>
                     <div className="modal-content">
-                    <div className="modal-header">
-                        <button type="button" className="close"
-                        data-dismiss="modal" >
-                        &times;
-                        </button>
-                    <h4 className="modal-title">
-                    {this.props.title}
-                    </h4>
+                        <div className="modal-header">
+                            <button type="button" className="close"
+                            data-dismiss="modal" >
+                            &times;
+                            </button>
+                        <h4 className="modal-title">
+                            {this.props.title}
+                        </h4>
+                        </div>
+                        <div className="modal-body">
+                            <BSSForm {...this.props} submitAction={this.doAndHide}>
+                                {this.props.children}
+                            </BSSForm>
+                        </div>
                     </div>
-                    <div className="modal-body">
-                        <BSSForm {...this.props}>
-                        {this.props.children}
-                        </BSSForm>
-                    </div>
-                </div>
                 </div>
             </div>
         );

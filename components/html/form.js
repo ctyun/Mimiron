@@ -85,7 +85,6 @@ var BSSForm=React.createClass({
        var node=this.state.elem;
         param=$(node).serialize();
         window.node = node;
-        Debug.log(param,"in _submitAction param");
         if(this.props.submitAction){
             param=$(node).serialize();
             param=decodeURIComponent(param,true);

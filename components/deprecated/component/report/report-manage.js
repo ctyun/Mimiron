@@ -25,7 +25,7 @@ var Link = React.createClass({
         }
     },
   render: function(){
-    return(<a href={this.props.to}>
+    return(<a href={"#" + this.props.to}>
         {this.props.children}
       </a>)
   }
@@ -97,7 +97,7 @@ var Manage = React.createClass({
                           <td>{content.resourceTableName}</td>
                           <td><Link className="text-success" to={content.menuUrl}>{content.reportModelName}</Link></td>
                           <td>
-                            <Link className="btn btn-xs btn-success" to="reportConfig" params={{ name: 'config', id: content.reportModelId }}><i className="fa fa-edit"></i> 修改</Link>
+                            <Link className="btn btn-xs btn-success" to={"/report/config/" + content.reportModelId}><i className="fa fa-edit"></i> 修改</Link>
                             <ActionButtonDelete onClick={this._delete.bind(null, content.reportModelId)}>删除</ActionButtonDelete>
                             <ActionButtonEdit onClick={this._doToggleMenu.bind(null,content.reportModelId)} >增加菜单名称</ActionButtonEdit>
                           </td>
