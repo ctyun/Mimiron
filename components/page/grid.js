@@ -15,30 +15,12 @@ var Grid=React.createClass({
     statics:{
         datas:{},
         /**
-         * 获取表格数据
+         * 获取表格数据, 此方法有一个参数, 为Id
          * @method getCheckedValue
          * @static
-         * @deprecated 请使用getCheckedValueById
          * @return {Array} 选中的数据
          */
-        getCheckedValue:function(){
-            var arr=[];
-            var datas=Grid.datas;
-            for(var k in datas){
-                var d=datas[k];
-                if(d>0 || d.length>0){
-                    arr.push(d);
-                }
-            }
-            return arr;
-        },
-        /**
-         * 获取表格数据, 此方法有一个参数, 为Id
-         * @method getCheckedValueById
-         * @static
-         * @return {Array} 选中的数据
-         */
-        getCheckedValueById: function(id){
+        getCheckedValue: function(id){
             Grid.datas = Grid.datas || {};
             var arr=[];
             var datas=Grid.datas[id];
@@ -51,20 +33,11 @@ var Grid=React.createClass({
             return arr;
         },
         /**
-         * 清除表格数据
-         * @method cleanData
-         * @static
-         * @deprecated 请使用cleanDataById
-         */
-        cleanData:function(){
-            Grid.datas=[];
-        },
-        /**
          * 清除表格数据, 此方法有一个输入值为Id
          * @method cleanData
          * @static
          */
-        cleanDataById:function(id){
+        cleanData:function(id){
             Grid.datas = Grid.datas || {};
             Grid.datas[id]={};
         },
@@ -84,41 +57,21 @@ var Grid=React.createClass({
     getDefaultProps: function(){
         return{
             checkType :"checkbox",
+            id:"defaultId"
         }
     },
     _checkBoxOnChange:function(event){
-        var datas=[];
-        if(this.props.checkType == "checkbox"){
-            if(this.props.id){
-                datas = Grid.datas[this.props.id]||{};
-                datas=Grid.datas;
-            }else{
-                datas=Grid.datas;
-            }
-        }
-        else if(this.props.checkType == "radio"){
-            if(this.props.id){
-                Grid.datas = Grid.datas||{};
-                Grid.datas[this.props.id]={};
-                datas={};
-            }
-            else{
-                Grid.datas = [];
-            }
-        }
+        var datas={};
         var v=event.target.value;
-
+        if(this.props.checkType=="checkbox"){
+            datas = Grid.datas[this.props.id]|| datas; 
+        }
         if(event.target.checked){
             datas[this.state.prifx+v]=v;
         }else{
             datas[this.state.prifx+v]=0;
         }
-        this.state.datas=datas;
-        if(this.props.id){
-            Grid.setData(this.props.id,datas);
-        }else{
-            Grid.datas=this.state.datas;
-        }
+        Grid.setData(this.props.id,datas);
     },
     render:function(){
         /**
@@ -159,7 +112,6 @@ var Grid=React.createClass({
                 titleData.push(t);
             });
         }
-
 
         var self=this;
 
