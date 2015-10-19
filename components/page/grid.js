@@ -90,8 +90,8 @@ var Grid=React.createClass({
         var datas=[];
         if(this.props.checkType == "checkbox"){
             if(this.props.id){
-                datas = Grid.datas[id]||{};
-                datas={};
+                datas = Grid.datas[this.props.id]||{};
+                datas=Grid.datas;
             }else{
                 datas=Grid.datas;
             }

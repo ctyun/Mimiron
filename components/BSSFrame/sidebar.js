@@ -25,7 +25,6 @@ var Link = React.createClass({
 			</a>)
 	},
     _onClick: function(e){
-        console.log("in Link.onClick");
         e.preventDefault();
         window.location.hash = this.props.to;
         Route.goJSX(this.props.to);
