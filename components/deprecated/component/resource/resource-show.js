@@ -1,11 +1,11 @@
 var React = require('react/addons');
 var api = require('../../api/resource');
-var components = require('components');
-var PortletHeader = components.PortletHeader;
-var SearchPane = components.SearchPane;
+var PortletHeader = require('../../vendors/components/components/portlet-header');
+var SearchPane = require('../../vendors/components/components/search-pane');
 var Api = require('../../api/resource');
-var Link = require('react-router').Link;
 var Page = require('../page/page');
+
+require("jquery-ui");
 
 var ResourceSearch = React.createClass({
     getInitialState: function() {
@@ -64,13 +64,14 @@ var ResourceTable = React.createClass({
                 var fkAccountId = item.fkAccountId;
                 var fkUserId = item.fkUserId;
                 var billPeriod = item.billPeriod;
+                var href="#/resourceDetail/"+fkAccountId+"/"+fkUserId+"/"+billPeriod;
                 return <tr key={key}>
                     <td>{item.loginName}</td>
                     <td>{item.loginEmail}</td>
                     <td>{item.billPeriod}</td>
                     <td>{item.status}</td>
                     <td>
-                        <Link className="btn btn-xs btn-success" to="resourceDetail" params={{fkAccountId: fkAccountId, fkUserId: fkUserId,billPeriod:billPeriod}}><i className="fa fa-edit"></i>资源使用量详情</Link>
+                    <a className="btn btn-xs btn-success" href={href}><i className="fa fa-edit"></i>资源使用量详情</a>
                     </td>
                 </tr>
             });
@@ -135,5 +136,6 @@ var Resource = React.createClass({
         return year+"-"+(month<10?"0"+month:month);
     }
 });
+
 
 module.exports = Resource;

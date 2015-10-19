@@ -35,5 +35,7 @@ module.exports = {
    //cdn resource用量录入
    USER_SEARCH: "/api/resource/queryUserByLoginEmailOrLoginName",
    USER_RESOURCE_SEARCH: "/api/resource/queryUserResource",
-   SAVE_RESOURCE_USAGE: "/api/resource/saveResourceUsage"
+   SAVE_RESOURCE_USAGE: "/api/resource/saveResourceUsage",   
+   QUERY_UPLOADED_FILES: "/api/resource/queryFile",
+   DELETE_FILE: "/api/resource/deleteFile"
 };

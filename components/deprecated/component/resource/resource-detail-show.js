@@ -1,11 +1,13 @@
 var React = require('react/addons');
 var components = require('components');
-var PortletHeader = components.PortletHeader;
-var SearchPane = components.SearchPane;
-var ActionButtonDelete = components.ActionButtonDelete;
+var PortletHeader = require('../../vendors/components/components/portlet-header');
+var SearchPane = require('../../vendors/components/components/search-pane');
+var ActionButtonDelete = require('../../vendors/components/components/action-button-delete');
 var Api = require('../../api/resource');
 var MessageBox=require("../message/message");
 var Dropzone=require("./dropzone-upload");
+
+require("jquery-ui");
 
 var ResourceSearch = React.createClass({
     getInitialState: function() {
@@ -163,6 +165,7 @@ var Resource = React.createClass({
             fkUserId: this.props.params.fkUserId,
             billPeriod: this.props.params.billPeriod};
         obj.uploadedFiles = [];
+
         return obj;
     },
     componentWillMount: function() {
