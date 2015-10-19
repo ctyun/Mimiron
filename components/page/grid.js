@@ -54,21 +54,23 @@ var Grid=React.createClass({
          * 清除表格数据
          * @method cleanData
          * @static
+         * @deprecated 请使用cleanDataById
          */
         cleanData:function(){
             Grid.datas=[];
         },
+        /**
+         * 清除表格数据, 此方法有一个输入值为Id
+         * @method cleanData
+         * @static
+         */
         cleanDataById:function(id){
             Grid.datas = Grid.datas || {};
-            Grid.datas.id=[];
+            Grid.datas[id]={};
         },
         setData:function(id,obj){
-            console.log("in setData");
-            console.log(obj ,id);
             Grid.datas = Grid.datas || {};
             Grid.datas[id] = obj;
-            console.log(Grid.datas);
-            console.log(Grid.datas.testTable);
         }
     },
 
@@ -112,7 +114,6 @@ var Grid=React.createClass({
             datas[this.state.prifx+v]=0;
         }
         this.state.datas=datas;
-        console.log(datas);
         if(this.props.id){
             Grid.setData(this.props.id,datas);
         }else{
