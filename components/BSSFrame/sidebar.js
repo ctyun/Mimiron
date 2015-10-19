@@ -20,7 +20,7 @@ var Link = React.createClass({
         }
     },
 	render: function(){
-		return(<a href={this.props.to} onClick={this._onClick} data-tohash="true">
+		return(<a href={this.props.to} onClick={this._onClick}>
 				{this.props.children}
 			</a>)
 	},
