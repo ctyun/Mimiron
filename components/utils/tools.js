@@ -217,7 +217,7 @@ var Tools = {
         //     };
         // }
         document.body.appendChild(script);
-
+        $("#page-wrapper").html('<div class="spinner"></div>')
         window.Mimiron.runScripts();
     }
 }

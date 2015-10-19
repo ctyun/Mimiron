@@ -15,15 +15,15 @@ var Grid=React.createClass({
     statics:{
         datas:{},
         /**
-         * 获取表格数据
+         * 获取表格数据, 此方法有一个参数, 为Id
          * @method getCheckedValue
          * @static
-         * @deprecated 请使用getCheckedValueById
          * @return {Array} 选中的数据
          */
-        getCheckedValue:function(){
+        getCheckedValue: function(id){
+            Grid.datas = Grid.datas || {};
             var arr=[];
-            var datas=Grid.datas;
+            var datas=Grid.datas[id];
             for(var k in datas){
                 var d=datas[k];
                 if(d>0 || d.length>0){
@@ -32,16 +32,18 @@ var Grid=React.createClass({
             }
             return arr;
         },
-        getCheckedValueById: function(id){
-
-        },
         /**
-         * 清除表格数据
+         * 清除表格数据, 此方法有一个输入值为Id
          * @method cleanData
          * @static
          */
-        cleanData:function(){
-            Grid.datas=[];
+        cleanData:function(id){
+            Grid.datas = Grid.datas || {};
+            Grid.datas[id]={};
+        },
+        setData:function(id,obj){
+            Grid.datas = Grid.datas || {};
+            Grid.datas[id] = obj;
         }
     },
 
@@ -55,27 +57,21 @@ var Grid=React.createClass({
     getDefaultProps: function(){
         return{
             checkType :"checkbox",
+            id:"defaultId"
         }
     },
     _checkBoxOnChange:function(event){
-
-        var datas=[];
-        if(this.props.checkType == "checkbox"){
-            datas=Grid.datas;
-        }
-        else if(this.props.checkType == "radio"){
-            Grid.datas = [];
-            Grid.cleanData();
-        }
+        var datas={};
         var v=event.target.value;
-
+        if(this.props.checkType=="checkbox"){
+            datas = Grid.datas[this.props.id]|| datas; 
+        }
         if(event.target.checked){
             datas[this.state.prifx+v]=v;
         }else{
             datas[this.state.prifx+v]=0;
         }
-        this.state.datas=datas;
-        Grid.datas=this.state.datas;
+        Grid.setData(this.props.id,datas);
     },
     render:function(){
         /**
@@ -116,7 +112,6 @@ var Grid=React.createClass({
                 titleData.push(t);
             });
         }
-
 
         var self=this;
 

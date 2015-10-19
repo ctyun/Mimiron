@@ -20,12 +20,11 @@ var Link = React.createClass({
         }
     },
 	render: function(){
-		return(<a href={this.props.to} onClick={this._onClick} data-tohash="true">
+		return(<a href={this.props.to} onClick={this._onClick}>
 				{this.props.children}
 			</a>)
 	},
     _onClick: function(e){
-        console.log("in Link.onClick");
         e.preventDefault();
         window.location.hash = this.props.to;
         Route.goJSX(this.props.to);
@@ -67,22 +66,6 @@ var Link = React.createClass({
  */ 
 var SideBar = React.createClass({
     displayName: 'SideBar',
-    statics:{
-        init: function(themeConfig){
-            var themeConfig = themeConfig || "../js/dist/frame/theme.js";
-            Tools.loadScript([themeConfig]);
-            //破解Sidebar的a标签, 使用#阻止跳转
-            if(typeof $ == undefined){
-                throw new error("必须先引入jquery");
-            }
-            if(typeof window.onhashchange == undefined){
-                throw new error("你目前的环境不支持onhashchange, 路由不能工作!");
-            }
-            window.onhashchange = function(){
-                Route.goJSX(window.location.hash.substr(1));
-            }
-        }
-    },
     getInitialState:function(){
 		return {
             selectFlag:false,
