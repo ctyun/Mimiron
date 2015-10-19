@@ -6,7 +6,7 @@ var React = require('react/addons');
  * 表格组件,是`TablePanel`的组成部分
  * ```
  * 示例:
- * <Grid title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType}/>
+ * <Grid id="uniqueId" title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType}/>
  * ```
  * @class Grid
  *
@@ -18,6 +18,7 @@ var Grid=React.createClass({
          * 获取表格数据
          * @method getCheckedValue
          * @static
+         * @deprecated 请使用getCheckedValueById
          * @return {Array} 选中的数据
          */
         getCheckedValue:function(){
@@ -25,13 +26,14 @@ var Grid=React.createClass({
             var datas=Grid.datas;
             for(var k in datas){
                 var d=datas[k];
-
                 if(d>0 || d.length>0){
                     arr.push(d);
                 }
             }
-
             return arr;
+        },
+        getCheckedValueById: function(id){
+
         },
         /**
          * 清除表格数据

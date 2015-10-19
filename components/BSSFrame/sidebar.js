@@ -20,11 +20,14 @@ var Link = React.createClass({
         }
     },
 	render: function(){
-		return(<a href={this.props.to} onClick={this._onClick}>
+		return(<a href={this.props.to} onClick={this._onClick} data-tohash="true">
 				{this.props.children}
 			</a>)
 	},
-    _onClick: function(){
+    _onClick: function(e){
+        console.log("in Link.onClick");
+        e.preventDefault();
+        window.location.hash = this.props.to;
         Route.goJSX(this.props.to);
         this.renewSelect(this.props.to);
     },
@@ -55,11 +58,31 @@ var Link = React.createClass({
  * 组件示例:
  * <SideBar list={this.props.menu} />
  * ```
+ * 组件有一个静态方法, 需要在页面框架组件的componentDidMount声明周期进行调用:
+ * `Sidebar.init("../js/dist/frame/theme.js");`
+ * 该方法有一个必选参数, 是主题的配置文件路径.
+ * 
  * @class SideBar
  * 
  */ 
 var SideBar = React.createClass({
     displayName: 'SideBar',
+    statics:{
+        init: function(themeConfig){
+            var themeConfig = themeConfig || "../js/dist/frame/theme.js";
+            Tools.loadScript([themeConfig]);
+            //破解Sidebar的a标签, 使用#阻止跳转
+            if(typeof $ == undefined){
+                throw new error("必须先引入jquery");
+            }
+            if(typeof window.onhashchange == undefined){
+                throw new error("你目前的环境不支持onhashchange, 路由不能工作!");
+            }
+            window.onhashchange = function(){
+                Route.goJSX(window.location.hash.substr(1));
+            }
+        }
+    },
     getInitialState:function(){
 		return {
             selectFlag:false,

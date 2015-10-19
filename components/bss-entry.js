@@ -68,9 +68,18 @@ var components = {
 	Metadata : require("./deprecated/component/metadata/metadata"),
 	Login : require("./deprecated/component/login/login"),
 	ManageReportGroup: require("./deprecated/component/report/report-manage-group"),
-	ReportShow : require("./deprecated/component/report/report-show")
+	ReportShow : require("./deprecated/component/report/report-show"),
+
+	
+	
 };
 
 components.version = require('../package.json').version;
+
+//重新配置getter, 防止拿到undefined时React报奇怪的错误.(Uncaught TypeError: Cannot read property 'toUpperCase' of undefined @ReactDefaultInjection.js line53
+// components.prototype.valueOf = function(key){
+// 	alert("123");
+// 	return this[key];
+// }    
 
 module.exports = components;
