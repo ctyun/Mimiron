@@ -69,7 +69,10 @@ var components = {
 	ManageReportGroup: require("./deprecated/component/report/report-manage-group"),
 	ReportShow : require("./deprecated/component/report/report-show"),
 
-	
+	Resource : require("./deprecated/component/resource/resource-show"),
+	ResourceDetail : require("./deprecated/component/resource/resource-detail-show")
+
+
 	
 };
 

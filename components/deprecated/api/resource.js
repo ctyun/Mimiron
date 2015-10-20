@@ -24,6 +24,20 @@ var ResourceApi = _.extend({},APIUtils,{
             url :  APIConstants.SAVE_RESOURCE_USAGE,
             data : data
         });
+    },
+    getUploadedFiles : function(data){
+        return this.request({
+            method : "POST",
+            url : APIConstants.QUERY_UPLOADED_FILES,
+            data : data
+        });
+    },
+    deleteFile : function(data){
+        return this.request({
+            method : "POST",
+            url : APIConstants.DELETE_FILE,
+            data : data
+        });
     }
 });
 
