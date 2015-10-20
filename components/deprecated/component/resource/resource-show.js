@@ -71,8 +71,8 @@ var ResourceTable = React.createClass({
                     <td>{item.billPeriod}</td>
                     <td>{item.status}</td>
                     <td>
-                    <a className="btn btn-xs btn-success" href={href}><i className="fa fa-edit"></i>资源使用量详情</a>
-                    </td>
+                    <a data-tohash className="btn btn-xs btn-success" href={href}><i className="fa fa-edit"></i>资源使用量详情</a>
+                    </td> 
                 </tr>
             });
         }
