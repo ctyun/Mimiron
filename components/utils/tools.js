@@ -1,9 +1,7 @@
 var $ = require('jQuery');
 
 var Tools = {
-
     uuid : function() {
-
         var s = [];
         var hexDigits = "0123456789abcdef";
         for (var i = 0; i < 36; i++) {
@@ -12,11 +10,9 @@ var Tools = {
         s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
         s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
         s[8] = s[13] = s[18] = s[23] = "-";
-     
         var uuid = s.join("");
         return uuid;
     },
-
     clone: function(obj){
 
         if(typeof(obj) != 'object') return obj; 
@@ -219,6 +215,30 @@ var Tools = {
         document.body.appendChild(script);
         $("#page-wrapper").html('<div class="spinner"></div>')
         window.Mimiron.runScripts();
+    },
+    goJSX: function(url){
+        var RouteConfig = Mimiron.RouteConfig;
+        for(var i in RouteConfig){
+            if(RouteConfig[i].test(url)){
+                this.loadJSX(i);
+            }
+        }
+    },
+    handleA: function(key){
+        var key = key||"data-tohash";
+        $(document).on("click","a",function(){
+            if(!$(this).attr(key))
+                return true;
+            var href = $(this).attr("href");
+            window.location.hash = href;
+            var RouteConfig = Mimiron.RouteConfig;
+            for(var i in RouteConfig){
+                if(RouteConfig[i].test(href)){
+                    components.Tools.loadJSX(i);
+                }
+            }
+            return false;
+        });
     }
 }
 

@@ -5,7 +5,7 @@
 var React = require('react');
 var TopBar = require("./topbar");
 var SideBar = require("./sidebar");
-var Route = require("./route");
+var Tools = require("../utils/tools");
 /**
  * 这是BSS系统业务页面的框架, 将页面需要展示的内容作为children即可, 需要传输参数userName, 将显示在右上角.
  * 例子:
@@ -32,7 +32,7 @@ var BSSFrame = React.createClass({
         }
     },
     componentDidMount: function(){
-	    Tools.loadScript(["../js/dist/frame/theme.js"]);
+	    Tools.loadScript("../js/dist/frame/theme.js");
 	},
 	render: function(){
 		return(<div>

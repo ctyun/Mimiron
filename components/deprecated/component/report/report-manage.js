@@ -14,7 +14,7 @@ var Label=Bootstrap.Label;
 var Input=Bootstrap.Input;
 var FormInput=require("../html/input");
 var Button=require("../button/button");
-var Route = require("../../../BSSFrame/route");
+var Tools = require("../../../utils/tools");
 
 var QueryPanel=require("../panel/query-panel");
 
@@ -33,7 +33,7 @@ var Link = React.createClass({
   _onClick: function(e){
       e.preventDefault();
       window.location.hash = this.props.to;
-      Route.goJSX(this.props.to);
+      Tools.goJSX(this.props.to);
   }
 })
 

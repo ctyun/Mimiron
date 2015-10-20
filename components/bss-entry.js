@@ -41,7 +41,6 @@ var components = {
 	BSSFrame : require("./BSSFrame/frame"),
 	TopBar : require("./BSSFrame/topbar"),
 	SideBar : require("./BSSFrame/sidebar"),
-	Route : require("./BSSFrame/route"),
 
 	//Login : require("./BSSFrame/login"),
 

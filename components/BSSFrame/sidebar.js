@@ -8,7 +8,6 @@ var Debug = require("../utils/debug");
 var Ajax = require("../utils/ajax");
 
 var H5 = require("../utils/h5");
-var Route = require("../BSSFrame/Route");
 /*
  * 由Route取代, 这里是临时使用
  */
@@ -20,14 +19,12 @@ var Link = React.createClass({
         }
     },
 	render: function(){
-		return(<a href={this.props.to} onClick={this._onClick}>
+		return(<a href={this.props.to} onClick={this._onClick} data-tohash="yes">
 				{this.props.children}
 			</a>)
 	},
     _onClick: function(e){
         e.preventDefault();
-        window.location.hash = this.props.to;
-        Route.goJSX(this.props.to);
         this.renewSelect(this.props.to);
     },
     renewSelect: function(){
