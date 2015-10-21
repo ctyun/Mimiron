@@ -28,7 +28,7 @@ var TablePanel=React.createClass({
 	      $("#page-wrapper").on("mouseup", function(){
 	          $(".fix-head").css("left",fixHeadLeft-$("#page-wrapper").scrollLeft());
 	      })
-	      $("th").each(function(){
+	      $("thead:eq(1) tr th").each(function(){
 	      	var tmpNode = $("<div></div>");
 	      	$(tmpNode).html($(this).html());
 	      	var tmpCss = {

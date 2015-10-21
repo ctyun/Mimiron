@@ -33,6 +33,20 @@ var PageButton=require("../page/page");
              return (<TablePanel {...tableProps}/>);
         });
      *```
+     *如果传入参数version={2}则会启动增强版表格显示, 给某列提供isDummy属性, 可以将这一行内容显示在该行下方.例如:
+     *```
+     *var tableProps={
+          title:['选择','源表名称','编码','名称','查询类型','枚举项'],
+          jsonKey:['reportMetadataId','resourceTableName','reportMetadataCode','reportMetadataName','defaultQueryTypeShow','selectParam'],
+          data:this.state.data,
+          doList:this.doList,
+          pageSize:this.state.pageSize,
+          offset:this.state.offset, //page:this.state.offset
+          totalRows:this.state.totalRows,
+          checkType:"checkbox",
+          isDummy:[true,,true,,,,],
+        };
+     *```
      * @class TablePanel
      */
 var TablePanel=React.createClass({
@@ -53,7 +67,8 @@ var TablePanel=React.createClass({
           $("#page-wrapper").on("mouseup", function(){
               $(".fix-head").css("left",fixHeadLeft-$("#page-wrapper").scrollLeft());
           })
-          $("th").each(function(){
+          //拷贝表头
+          $("thead:eq(1) tr th").each(function(){
             var tmpNode = $("<div></div>");
             $(tmpNode).html($(this).html());
             var tmpCss = {
@@ -85,7 +100,7 @@ var TablePanel=React.createClass({
         if(this.props.version && this.props.version==2){
             return (<div>
                     <div className="fix-head"></div>
-                    <Grid2 title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType} isDummy={this.props.isDummy} id={this.props.id}/>
+                    <Grid2 title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType} isDummy={this.props.isDummy} id={this.props.id} toShow={this.props.children}/>
                     <PageButton  doList={this.props.doList}  pageSize={this.props.pageSize}  page={this.props.offset} totalRows={this.props.totalRows}/>
                   </div>)
         }else{

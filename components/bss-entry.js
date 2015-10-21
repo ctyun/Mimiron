@@ -71,10 +71,18 @@ var components = {
 
 	Resource : require("./deprecated/component/resource/resource-show"),
 	ResourceDetail : require("./deprecated/component/resource/resource-detail-show")
-
-
-	
 };
+
+// //basic css files
+// require("../static/css/bootstrap.min.css");
+// require("../static/css/dropzone.css");
+// require("../static/css/font-awesome.css");
+// require("../static/css/style.css");
+// require("../static/css/treeview.css");
+// //theme css files
+// require("../static/theme/vendors/jquery-nestable/nestable.css");
+// require("../static/theme/css/style-responsive.css");
+// require("../static/theme/css/patch.css");
 
 components.version = require('../package.json').version;
 
