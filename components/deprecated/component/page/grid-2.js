@@ -87,6 +87,14 @@ var Grid=React.createClass({
         this.forceUpdate();
     },
     clickTr: function(e){
+
+        //显示Children
+        console.log("123");
+        if(this.props.children){
+            console.log("has children");
+        }
+
+        //显示dummyTr
         var currentTr = $(e.target).parent();
         if($(currentTr).next().hasClass("dummyTr")&&$(currentTr).next().is(":visible")){
             window.tempFunc = function(){$(currentTr).next().hide();};
@@ -103,6 +111,7 @@ var Grid=React.createClass({
         }
     },
     render:function(){
+        console.log("GRid2 Render");
         var title=this.props.title; //这里不知道为什么不能直接在t中使用this.props.XXX
         var key=this.props.jsonKey;
         var data=this.props.data;
@@ -125,7 +134,7 @@ var Grid=React.createClass({
         </thead>
         <tbody className="grid-2">
         {data&&data.length>0? this.props.data.map(function(source, key) {
-            return [<tr key={key} onClick={this.clickTr}>
+            return [<tr key={key} data-debug="debug" onClick={this.clickTr}>
             {this.props.jsonKey.map(function(column, columnKey) {
                 if(columnKey==0){
                     if(self.props.noHasCheckBox&&self.props.noHasCheckBox==true){
@@ -139,12 +148,12 @@ var Grid=React.createClass({
                         }
                         
                     }
-            }else{
-                return <td key={columnKey}>{source[column]}</td>
-            }
-        })}
-    </tr>,<tr className="dummyTr"><td colSpan={this.props.title.length + 1} ></td></tr>];
-}.bind(this)) : <td colSpan={this.props.title.length + 1}><div className="text-center">暂无数据，请输入查询条件进行查询。</div></td>}
+                }else{
+                    return <td key={columnKey}>{source[column]}</td>
+                }
+            })}
+        </tr>,<tr className="dummyTr" style={{"display":"none"}}><td colSpan={this.props.title.length + 1} ></td></tr>];
+    }.bind(this)) : <td colSpan={this.props.title.length + 1}><div className="text-center">暂无数据，请输入查询条件进行查询。</div></td>}
 </tbody>
 </table>;
 return (t);

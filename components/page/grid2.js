@@ -31,6 +31,7 @@ var Grid=React.createClass({
             prifx:"id_",
             checkedValues:this.props.checkedValues,
             currentTr:null, //当前激活的tr, 激活的Tr会显示额外信息
+            activeTr:null,
         };
     },
     getDefaultProps: function(){
@@ -46,6 +47,9 @@ var Grid=React.createClass({
         });
         Grid.datas=datas;
     },
+    componentDidMount: function(){
+        //$(".dummyTr").hide();
+    },
     componentWillReceiveProps: function(nextProps) {
         if(nextProps.checkedValues != this.props.checkedValues){
             var datas=[];
@@ -58,7 +62,7 @@ var Grid=React.createClass({
         
     },
     componentDidUpdate: function(){
-        $(".dummyTr").hide();
+        //$(".dummyTr").hide();
         if(this.state.currentTr){
             $(this.state.currentTr).next().show();
         }
@@ -85,6 +89,16 @@ var Grid=React.createClass({
         this.forceUpdate();
     },
     clickTr: function(e){
+        //显示children 使用的是React方式
+        if(this.props.toShow){
+            console.log("has children");
+            console.log($(e.target).parent().attr("data-key"));
+            this.setState({activeTr:$(e.target).parent().attr("data-key")});
+            return;
+        }
+
+
+        //显示dummyTr 使用的是jquery方式
         var currentTr = $(e.target).parent();
         if($(currentTr).next().hasClass("dummyTr")&&$(currentTr).next().is(":visible")){
             window.tempFunc = function(){$(currentTr).next().hide();};
@@ -123,7 +137,7 @@ var Grid=React.createClass({
         </thead>
         <tbody className="grid-2">
         {data&&data.length>0? this.props.data.map(function(source, key) {
-            return [<tr key={key} onClick={this.clickTr}>
+            return [<tr data-key={key} onClick={this.clickTr}>
             {this.props.jsonKey.map(function(column, columnKey) {
                 if(columnKey==0){
                     if(self.props.noHasCheckBox&&self.props.noHasCheckBox==true){
@@ -141,7 +155,7 @@ var Grid=React.createClass({
                 return <td key={columnKey}>{source[column]}</td>
             }
         })}
-    </tr>,<tr className="dummyTr"><td colSpan={this.props.title.length + 1} ></td></tr>];
+    </tr>,<tr className="dummyTr" style={{"display":this.state.activeTr==key?"":"none"}}><td colSpan={this.props.title.length + 1} >{this.state.activeTr==key?this.props.toShow:null}</td></tr>];
 }.bind(this)) : <td colSpan={this.props.title.length + 1}><div className="text-center">暂无数据，请输入查询条件进行查询。</div></td>}
 </tbody>
 </table>;

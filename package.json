@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "release": "webpack --config webpack.config.min.js"
+    "release": "webpack --config webpack.config.release.js"
   },
   "author": "",
   "license": "BSD",
@@ -13,11 +13,14 @@
     "react": "^0.13.1"
   },
   "devDependencies": {
+    "autoprefixer-loader": "^3.1.0",
     "babel-loader": "^5.3.2",
     "bootstrap": "^3.3.5",
+    "css-loader": "^0.20.2",
     "dropzone": "^4.0.1",
     "eonasdan-bootstrap-datetimepicker": "^4.15.35",
     "extract-text-webpack-plugin": "^0.8.2",
+    "file-loader": "^0.8.4",
     "flux": "^2.1.1",
     "jquery": "^2.1.4",
     "jquery-ui": "^1.10.5",
@@ -30,6 +33,7 @@
     "react-router": "^0.13.4",
     "select2": "^4.0.0",
     "underscore": "^1.8.3",
+    "url-loader": "^0.5.6",
     "webpack": "^1.12.1",
     "webpack-dev-server": "^1.10.1"
   }
