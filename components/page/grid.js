@@ -9,6 +9,7 @@ var React = require('react/addons');
  * <Grid id="uniqueId" title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType}/>
  * ```
  * @class Grid
+ * @deprecated 被Grid2取代 即将移除.
  *
  */
 var Grid=React.createClass({
@@ -74,6 +75,7 @@ var Grid=React.createClass({
         Grid.setData(this.props.id,datas);
     },
     render:function(){
+        console.info("Grid组件即将被Grid2替代, 理论上你不可能看到此信息, 如看到, 请立即联系我.");
         /**
          * @property {String} title 标题
          */
