@@ -5,6 +5,7 @@ var Debug = {
 	clone: function(myObj){
 		if(typeof(myObj) != 'object') return myObj; 
 		if(myObj == null) return myObj; 
+		if(myObj.constructor == RegExp) return myObj;
 		var myNewObj = new Object(); 
 		for(var i in myObj) 
 			myNewObj[i] = this.clone(myObj[i]); 

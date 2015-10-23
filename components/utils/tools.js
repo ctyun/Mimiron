@@ -1,5 +1,9 @@
 var $ = require('jQuery');
 
+var API = require("../const/API");
+var Debug = require("../utils/debug");
+var Ajax = require("../utils/ajax");
+
 var Tools = {
     uuid : function() {
         var s = [];
@@ -175,11 +179,7 @@ var Tools = {
         }
         return false;
     },
-    loadJSX: function(url){
-        if(!window.Mimiron.runScripts){
-            console.info("如果你想使用utils.loadJSX异步加载jsx文件, 你必须先通过JSXTransform.js暴露window.Mimiron.runScripts方法!");
-            return;
-        }
+    appendJSX: function(url){
         //先删除其他无用的jsx
         var scripts = document.getElementsByTagName('script');
         for (var i = 0; i < scripts.length; i++) {
@@ -215,6 +215,68 @@ var Tools = {
         document.body.appendChild(script);
         $("#page-wrapper").html('<div class="spinner"></div>')
         window.Mimiron.runScripts();
+    },
+    authorize: function(url){
+
+        var tester = Mimiron.RouteConfig[url];
+        var allowURLs = window.Mimiron.authorization.allowURLs;
+        Debug.log(tester,"authorizing....tester...");
+        for(var i in allowURLs){
+            if(tester.test(allowURLs[i])){
+                return true;
+            }
+        }
+        return false;
+    },
+    getAllowURLs:function(data){
+
+        for(var elem in data){
+            if(data[elem].url){
+                window.Mimiron.authorization.allowURLs.push(data[elem].url);
+            }
+            if(data[elem].children){
+                Tools.getAllowURLs(data[elem].children);
+            }
+        }
+    },
+    loadJSX: function(url){
+        if(!window.Mimiron.runScripts){
+            console.info("如果你想使用utils.loadJSX异步加载jsx文件, 你必须先通过JSXTransform.js暴露window.Mimiron.runScripts方法!");
+            return;
+        }
+
+        if(window.location.pathname == "/login" || window.location.hash == '#/login') {
+                Tools.appendJSX(url);
+                return; //登录界面，直接放行
+        }
+
+        //权限管理
+        if(window.Mimiron.authorization){
+            
+            if(Tools.authorize(url)) Tools.appendJSX(url);
+
+        }else{//未加载权限，请求权限，然后把权限绑定到window上
+
+            window.Mimiron.authorization = window.Mimiron.authorization || { allowURLs:[] }
+            //if(!window.Mimiron.authorization.allowURLs) window.Mimiron.authorization.allowURLs = [];
+
+            //获取用户可访问的菜单权限
+            Ajax.get(API.SIDE_BAR_MENU,function(data){
+
+                if(data.children){
+                    Tools.getAllowURLs(data.children);
+                }
+
+                if(Tools.authorize(url)){
+                    Tools.appendJSX(url);
+                }else{
+                    alert("您没有权限访问！");
+                }
+
+            });
+        }
+  
+        
     },
     goJSX: function(url){
         var RouteConfig = Mimiron.RouteConfig;

@@ -5,7 +5,7 @@ var SearchPane = require('../../vendors/components/components/search-pane');
 var Api = require('../../api/resource');
 var Page = require('../page/page');
 
-require("jquery-ui");
+var o = require("jquery-ui");
 
 var ResourceSearch = React.createClass({
     getInitialState: function() {
