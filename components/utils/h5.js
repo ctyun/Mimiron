@@ -8,7 +8,6 @@ var H5={
 				if(value.substr(0,1)=="@"){
 					value = value.substr(1);
 					value = JSON.parse(value); 
-					console.log(value);
 				}
 				return value;
 			} else{
@@ -17,10 +16,8 @@ var H5={
 			}
 		},
 		set: function(key,value){
-			console.log(value);
 			if (typeof value == "object"){
 				value = "@" + JSON.stringify(value);
-				console.log(value);
 			}
 			window.localStorage[key] = value;
 			return;

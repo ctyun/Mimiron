@@ -18,9 +18,11 @@ var BSSForm = require("../html/form");
  * title: 标题
  * submitAction: 点击提交后的回调函数
  * jsonFormat: 结果是否格式化为json
- *  cssClass:(string) 默认为空, 可以传入:
+ * cssClass:(string) 默认为空, 可以传入:
  *      "modal-lg":
- * ...支持其他BSSform参数.
+ *      ...支持其他BSSform参数.
+ * dragable:(Boolean) 可拖拽, 默认为true
+ * dragEnd:(Function) 拖拽结束的回调函数,此函数返回两个参数,估计一般用不到,可以log出来看看, 也可以来问我. 
  * ```
  * TODO: footer 
  * Modal组件
@@ -36,6 +38,7 @@ var Modal=React.createClass({
          */
         show:function(id){
             $("#"+id).modal();
+            console.log("123");
         },
         /**
          * 隐藏对话框
@@ -58,6 +61,8 @@ var Modal=React.createClass({
             body:null,
             footer:null,
             cssClass: "",
+            dragable:true,
+            dragEnd:function(){return},
         };
     },
     doAndHide: function(params){
@@ -65,6 +70,17 @@ var Modal=React.createClass({
         if(this.props.submitAction){
             this.props.submitAction(params);
         }
+    },
+    componentDidMount : function(){
+      var _this = this;
+      var node = this.getDOMNode();
+      if(this.props.dragable){
+        $(node).draggable({
+          stop:function(event,ui){
+            _this.props.dragEnd(event,ui);
+          }
+        });
+      }
     },
     render: function(){
         //using css control to hide the modal
