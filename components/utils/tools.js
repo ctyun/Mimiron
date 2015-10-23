@@ -218,9 +218,12 @@ var Tools = {
     },
     authorize: function(url){
 
+        if(window.Mimiron.debugMode){
+            return true;
+        }
+
         var tester = Mimiron.RouteConfig[url];
         var allowURLs = window.Mimiron.authorization.allowURLs;
-        Debug.log(tester,"authorizing....tester...");
         for(var i in allowURLs){
             if(tester.test(allowURLs[i])){
                 return true;
