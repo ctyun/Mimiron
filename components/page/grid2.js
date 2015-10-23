@@ -37,8 +37,6 @@ var Grid=React.createClass({
             Grid.datas[id]={};
         },
         setData:function(id,obj){
-            console.log("in setData");
-            console.log(id, obj);
             Grid.datas = Grid.datas || {};
             Grid.datas[id] = obj;
         }
@@ -89,7 +87,6 @@ var Grid=React.createClass({
         }
     },
     _checkBoxOnChange:function(event){
-        console.log("in _checkBoxOnChange");
         var datas={};
         var v=event.target.value;
         if(this.props.checkType=="checkbox"){
