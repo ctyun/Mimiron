@@ -35,6 +35,9 @@ var RegUtils = require('../utils/reg-utils');
  * var InputDemo=React.createClass(
  *     render:function(){
  *         return (<Input disName="名称" doChange={this._doChange}  name="html_name" />);
+ *     },
+ *     _doChange: function(obj){
+ *         
  *     }
  * );
  *  使用说明

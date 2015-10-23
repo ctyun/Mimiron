@@ -54,7 +54,7 @@ var components = {
 	Ajax : require("./utils/ajax"),
 
 	//page
-	Grid: require("./page/grid"),
+	Grid: require("./page/grid2"),
 
 	//resources
 	Uploader : require("./resources/uploader"),

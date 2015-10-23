@@ -9,20 +9,36 @@ var React = require('react/addons');
 var Grid=React.createClass({
     statics:{
         datas:{},
-        getCheckedValue:function(){
+        /**
+         * 获取表格数据, 此方法有一个参数, 为Id
+         * @method getCheckedValue
+         * @static
+         * @return {Array} 选中的数据
+         */
+        getCheckedValue: function(id){
+            Grid.datas = Grid.datas || {};
             var arr=[];
-            var datas=Grid.datas;
+            var datas=Grid.datas[id];
             for(var k in datas){
                 var d=datas[k];
-
                 if(d>0 || d.length>0){
                     arr.push(d);
                 }
             }
             return arr;
         },
-        cleanData:function(){
-            Grid.datas=[];
+        /**
+         * 清除表格数据, 此方法有一个输入值为Id
+         * @method cleanData
+         * @static
+         */
+        cleanData:function(id){
+            Grid.datas = Grid.datas || {};
+            Grid.datas[id]={};
+        },
+        setData:function(id,obj){
+            Grid.datas = Grid.datas || {};
+            Grid.datas[id] = obj;
         }
     },
 
@@ -37,15 +53,17 @@ var Grid=React.createClass({
     getDefaultProps: function(){
         return{
             checkType :"checkbox",
-            checkedValues:[]
+            checkedValues:[],
+            id:"defaultId"
         }
     },
     componentWillMount: function() {
-        var datas=[];
+        var datas={};
         this.props.checkedValues.map(function(v) {
             datas[this.state.prifx+v]=v;
         });
-        Grid.datas=datas;
+        Grid.datas = Grid.datas||{};
+        Grid.datas[this.props.id]=datas;
     },
     componentDidMount: function(){
         //$(".dummyTr").hide();
@@ -57,7 +75,8 @@ var Grid=React.createClass({
             nextProps.checkedValues.map(function(v) {
                 datas[self.state.prifx+v]=v;
             });
-            Grid.datas=datas;
+            Grid.datas = Grid.datas || {};
+            Grid.datas[this.props.id]=datas;
         }
         
     },
@@ -68,35 +87,28 @@ var Grid=React.createClass({
         }
     },
     _checkBoxOnChange:function(event){
-
-        var datas=[];
-        if(this.props.checkType == "checkbox"){
-            datas=Grid.datas;
-        }
-        else if(this.props.checkType == "radio"){
-            Grid.datas = [];
-            Grid.cleanData();
-        }
+        var datas={};
         var v=event.target.value;
-
+        if(this.props.checkType=="checkbox"){
+            datas = Grid.datas[this.props.id]|| datas; 
+        }
         if(event.target.checked){
             datas[this.state.prifx+v]=v;
         }else{
             datas[this.state.prifx+v]=0;
         }
-        //this.state.datas=datas;
-        Grid.datas=datas;
-        this.forceUpdate();
+        Grid.setData(this.props.id,datas);
     },
     clickTr: function(e){
         //显示children 使用的是React方式
         if(this.props.toShow){
-            console.log("has children");
-            console.log($(e.target).parent().attr("data-key"));
-            this.setState({activeTr:$(e.target).parent().attr("data-key")});
-            return;
+            if(this.state.activeTr==$(e.target).parent().attr("data-key")){
+                this.setState({activeTr:null}); //点击同一个Tr 循环展开和关闭
+            } else{
+                this.setState({activeTr:$(e.target).parent().attr("data-key")});
+            }
         }
-
+        return;
 
         //显示dummyTr 使用的是jquery方式
         var currentTr = $(e.target).parent();

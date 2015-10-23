@@ -75,7 +75,6 @@ var DatePicker=React.createClass({
         $('#'+this.props.id).datepicker({dateFormat:foramt,changeMonth: true,
             changeYear: true
             });
-        console.log(this.props.id);
         return (<span>{name}<input type='text'  className="form-control input-md" id={this.props.id}  /></span>);
     }
 });
