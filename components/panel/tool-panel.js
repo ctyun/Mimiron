@@ -16,10 +16,6 @@ var React=require("react/addons");
      *         return ( <ToolBarPanel><Button btnName="增删查改"/></ToolBarPanel>);
      *     }
      * );
-     * 使用说明
-     *  <ToolBarPanel>
-     *<Button btnName="增删查改"/>
-     *</ToolBarPanel>
      * ```
      * @class ToolBarPanel
      */

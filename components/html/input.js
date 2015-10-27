@@ -34,19 +34,22 @@ var RegUtils = require('../utils/reg-utils');
  * var Input=components.Input;
  * var InputDemo=React.createClass(
  *     render:function(){
- *         return (<Input disName="名称" doChange={this._doChange}  name="html_name" />);
+ *         return (<Input disName="名称" doChange={this._doChange}  name="html_name" value={this.state.inputValue}/>);
  *     },
  *     _doChange: function(obj){
  *         
  *     }
  * );
- *  使用说明
+ *  使用说明:
  *  <Input disName="名称" doChange={this._doChange}  />
  *  disName:要显示的名称
  *  doChange:值改变时调用的事件
  *  onClick:点击时调用的事件
  *  value:默认值
  *  name: 同html的name
+ *
+ *  注意:
+ *  由于React的数据单项绑定特性, 当input中value发生变化时, 新值不会体现在this.state.inputValue上, 如果需要取到当前用户输入, 可以在doChange方法中进行处理.
  *  ```
  *  @class Input
  */

@@ -4,7 +4,7 @@
 var React=require("react/addons");
 var Header = require('./header');
 /**
- * 基本的面板组件
+ * 业务页面基本面板组件, <BSSPanel>框起来的范围是可见范围, 建议将默认隐藏的元素(<Modal>,<MessageBox>等移出此标签)
  *```
  * var React = components.React;
  * var BSSPanel=components.BSSPanel;

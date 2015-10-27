@@ -217,11 +217,6 @@ var Tools = {
         window.Mimiron.runScripts();
     },
     authorize: function(url){
-
-        if(window.Mimiron.debugMode){
-            return true;
-        }
-
         var tester = Mimiron.RouteConfig[url];
         var allowURLs = window.Mimiron.authorization.allowURLs;
         for(var i in allowURLs){
@@ -248,6 +243,10 @@ var Tools = {
             return;
         }
 
+        if(window.Mimiron.debugMode){
+                Tools.appendJSX(url);
+                return; //调试模式，直接放行
+        }
         if(window.location.pathname == "/login" || window.location.hash == '#/login') {
                 Tools.appendJSX(url);
                 return; //登录界面，直接放行
@@ -286,8 +285,10 @@ var Tools = {
         for(var i in RouteConfig){
             if(RouteConfig[i].test(url)){
                 this.loadJSX(i);
+                return 
             }
         }
+        console.info(url+"匹配不到任何现有路由!");
     },
     handleA: function(key){
         var key = key||"data-tohash";

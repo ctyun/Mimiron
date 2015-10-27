@@ -24,8 +24,8 @@ var BSSForm = require("../html/form");
  * dragable:(Boolean) 可拖拽, 默认为true
  * dragEnd:(Function) 拖拽结束的回调函数,此函数返回两个参数,估计一般用不到,可以log出来看看, 也可以来问我. 
  * ```
- * TODO: footer 
- * Modal组件
+ * 注意:
+ * 通过Modal.show("modalId")打开模态框,尽量避免在同一页面打开多个模态框, 如果一定要这么做, 注意限制模态框内元素的高度.
  * @class Modal
  */
 var Modal=React.createClass({

@@ -16,7 +16,6 @@ var Grid=React.createClass({
             var datas=Grid.datas;
             for(var k in datas){
                 var d=datas[k];
-
                 if(d>0 || d.length>0){
                     arr.push(d);
                 }
@@ -87,13 +86,6 @@ var Grid=React.createClass({
         this.forceUpdate();
     },
     clickTr: function(e){
-
-        //显示Children
-        console.log("123");
-        if(this.props.children){
-            console.log("has children");
-        }
-
         //显示dummyTr
         var currentTr = $(e.target).parent();
         if($(currentTr).next().hasClass("dummyTr")&&$(currentTr).next().is(":visible")){
@@ -111,7 +103,6 @@ var Grid=React.createClass({
         }
     },
     render:function(){
-        console.log("GRid2 Render");
         var title=this.props.title; //这里不知道为什么不能直接在t中使用this.props.XXX
         var key=this.props.jsonKey;
         var data=this.props.data;

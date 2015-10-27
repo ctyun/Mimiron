@@ -29,23 +29,14 @@ var PageButton=require("../page/page");
                        offset:1, //page:this.state.offset
                        totalRows:1,
                        checkType:"radio",
+                       isDummy:[true,,true,,,,],
                   }
              return (<TablePanel {...tableProps}/>);
         });
-     *```
-     *如果传入参数version={2}则会启动增强版表格显示, 给某列提供isDummy属性, 可以将这一行内容显示在该行下方.例如:
-     *```
-     *var tableProps={
-          title:['选择','源表名称','编码','名称','查询类型','枚举项'],
-          jsonKey:['reportMetadataId','resourceTableName','reportMetadataCode','reportMetadataName','defaultQueryTypeShow','selectParam'],
-          data:this.state.data,
-          doList:this.doList,
-          pageSize:this.state.pageSize,
-          offset:this.state.offset, //page:this.state.offset
-          totalRows:this.state.totalRows,
-          checkType:"checkbox",
-          isDummy:[true,,true,,,,],
-        };
+     *
+     * 注意:
+     * 1. 如果传入给某列提供isDummy属性, 可以将这一列的内容显示在目标行下方. 举例来说, 有些表格中"地址"很长, 可以将地址对应的列的isDummy设置为true, 点击表格中某一行(tr)时, 地址这个单元格的内容将显示在该行下方.
+     * 2. 该组件可以设置children, 如果这么做, 点击每一行时都会将children中的元素展示在该行下方.
      *```
      * @class TablePanel
      */
@@ -68,7 +59,7 @@ var TablePanel=React.createClass({
               $(".fix-head").css("left",fixHeadLeft-$("#page-wrapper").scrollLeft());
           })
           //拷贝表头
-          $("thead:eq(1) tr th").each(function(){
+          $("thead:eq(0) tr th").each(function(){
             var tmpNode = $("<div></div>");
             $(tmpNode).html($(this).html());
             var tmpCss = {
