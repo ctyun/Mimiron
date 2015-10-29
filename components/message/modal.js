@@ -38,7 +38,6 @@ var Modal=React.createClass({
          */
         show:function(id){
             $("#"+id).modal();
-            console.log("123");
         },
         /**
          * 隐藏对话框

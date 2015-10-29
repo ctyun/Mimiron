@@ -81,7 +81,8 @@ var TablePanel=React.createClass({
             $(".fix-head").append(tmpNode);
           });
         }
-        setTimeout("freezeTableHead()",0);
+        if($("#page-wrapper").length>0)
+          setTimeout("freezeTableHead()",0);
     },
     componentDidUpdate: function(){
         freezeTableHead();

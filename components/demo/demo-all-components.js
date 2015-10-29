@@ -446,7 +446,7 @@ var Demo = React.createClass({
 
 	getInitialState:function(){
 		return {
-		  
+		    canSubmit:false,
 		}
 	},
 
@@ -473,8 +473,19 @@ var Demo = React.createClass({
 	treeTableCheck:function(){
 		alert("treeTableCheck");
 	},
+    validTurn: function(bool){
+        console.log(bool);
+    },
+    AddHandler: function(params){
+        console.log(params);
+    },
   	render:function(){
-
+        var formValid = {
+            type:"noEmpty",
+           // maxlength:5,
+            errorMsg : "不能为空",
+            handleResult:this.validTurn,
+        };
 
 	    return (
 	        <div style={{padding:"10px 20px"}}>
@@ -543,14 +554,16 @@ var Demo = React.createClass({
                         <div style={infoCSS}>Select</div>
                         <Select data={[{value:'1',text:'显示2'},{value:'2',text:'显示1'}]} defaultValue="2" onSelect={this.onSelectAction}/>
 
-
-                     
-
 						<div style={infoCSS}>Textarea</div>
 					    <Textarea rows="4" onChange={this.doChangeAction}>
 					       12234
 					    </Textarea>
 
+                        <div style={infoCSS}>Form Validation</div>
+                        <BSSForm checkValid={true}>
+                            <Input disName="非空:  " valid={formValid}  /><br/>
+                            <Input disName="Email: " valid={{type:"email",errorMsg:"请输入有效Email地址"}}  /><br/>
+                        </BSSForm>
 	              	</Tab>
 
 
@@ -558,6 +571,18 @@ var Demo = React.createClass({
 
 						<div style={infoCSS}>MessageBox</div>
 					    <Button btnName="触发MessageBox" doAction={MessageBox.show.bind(null,"i am title","i am message")} cssClass="btn-info" />
+                        <div style={infoCSS}>Modal</div>
+                        <Button btnName="触发Modal" doAction={Modal.show.bind(null,"addTableModal") } cssClass="btn-info" />
+                        <Modal id="addTableModal" title="添加对话框" submitAction={this.AddHandler} jsonFormat={true} cssClass="modal-lg">
+                          <div className="content-left">
+                              <Input disName="id: " name="reportMetadataId"/> <br/>
+                              <Input disName="源表名称: " name="resourceTableName"/> <br/>
+                              <Input disName="编码: " name="reportMetadataCode"/> <br/>
+                              <Input disName="名称: " name="reportMetadataName"/> <br/>
+                              <Input disName="查询类型: " name="defaultQueryTypeShow"/> <br/>
+                              <Input disName="枚举项: " name="selectParam"/> <br/>
+                          </div>
+                        </Modal> 
 
 	              	</Tab>
 

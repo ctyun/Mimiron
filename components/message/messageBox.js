@@ -16,6 +16,7 @@ var Button=require("../html/button");
  * @class MessageBox
  */
 var MessageBox = React.createClass({
+	displayName:'MessageBox',
 	statics:{
 		title : null,
 		message : null,
@@ -27,12 +28,12 @@ var MessageBox = React.createClass({
 		 * @param  {String} message 对话框内容
 		 */
 		show : function(title,message){
-			var mb = (<Modal id="MessageBoxModal" title={title} submitAction={Modal.hide.bind(null,"MessageBoxModal")} >
+			var mb = (<Modal id="MessageBoxModal" title={title} submitAction={Modal.hide.bind(null,"MessageBoxModal")}  jsonFormat={true}>
 			        <span>{message}</span> <br/>
 					<br/>
 			      </Modal>);
 			$("body").append("<div id='MessageBox'></div>");
-			React.render(mb, document.getElementById("MessageBox")); /*使用$("#"+this.props.uniqueID)会找不到节点, 原因不详*/
+			React.render(mb, document.getElementById("MessageBox")); 
 			$("#MessageBoxModal").modal();
 		}
 	},

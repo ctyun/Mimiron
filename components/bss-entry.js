@@ -4,8 +4,27 @@
 
 //FIXME require CSS here
 
-window.hasModule=0; //this is due to a unhandled error information: hasModule is not defined
+//window.hasModule=0; //this is due to a unhandled error information: hasModule is not defined
 
+window.onerror=function(error,file){
+	try{
+		$.post("http://192.168.13.56/logger/",
+		//$.post("http://127.0.0.1:8000/logger/",
+		{
+			url:window.location.pathname + window.location.hash,
+			error:error,
+			file:file
+		},
+		function(data,status){
+			console.info(data);
+		});
+	}catch(e){
+		console.info("我们尝试记录上一个错误, 并发送到服务器, 但是出现了这个问题:")
+		console.info(e.name + ": " + e.message);
+	}
+	
+	return false;
+}
 
 var components = {
 	//暴露到window上的公共变量

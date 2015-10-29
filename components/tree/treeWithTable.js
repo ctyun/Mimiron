@@ -4,7 +4,7 @@
 
 var React=require("react/addons");
 var Treeview = require("./treeview");
-var Grid=require("../page/grid");
+var Grid=require("../page/grid2");
 var PageButton=require("../page/page");
 
 /*

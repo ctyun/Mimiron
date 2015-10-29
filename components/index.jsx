@@ -3,9 +3,8 @@ window.hasModule = 0; //this is due to a unhandled error information: hasModule 
 var React = require("react");
 var components = require("./bss-entry.js");
 var Tools = require("./utils/tools.js");
-var Report = components.Report;
 
-var Demo = components.Demo;
+var Demo = require("./demo/demo-all-components.js");
 
 var ThisPage = React.createClass({
     render: function(){
@@ -16,4 +15,4 @@ var ThisPage = React.createClass({
         return(<Demo/>);
     }
 });
-React.render(<ThisPage />, document.getElementById('content'));
+React.render(<Demo />, document.getElementById('content'));
