@@ -38,6 +38,8 @@ var TopBar = React.createClass({
     _logout: function(e){
     	e.preventDefault();
     	H5.localStorage.clear("SideBar");
+    	//清理前端权限
+    	window.Mimiron.authorization =null;
     	if(this.props.logout){
     		this.props.logout()
     		return

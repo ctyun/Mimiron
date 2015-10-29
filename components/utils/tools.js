@@ -216,6 +216,11 @@ var Tools = {
         $("#page-wrapper").html('<div class="spinner"></div>')
         window.Mimiron.runScripts();
     },
+    /**
+     * 前端权限验证方法
+     * @param  {String} url 转向地址
+     * @return {Boolean}     验证结果
+     */
     authorize: function(url){
         var tester = Mimiron.RouteConfig[url];
         var allowURLs = window.Mimiron.authorization.allowURLs;
