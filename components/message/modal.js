@@ -77,7 +77,8 @@ var Modal=React.createClass({
         $(node).draggable({
           stop:function(event,ui){
             _this.props.dragEnd(event,ui);
-          }
+          },
+          cancel:"input,a,button,select"
         });
       }
     },
