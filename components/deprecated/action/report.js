@@ -9,6 +9,7 @@ var Api = require('../api/report');
 var $ = require('jquery');
 var constants = require('../constants/constants');
 var ActionUtils = require('../utils/action-utils');
+var Tools = require("../../utils/tools");
 
 var ServerActions = {
     queryControlList : function(data){
@@ -104,7 +105,11 @@ var ViewActions = {
             midList: mid
         };
         Api.save(_data).then(function(result){
-            if (result) window.location.href = '/report/manage';
+            if (result){
+               window.location.hash = '/report/manage';
+               Tools.goJSX("/report/manage");
+            } 
+
         });
     },
     getControlList : function(tableName){
