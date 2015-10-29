@@ -2,13 +2,15 @@
  * Created by chenth on 15-7-10.
  */
 var React = require('react/addons');
+var Debug = require('../../../utils/debug.js')
 
 var Grid=React.createClass({
     statics:{
         datas:{},
         getCheckedValue:function(){
             var arr=[];
-            var datas=Grid.datas;
+            var datas=Grid.datas
+
             for(var k in datas){
                 var d=datas[k];
 
@@ -43,11 +45,14 @@ var Grid=React.createClass({
         Grid.datas=datas;
     },
     componentWillReceiveProps: function(nextProps) {
+
         if(nextProps.checkedValues != this.props.checkedValues){
             var datas=[];
             var self = this;
             nextProps.checkedValues.map(function(v) {
-                datas[self.state.prifx+v]=v;
+                if(v){
+                    datas[self.state.prifx+v]=v;
+                }
             });
             Grid.datas=datas;
         }
@@ -63,7 +68,6 @@ var Grid=React.createClass({
             Grid.cleanData();
         }
         var v=event.target.value;
-
         if(event.target.checked){
             datas[this.state.prifx+v]=v;
         }else{

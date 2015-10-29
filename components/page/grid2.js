@@ -73,7 +73,9 @@ var Grid=React.createClass({
             var datas=[];
             var self = this;
             nextProps.checkedValues.map(function(v) {
-                datas[self.state.prifx+v]=v;
+                if(v){
+                    datas[self.state.prifx+v]=v;
+                }
             });
             Grid.datas = Grid.datas || {};
             Grid.datas[this.props.id]=datas;

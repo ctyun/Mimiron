@@ -2078,7 +2078,7 @@ var $ = jQuery = require('jquery');
 })(jQuery);
 
 
-    hasModule = (typeof module !== 'undefined' && module.exports);
+    var hasModule = (typeof module !== 'undefined' && module.exports);
     // CommonJS module is defined
     if (hasModule) {
         module.exports = $.fn.tree;
