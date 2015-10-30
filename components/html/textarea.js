@@ -17,6 +17,7 @@ var Textarea=React.createClass({
 
     getInitialState:function(){
         return {
+            text:""
         };
     },
     getDefaultProps: function(){
@@ -37,15 +38,20 @@ var Textarea=React.createClass({
             onChange: new Function(),
         }
     },
+    componentWillMount: function(){
+        this.setState({text:this.props.children});
+    },
+    componentWillReceiveProps: function(nextProps){
+        this.setState({text:nextProps.children});
+    },
     onChange: function(e){
-        this.props.children = e.target.value;
-        this.props.onChange(this.props.children);
+        this.setState({text:e.target.value});
+        this.props.onChange(e.target.value);
     },
     render:function(){
         return (<div className="form-group">
                     <label for="name">{this.props.name}</label>
-                    <textarea className="form-control" rows={""+this.props.rows} onChange={this.onChange}>
-                        {this.props.children}
+                    <textarea className="form-control" rows={""+this.props.rows} onChange={this.onChange} value={this.state.text}>
                     </textarea>
                 </div>);
     }

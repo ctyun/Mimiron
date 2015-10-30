@@ -226,8 +226,9 @@ var TencentMap = React.createClass({
 		//清除位置标记
 		var markersArray = this.state.mapData;
 		if (markersArray) {
-	        for (i in markersArray) {
-	            markersArray[i].setMap(null);
+	        for (var i in markersArray) {
+	        	if(typeof markersArray[i].setMap=="function")
+	           		markersArray[i].setMap(null);
 	        }
     	}
 	},

@@ -10,7 +10,7 @@ Object.assign = Object.assign||function(des, src, override){
              extend(des, src[i], override);
     }
     for( var i in src){
-        if(override || !(i in des)){
+        if(override || !(var i in des)){
             des[i] = src[i];
         }
     } 

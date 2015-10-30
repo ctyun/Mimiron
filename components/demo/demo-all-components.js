@@ -447,6 +447,7 @@ var Demo = React.createClass({
 	getInitialState:function(){
 		return {
 		    canSubmit:false,
+            textareaValue:"123",
 		}
 	},
 
@@ -466,8 +467,8 @@ var Demo = React.createClass({
 		alert("onSelectAction");
 	},
 
-	doChangeAction:function(){
-		alert("doChangeAction");
+	doChangeAction:function(param){
+		alert("doChangeAction"+param);
 	},
 
 	treeTableCheck:function(){
@@ -479,6 +480,9 @@ var Demo = React.createClass({
     AddHandler: function(params){
         console.log(params);
     },
+    changeTa : function(){
+        this.setState({textareaValue:"345"});
+    },
   	render:function(){
         var formValid = {
             type:"noEmpty",
@@ -486,6 +490,8 @@ var Demo = React.createClass({
             errorMsg : "不能为空",
             handleResult:this.validTurn,
         };
+
+        console.log(this.state.textareaValue);
 
 	    return (
 	        <div style={{padding:"10px 20px"}}>
@@ -519,12 +525,6 @@ var Demo = React.createClass({
 
 	              	<Tab title="html" id="html">
 
-	              		<div style={infoCSS}>Autocomplete</div>
-	                  	<Autocomplete name="动态下拉" url="/api/test/ajax" />
-
-	              		<div style={infoCSS}>AutoSelect</div>
-	                  	<AutoSelect url="api/test/autoselect" disName="动态select" onSelect={this.autoSeleect} defaultValue="333" />
-
 	                  	<div style={infoCSS}>BSSForm</div>
 	                  	<BSSForm submitAction={this.submitAction} jsonFormat={true} disabledName="不可用" disabledSubmitBtn={false} okButtonName="保存">
                             <Input disName="输入" name="input2" />
@@ -556,8 +556,9 @@ var Demo = React.createClass({
 
 						<div style={infoCSS}>Textarea</div>
 					    <Textarea rows="4" onChange={this.doChangeAction}>
-					       12234
+					       {this.state.textareaValue}
 					    </Textarea>
+                        <Button btnName="改变textarea的值" doAction={this.changeTa}></Button>
 
                         <div style={infoCSS}>Form Validation</div>
                         <BSSForm checkValid={true}>

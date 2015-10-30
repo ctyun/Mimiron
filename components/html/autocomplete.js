@@ -76,7 +76,6 @@ var Autocomplete=React.createClass({
         $( "#"+Autocomplete.id ).autocomplete({
             minLength:2,
             source: function(request,response){
-                var path=getPath();
                 var term = request.term;
                 if (term in AutocompleteCache) {
                     response(AutocompleteCache[term]);

@@ -35,7 +35,7 @@ getInitialState : function(){
     };
 },
 _fetch:function(value){
-    var path=getPath();
+    var path=window.location.pathname;
     var self=this;
     AjaxUtils.get(this.state.url,function(d){
         self.setState({
