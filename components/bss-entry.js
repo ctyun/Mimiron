@@ -41,10 +41,10 @@ var components = {
 	Autocomplete:require("./html/autocomplete"),
 	Treeview : require("./tree/treeview"),
 	TreeWithTable : require("./tree/treeWithTable"),
-	CheckboxGroup : require("./html/CheckboxGroup"),
-	Checkbox : require("./html/Checkbox"),
-	Textarea : require("./html/Textarea"),
-	DatePicker: require("./html/DatePicker"),
+	CheckboxGroup : require("./html/checkboxGroup"),
+	Checkbox : require("./html/checkbox"),
+	Textarea : require("./html/textarea"),
+	DatePicker: require("./html/datePicker"),
 
 	//import ES6 patch ,no longer use, use babel-loader instead
 	//require("./utils/webpackPatch"),

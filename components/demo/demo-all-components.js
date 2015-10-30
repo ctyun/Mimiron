@@ -16,8 +16,8 @@ var AutoSelect = require("../html/autoselect");
 var BSSForm = require("../html/form");
 var CascadeSelect = require("../html/cascadeselect");
 var Checkbox = require("../html/checkbox");
-var CheckboxGroup = require("../html/checkboxgroup");
-var DatePicker = require("../html/datepicker");
+var CheckboxGroup = require("../html/checkboxGroup");
+var DatePicker = require("../html/datePicker");
 var ExpressionSelect = require("../html/expression");
 var Select = require("../html/select");
 var Textarea = require("../html/textarea");
@@ -399,8 +399,8 @@ var tree1Data = {
 
 
   	var infoCSS = {
-  		"margin-top":"10px",
-  		"margin-bottom":"10px",
+  		"marginTop":"10px",
+  		"marginBottom":"10px",
   		"color":"blue"
   	};
 
