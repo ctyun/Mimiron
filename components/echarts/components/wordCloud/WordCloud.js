@@ -6,7 +6,7 @@
 
 
 var React = require('react/addons');
-var ZRender = require('../../../vendors/zrender/index');
+var ZRender = require('../../../../static/vendors/zrender/index');
 var Options = require('../../options/options');
 var AbstractECharts = require("../AbstractECharts");
 var Tools = require('../../../utils/tools');
