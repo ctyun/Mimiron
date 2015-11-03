@@ -19,7 +19,7 @@ var AutoSelect=React.createClass({
         };
     },
   _fetch:function(url){
-      var path=getPath();
+      var path=window.location.pathname;
       var self=this;
       AjaxUtils.get(path+url,function(d){
           self.setState({

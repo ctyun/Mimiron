@@ -388,7 +388,7 @@ var ManageReportGroup = React.createClass({
 
                     <Panel header={"查询条件"}>
                         <Input disName="报表组名称：" name="groupName" doChange={this._doChange} value={this.state.searchName}  />
-                        <hr style={{"margin-top":"5px","margin-bottom":"5px"}}/>
+                        <hr style={{"marginTop":"5px","marginBottom":"5px"}}/>
                         <Button btnName="查询" disabledName="正在请求......" doAction={this.queryReportGroup}/>
                         <Button btnName="添加" disabledName="正在请求......" doAction={this.gotoAddReportGroupPanel} />
                         <Button btnName="修改" disabledName="正在请求......" doAction={this.gotoEditReportGroupPanel}/>

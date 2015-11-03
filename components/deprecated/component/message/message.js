@@ -39,7 +39,7 @@ MessageBox.alert=function(text, title, fn){
     });
 };
 MessageBox.jqwait=function(text, title, fn){
-    var path=getPath();
+    var path=window.location.pathname;
     var d=new Date();
     this.dialogId="dialog-wait-"+d.getMilliseconds();
     var html =

@@ -359,10 +359,15 @@ _fetchManage:function(){
         Api.deleteTemplateData(value).then(function(r){
 
             if(r){
-
                 MsgBox.show("提示","删除成功");
-                Api.queryReportModelList().then(function(result) {
-                    self.setState({ reports: result });
+                var  param={
+                    pageNo:self.state.pageNo,
+                    pageSize:self.state.pageSize,
+                    reportModelName:self.state.reportModelName,
+                    resourceTableName:self.state.resourceTableName
+                };
+                Api.queryReportModelList(param).then(function(result) {
+                    self.setState({ reports: result.result,totalRows:result.totalCount,totalPageNo:result.totalPages });
                  });
             }else{
 

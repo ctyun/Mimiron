@@ -53,7 +53,7 @@ var TopBar = React.createClass({
     render: function () {
         return (<div>
 		    <div id="header-topbar-option-demo" className="page-header-topbar">
-		        <nav id="topbar" role="navigation" style={{"margin-bottom": 0, "z-index": 2}} className="navbar navbar-default navbar-static-top">
+		        <nav id="topbar" role="navigation" style={{"marginBottom": 0, "zIndex": 2}} className="navbar navbar-default navbar-static-top">
 		            <div className="navbar-header">
 		                <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" className="navbar-toggle"><span className="sr-only">Toggle navigation</span><span className="icon-bar"></span><span className="icon-bar"></span><span className="icon-bar"></span></button>
 		                <a id="logo" href="index.html" className="navbar-brand"><span className="fa fa-rocket"></span><span className="logo-text">{this.props.title}</span><span style={{"display": "none"}} className="logo-text-icon">CT</span></a></div>

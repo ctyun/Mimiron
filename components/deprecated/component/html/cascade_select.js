@@ -20,7 +20,6 @@ getInitialState : function(){
     };
 },
 _fetch:function(value){
-    var path=getPath();
     var self=this;
     AjaxUtils.get(this.state.url,function(d){
         self.setState({

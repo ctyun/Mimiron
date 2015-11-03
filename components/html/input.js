@@ -191,7 +191,7 @@ var Input=React.createClass({
         return <span className={spanCss}>
                 {name}
                 <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss}/>
-                {errorLable}
+                    {errorLable}
                 </span>;
     }
 });
