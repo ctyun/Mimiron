@@ -21,6 +21,7 @@ var Tools = {
 
         if(typeof(obj) != 'object') return obj; 
         if(obj == null) return obj; 
+        if(obj.constructor == RegExp) return obj;
 
         if(obj instanceof Array){
             var newObj = []
@@ -28,13 +29,14 @@ var Tools = {
             var newObj = {}; 
         }
         
-
         for(var i in obj){
-            newObj[i] = this.clone(obj[i]); 
+            newObj[i] = Tools.clone(obj[i]); 
         } 
 
         return newObj; 
     },
+
+
 
     loadScript : function(url, callback) {
         var script = document.createElement("script");
@@ -214,7 +216,7 @@ var Tools = {
         // }
         document.body.appendChild(script);
         $("#page-wrapper").html('<div class="spinner"></div>')
-        window.Mimiron.runScripts();
+        //window.Mimiron.runScripts();
     },
     /**
      * 前端权限验证方法
@@ -306,6 +308,7 @@ var Tools = {
             for(var i in RouteConfig){
                 if(RouteConfig[i].test(href)){
                     components.Tools.loadJSX(i);
+                    window.Mimiron.runScripts();
                 }
             }
             return false;
@@ -330,7 +333,7 @@ window.$_GET = (function(){
             get[j[0]] = j[1];
         }
         return get;
-    } else {
+    } else { 
         return {};
     }
 })();
