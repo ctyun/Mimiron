@@ -18,7 +18,6 @@ var Tools = {
         return uuid;
     },
     clone: function(obj){
-
         if(typeof(obj) != 'object') return obj; 
         if(obj == null) return obj; 
 
@@ -27,8 +26,6 @@ var Tools = {
         }else{
             var newObj = {}; 
         }
-        
-
         for(var i in obj){
             newObj[i] = this.clone(obj[i]); 
         } 
