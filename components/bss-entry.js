@@ -63,8 +63,23 @@ var components = {
 
 	//Login : require("./BSSFrame/login"),
 
-	//import packed components
+	//TencentMap
 	TencentMap : require('./tencentMap/map'),
+
+	//ECharts
+	ECharts : require('./echarts/echarts'),
+
+	BasicLine : require('./echarts/components/line/BasicLine'),
+	BasicColumn : require('./echarts/components/bar/BasicColumn'),
+	StackedColumn : require('./echarts/components/bar/StackedColumn'),
+	BasicArea : require('./echarts/components/line/BasicArea'),
+	IrregularLine : require('./echarts/components/line/IrregularLine'),
+	StackedArea : require('./echarts/components/line/StackedArea'),
+	StackedLine : require('./echarts/components/line/StackedLine'),
+	BasicPie : require('./echarts/components/pie/BasicPie'),
+	WordCloud : require('./echarts/components/wordCloud/WordCloud'),
+	
+	//Modal & MessageBox
 	Modal:require("./message/modal"),
 	MessageBox : require("./message/messageBox"),
 

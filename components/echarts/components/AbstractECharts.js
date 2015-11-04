@@ -127,7 +127,7 @@ var AbstractECharts = {
 
         AbstractECharts.statics.chartRefs.push(this);
 
-        var flag = Tools.loadScriptWithLock("echarts-all","./components/vendors/echarts/source/echarts-all.js",function(){
+        var flag = Tools.loadScriptWithLock("echarts-all",window.Mimiron.distPath+"vendors/echarts/source/echarts-all.js",function(){
 
                         //对每一个未加载的图表进行刷新
                         AbstractECharts.statics.chartRefs.map(function(chart) {

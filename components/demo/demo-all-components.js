@@ -43,7 +43,7 @@ var TencentMap = require("../tencentMap/map");
 
 
 //echarts
-var ZRender = require('../vendors/zrender/index');
+var ZRender = require('../../static/vendors/zrender/index');
 var ECharts = require('../echarts/echarts');
 var BasicLine = require('../echarts/components/line/BasicLine');
 var StackedLine = require('../echarts/components/line/StackedLine');
