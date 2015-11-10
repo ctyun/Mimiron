@@ -77,8 +77,11 @@ var Details = React.createClass({
                 this.state.content.queryType=_type;
             }
             labelType = <select className="form-control" onChange={this._onChange} value={this.state.content.queryType}>
-                <option value='11' >text</option>
-                <option value='12'>select</option>
+                <option value='1' >text</option>
+                <option value='2' >number</option>
+                <option value='3'>date</option>
+                <option value='4'>money</option>
+                <option value='5'>sum</option>
             </select>;
         }
         return (<div>
@@ -182,12 +185,12 @@ _onClose:function(){
     Modal.hide("addReportDetailModal");
 },
 showChangeTableModal: function(){ //使用this.props.content值渲染modal
-  paramToPost={pageNo:1,pageSize:999,reportMetadataId:this.props.content.reportMetadataId}
+  var paramToPost={pageNo:1,pageSize:999,reportMetadataId:this.props.content.reportMetadataId}
   Ajax.get(this.static.URL["queryById"]+this.props.content.reportMetadataId,this.showChangeTableModalSuccess);
   return;
 },
 showChangeTableModalSuccess: function(r){
-  metadata=r; //返回结果应该有且只有一个
+  var metadata=r; //返回结果应该有且只有一个
   this.onSelectMetaData(null); //重置modal状态
   this.state.dispChooseEnumValue="none";
   this.state.dispTypeinEnumValue="none";
@@ -231,7 +234,7 @@ onSelectEnumType : function(v){
     switch(v){
       case "1": //选择父集
         var paramToPost = {"pageNo":1,"pageSize":999999};
-        metadata = this.state.metadata; //find the checked Id  
+        var metadata = this.state.metadata; //find the checked Id  
         paramToPost["resourceTableName"] = metadata.resourceTableName;
         Ajax.post(this.static.URL["query"],paramToPost,this.updateTree1);
         this.state.enumType = "parent";
