@@ -15,7 +15,6 @@ var Li = React.createClass({
             <button className="btn btn-xs btn-success" onClick={this._onClick.bind(null,1, node)}>添加到TOP</button>
             <button className="btn btn-xs btn-warning" onClick={this._onClick.bind(null,2, node)}>添加到MID</button>
         </div>;
-        console.log(node);
         return (
             <li key={node.reportMetadataId+'node'} id={"node"+node.reportMetadataId} className='list-group-item'  onClick={this._showDiv}>
                 <i className = 'fa fa-server fa-2' />
