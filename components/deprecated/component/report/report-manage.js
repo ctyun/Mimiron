@@ -26,15 +26,15 @@ var Link = React.createClass({
         }
     },
   render: function(){
-    return(<a href={"#" + this.props.to} onClick={this._onClick}>
+    return(<a href={this.props.to} data-tohash>
         {this.props.children}
       </a>)
   },
-  _onClick: function(e){
-      e.preventDefault();
-      window.location.hash = this.props.to;
-      Tools.goJSX(this.props.to);
-  }
+  // _onClick: function(e){
+  //     e.preventDefault();
+  //     window.location.hash = this.props.to;
+  //     Tools.goJSX(this.props.to);
+  // }
 })
 
 var Manage = React.createClass({
