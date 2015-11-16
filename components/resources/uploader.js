@@ -107,12 +107,12 @@ var Uploader=React.createClass({
         for(var i in this.props.opts){
             opts[i] = this.props.opts[i];
         }
+        Dropzone.autoDiscover = false;
         $(node).dropzone(opts);
     },
     render:function(){
         return(
-            <form
-              className="dropzone"
+            <form className="dropzone"
               id="my-awesome-dropzone">
             </form>);
 	}

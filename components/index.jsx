@@ -6,6 +6,8 @@ var Tools = require("./utils/tools.js");
 
 var Demo = require("./demo/demo-all-components.js");
 
+window.Mimiron.distPath = "/static";
+
 var ThisPage = React.createClass({
     render: function(){
     	var params = {

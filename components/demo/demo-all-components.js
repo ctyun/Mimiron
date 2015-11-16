@@ -58,6 +58,9 @@ var WordCloud = require('../echarts/components/wordCloud/WordCloud');
 //resources
 var Uploader = require("../resources/uploader");
 
+//ETL
+var FlowMaker = require("../etl/flowMaker");
+
 
 //code
 //var Highlight = require("../code/highlight");
@@ -483,6 +486,9 @@ var Demo = React.createClass({
     changeTa : function(){
         this.setState({textareaValue:"345"});
     },
+    FlowMakerSave : function(data){
+        alert(data);
+    },
   	render:function(){
         var formValid = {
             type:"noEmpty",
@@ -632,6 +638,9 @@ var Demo = React.createClass({
                         <Uploader />
                     </Tab>
 
+                    <Tab title="ETL" id="ETL">
+                        <FlowMaker elements="all" onSave={this.FlowMakerSave}/>
+                    </Tab>
 
 	            </Tabs>
 
