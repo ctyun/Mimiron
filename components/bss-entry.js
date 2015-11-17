@@ -93,6 +93,9 @@ var components = {
 	//resources
 	Uploader : require("./resources/uploader"),
 
+	//ETL
+	FlowMaker : require("./etl/flowMaker"),
+
 	//DEMO
 	Demo : require("./demo/demo-all-components"),
 

@@ -639,7 +639,12 @@ var Demo = React.createClass({
                     </Tab>
 
                     <Tab title="ETL" id="ETL">
-                        <FlowMaker elements="all" onSave={this.FlowMakerSave}/>
+                        <div style={infoCSS}>FlowMaker</div>
+                        <Button btnName="流程图生成器" doAction={Modal.show.bind(null,"flowMakerModal")} cssClass="btn-info" />
+                        <Modal id="flowMakerModal" title="编辑流程图" submitAction={this.AddHandler} jsonFormat={true} cssClass="modal-lg" hideDefaultButton={true} dragable={false}>
+                            <FlowMaker elements="all" onSave={this.FlowMakerSave}/>
+                        </Modal> 
+                        
                     </Tab>
 
 	            </Tabs>

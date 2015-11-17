@@ -3,6 +3,7 @@
  */
 var React=require("react/addons");
 var BSSForm = require("../html/form");
+var Tools = require("../utils/tools");
 /**
  * ```
  * 示例:
@@ -70,6 +71,11 @@ var Modal=React.createClass({
             this.props.submitAction(params);
         }
     },
+    componentWillMount:function(){
+      if(!Mimiron.distPath){
+        throw("组件FlowMaker依赖于Mimiron.distPath, 请先定义Mimiron.distPath为dist所在目录.")
+      }
+    },
     componentDidMount : function(){
       var _this = this;
       var node = this.getDOMNode();
@@ -81,6 +87,7 @@ var Modal=React.createClass({
           cancel:"input,a,button,select"
         });
       }
+      Tools.loadScript(Mimiron.distPath+"/vendors/bootstrap/modal.js");
     },
     render: function(){
         //using css control to hide the modal

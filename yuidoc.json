@@ -20,7 +20,8 @@
             "./components/tencentMap/",
             "./components/tree/",
             "./components/utils/",
-            "./components/demo/"
+            "./components/demo/",
+            "./components/etl"
         ]
     }
 }

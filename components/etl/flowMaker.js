@@ -9,14 +9,15 @@ var Tools = require("../utils/tools");
 
 /**
  * 流程图生成组件
- * 示例:
  * ```
+ * 示例:
+ * 
  * <FlowMaker elements="all" onSave={this.FlowMakerSave}/>
  * 
  * FlowMakerSave : function(data){
         alert(data);
     }
- * ```
+ * 
  * 
  * 接收参数如下:
  *  -onSave (function):保存时的回调函数, 带有一个参数data, data是用户构造的流程图XML表示, 不太好说清, 建议试试看.
@@ -30,6 +31,7 @@ var Tools = require("../utils/tools");
  *    --fork
  *    --join
  *    可以传入"all"激活全部元素,(默认值为"all")
+ * ```
  * @class FlowMaker
  */
 var FlowMaker=React.createClass({
@@ -55,8 +57,8 @@ var FlowMaker=React.createClass({
 		var basePath = Mimiron.distPath;
 		var _this = this;
 		Tools.loadScript(basePath+"/vendors/raphael/raphael-min.js", function(){
-			Tools.loadScript(basePath+"/vendors/jquery-ui/jquery.min.js");
-	    	Tools.loadScript(basePath+"/vendors/jquery-ui/jquery-ui.min.js",function(){
+			//Tools.loadScript(basePath+"/vendors/jquery-ui/jquery.min.js");
+	    	Tools.loadScript(basePath+"/vendors/jquery-ui/jquery-ui.js",function(){
 	    		Tools.loadScript(basePath+"/vendors/snaker/dialog.js");
 				Tools.loadScript(basePath+"/vendors/snaker/snaker.designer.js", function(){
 		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.model.js");
