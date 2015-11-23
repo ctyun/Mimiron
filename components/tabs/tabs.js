@@ -42,7 +42,7 @@ var Tabs=React.createClass({
 				var href = "#"+node.props.id;
 				ul.push (
 					<li className={node.props.isActive?"active":null}>
-				      <a href={href} data-toggle="tab">
+				      <a href={href} data-toggle="tab" onClick={node.props.onClick}>
 				         {node.props.title}
 				      </a>
 				    </li>

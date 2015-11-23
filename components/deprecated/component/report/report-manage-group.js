@@ -56,6 +56,7 @@ var ManageReportGroup = React.createClass({
             data:[],
             editGroupId:"",
             editGroupName:"",
+            newMenuName:"",
 
             manageReportModelPanelTitle:['选择','数据源表','报表模板名称'],
             manageReportModelPaneljsonKey:['reportModelId','resourceTableName','reportModelName'],
@@ -327,8 +328,29 @@ var ManageReportGroup = React.createClass({
 
     //生成菜单
     createMenu: function(){
-        //FIXME 补充功能
-        alert("api未开发完成");
+        var checkedValues = Grid.getCheckedValue();
+        if(checkedValues.length == 0){
+            MessageBox.show("信息","请选择要生成菜单的数据！");
+
+        }else if(checkedValues.length > 1){
+            MessageBox.show("信息","每次只能选择一行数据！");
+        }else{
+            Modal.show("createMenuModal");
+        }
+
+    },
+
+    createMenu2: function(params){
+        var url = "/api/report/createReportGroupMenu/"+Grid.getCheckedValue()+"/"+params.menuName;
+        console.log(url);
+        Ajax.get(url, function(result){
+            if(result.state&&result.state!=0){
+                MessageBox.show("失败",result.message);
+            } else {
+                MessageBox.show("成功","生成菜单成功");
+            }
+        })
+        Modal.hide("createMenuModal");
     },
 
 
@@ -432,6 +454,12 @@ var ManageReportGroup = React.createClass({
                             <Grid title={this.state.manageReportModelPanelTitle} jsonKey={this.state.manageReportModelPaneljsonKey} data={this.state.manageReportModelPanelData} checkedValues={this.state.selectReportModelData}/>
                         </div>
                         <br/>
+                    </Modal>
+
+                    <Modal id="createMenuModal" title="生成菜单" submitAction={this.createMenu2} jsonFormat={true} disabledName="正在请求....." onExitClick={this._onModelExitClick} disabledSubmitBtn={this.state.formSubmitBtnDis} okButtonName="提交">
+                        <Label>菜单名称：</Label>
+                        <br/><br/>
+                        <Input name="menuName" placeholder='请输入菜单名称' cssClass="input-block" value={this.state.newMenuName} />
                     </Modal>
 
                 </BSSPanel>

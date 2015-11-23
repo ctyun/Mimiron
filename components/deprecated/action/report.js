@@ -107,6 +107,7 @@ var ViewActions = {
         Api.save(_data).then(function(result){
             if (result){
                window.location.hash = '/report/manage';
+               Tools.goJSX("/report/manage");
                Tools.loadScript("/report/manage", function(){
                  window.Mimiron.runScripts();
                });

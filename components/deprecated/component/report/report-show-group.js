@@ -11,10 +11,12 @@ var Search = require('./report-search');
 var Table = require('./report-table');
 var CommonEvent=require("../../utils/react-common-action");
 var TablePanel=require("../panel/table-panel");
-var Tabs = require("../tabs/tabs");
-var Tab = require("../tabs/tab");
+var Tabs = require("../../../tabs/tabs");
+var Tab = require("../../../tabs/tab");
+var Button = require("../../../html/button");
 var Show = require("./report-show");
 var Debug = require("../../common/debug");
+var Ajax = require("../../../utils/ajax")
 
 var ShowGroup = React.createClass({
   getInitialState: function() {
@@ -36,9 +38,28 @@ var ShowGroup = React.createClass({
   clickTab: function(id){
      this.state.tabNumber = id;
   },
+  exportAllExcel: function(e){
+      //try ajax
+      // Ajax.get("/api/report/exportReportGroup",{"reportModelGroupId":this.props.params.id}, function(){
+      //   console.log("done");
+      // });
+      //try form
+      $("#exportAllExcel #reportModelGroupId").val(this.props.params.id);
+      $("#exportAllExcel").submit();
+
+      e.preventDefault();
+  },
   _fetch: function(id) {
     var self = this;
     var tabs=[];
+    //添加导出全部按钮
+    var tab=(<Tab title="[导出Excle]" id="ExportAllExcel" isActive={false}>
+              <form id="exportAllExcel" action="/api/report/exportReportGroup" method="GET" className="hidden">
+                  <input type="hidden" name="reportModelGroupId" id="reportModelGroupId" />
+              </form>
+              <Button doAction={this.exportAllExcel} cssClass="btn-success" btnName="导出所有表格" />
+          </Tab>);
+    tabs.push(tab);
     api.reqReportGroup(id).then(function(result) {
       if(result.data){
         var model = result.data.reportModelClientBO;
