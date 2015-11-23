@@ -325,6 +325,12 @@ var ManageReportGroup = React.createClass({
         }
     },
 
+    //生成菜单
+    createMenu: function(){
+        //FIXME 补充功能
+        alert("api未开发完成");
+    },
+
 
 
     //编辑报表组
@@ -352,12 +358,12 @@ var ManageReportGroup = React.createClass({
             if(d.state == 0){
 
                 Grid.cleanData();
-                MessageBox.show("信息","修改用户操作成功！");
+                MessageBox.show("信息","操作成功！");
                 Modal.hide("editTableModal");
                 self.queryReportGroup();
             }else{
 
-                MessageBox.show("信息","修改用户操作失败！");
+                MessageBox.show("信息","操作失败！");
 
             }
 
@@ -393,6 +399,7 @@ var ManageReportGroup = React.createClass({
                         <Button btnName="添加" disabledName="正在请求......" doAction={this.gotoAddReportGroupPanel} />
                         <Button btnName="修改" disabledName="正在请求......" doAction={this.gotoEditReportGroupPanel}/>
                         <Button btnName="删除" disabledName="正在请求......" doAction={this.delReportGroup}/>
+                        <Button btnName="生成菜单" disabledName="正在请求......" doAction={this.createMenu}/>
                     </Panel>
 
 

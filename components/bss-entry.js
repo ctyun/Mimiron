@@ -45,6 +45,7 @@ var components = {
 	Checkbox : require("./html/checkbox"),
 	Textarea : require("./html/textarea"),
 	DatePicker: require("./html/datePicker"),
+	BSSForm : require("./html/form"),
 
 	//import ES6 patch ,no longer use, use babel-loader instead
 	//require("./utils/webpackPatch"),
@@ -105,6 +106,7 @@ var components = {
 	Login : require("./deprecated/component/login/login"),
 	ManageReportGroup: require("./deprecated/component/report/report-manage-group"),
 	ReportShow : require("./deprecated/component/report/report-show"),
+	ReportShowGroup : require("./deprecated/component/report/report-show-group"),
 
 	Resource : require("./deprecated/component/resource/resource-show"),
 	ResourceDetail : require("./deprecated/component/resource/resource-detail-show")

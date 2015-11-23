@@ -40,14 +40,20 @@ var ShowGroup = React.createClass({
     var self = this;
     var tabs=[];
     api.reqReportGroup(id).then(function(result) {
-      var model = result.data.reportModelClientBO;
-      for(var i in model){
-        var tab = (<Tab title={model[i].reportModelMetaBO.reportModelName} id={i} isActive={i==0?true:false}>
-          <Show id={model[i].reportModelMetaBO.reportModelId}></Show>
-        </Tab>);
-        tabs.push(tab);
+      if(result.data){
+        var model = result.data.reportModelClientBO;
+        for(var i in model){
+          var tab = (<Tab title={model[i].reportModelMetaBO.reportModelName} id={i} isActive={i==0?true:false}>
+            <Show id={model[i].reportModelMetaBO.reportModelId}></Show>
+          </Tab>);
+          tabs.push(tab);
+        }
+        self.setState({tabs:tabs});
+      } else{
+        alert("没有找到该ID对应的报表组");
+        self.setState({tabs:null});
       }
-      self.setState({tabs:tabs});
+      
     });
   }
 
