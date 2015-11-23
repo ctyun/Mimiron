@@ -39,100 +39,52 @@ var Tools = {
 
 
     loadScript : function(url, callback) {
-        var script = document.createElement("script");
+
+        window.mimiron = window.mimiron || {}
+        window.mimiron.loadScriptCallback = window.mimiron.loadScriptCallback || {}
+        window.mimiron.loadScriptURL = window.mimiron.loadScriptURL || {}
 
         if(!callback) callback  = function(){}
 
-        // IE
-        if (script.readyState) {
-            script.onreadystatechange = function () {
-                if (script.readyState == "loaded" || script.readyState == "complete") {
-                    script.onreadystatechange = null;
-                    callback();
-                }
-            };
-        } else { // others
-            script.onload = function () {
-                callback();
-            };
-        }
-
-        var rgJS = /^(.+)\.js$/ig;
-        var rgJSX = /^(.+)\.jsx$/ig;
-        if(rgJS.test(url))
-            script.type = "text/javascript";
-        if(rgJSX.test(url))
-            script.type = "text/jsx";
-
-        script.src = url;
-        document.body.appendChild(script);
-    },
-
-    loadCSS : function(url, callback) {
-        var node = document.createElement("link");
-
-        if(!callback) callback  = function(){}
-
-        // IE
-        if (node.readyState) {
-            node.onreadystatechange = function () {
-                if (node.readyState == "loaded" || node.readyState == "complete") {
-                    node.onreadystatechange = null;
-                    callback();
-                }
-            };
-        } else { // others
-            node.onload = function () {
-                callback();
-            };
-        }
-
-        node.rel = 'stylesheet';
-        node.type = "text/css";
-        node.href = url;
-        document.getElementsByTagName('head')[0].appendChild(node);
-    },
-
-
-    loadScriptsWithNoCallback : function(url) {
-        var script = document.createElement("script");
-        var length = url.length;
-        for(var i = 0;i < length; i++){ //自适应插入.jsx文件
-            var script = document.createElement("script");
-            var rgJS = /^(.+)\.js$/ig;
-            var rgJSX = /^(.+)\.jsx$/ig;
-            if(rgJS.test(url[i]))
-                script.type = "text/javascript";
-            if(rgJSX.test(url[i]))
-                script.type = "text/jsx";
-            script.src = url[i];
-            document.body.appendChild(script);
-        }
-    },
-
-    loadScriptWithLock : function(scriptName, url, callback) {
-        if(this.scriptName === true){
+        //如果真，说明已加载，直接运行callback即可
+        if(window.mimiron.loadScriptURL[url] === true){
+            callback();
             return true;
         }
-        if(this.scriptName == undefined){
-            this.scriptName = false;
-            var _this = this;
+        //console.log(url+"未加载，判断情况")
+        if(window.mimiron.loadScriptURL[url] == undefined){
+            window.mimiron.loadScriptURL[url] = false;
             //加载脚本
             var script = document.createElement("script");
-            if(!callback) callback  = function(){}
+            
             // IE
             if (script.readyState) {
                 script.onreadystatechange = function () {
                     if (script.readyState == "loaded" || script.readyState == "complete") {
                         script.onreadystatechange = null;
-                        _this.scriptName = true;//加载完成
+                        window.mimiron.loadScriptURL[url] = true;//加载完成
                         callback();//回调
+
+                        //调用之前未加载的callback
+                        for(var i in window.mimiron.loadScriptCallback[url]){
+                            window.mimiron.loadScriptCallback[url][i]()
+                        }
+
+
                     }
                 };
             } else { // others
                 script.onload = function () {
-                    _this.scriptName = true;//加载完成
+                    window.mimiron.loadScriptURL[url] = true;//加载完成
+
                     callback();
+
+                    //调用之前未加载的callback
+                    for(var i in window.mimiron.loadScriptCallback[url]){
+
+                        window.mimiron.loadScriptCallback[url][i]()
+                    }
+
                 };
             }
             var rgJS = /^(.+)\.js$/ig;
@@ -144,43 +96,81 @@ var Tools = {
 
             script.src = url;
             document.body.appendChild(script);
+            return undefined;
         }
+        //如果到这里，说明前面处于加载中状态
+        //未加载的callback压入数组中待调用
+        window.mimiron.loadScriptCallback[url] = window.mimiron.loadScriptCallback[url] || []
+        window.mimiron.loadScriptCallback[url].push(callback)
+
         return false; 
     },
 
-    loadCSSWithLock : function(cssName, url, callback) {
-        if(this.cssName === true){
+
+    loadCSS : function(url, callback) {
+
+        window.mimiron = window.mimiron || {}
+        window.mimiron.loadCSSCallback = window.mimiron.loadCSSCallback || {}
+        window.mimiron.loadCSSURL = window.mimiron.loadCSSURL || {}
+
+        if(!callback) callback  = function(){}
+
+        //如果真，说明已加载，直接运行callback即可
+        if(window.mimiron.loadCSSURL[url] === true){
+            callback();
             return true;
         }
-        if(this.cssName == undefined){
-            this.cssName = false;
-            var _this = this;
-            //加载脚本
+        //console.log(url+"未加载，判断情况")
+        if(window.mimiron.loadCSSURL[url] == undefined){
+            window.mimiron.loadCSSURL[url] = false;
+
+            //加载CSS
             var node = document.createElement("link");
-            if(!callback) callback  = function(){}
+
             // IE
             if (node.readyState) {
                 node.onreadystatechange = function () {
                     if (node.readyState == "loaded" || node.readyState == "complete") {
                         node.onreadystatechange = null;
-                        _this.cssName = true;//加载完成
+                        window.mimiron.loadCSSURL[url] = true;//加载完成
+
                         callback();//回调
+
+                        //调用之前未加载的callback
+                        for(var i in window.mimiron.loadCSSCallback[url]){
+                            window.mimiron.loadCSSCallback[url][i]()
+                        }
                     }
                 };
             } else { // others
                 node.onload = function () {
-                    _this.cssName = true;//加载完成
+                    window.mimiron.loadCSSURL[url] = true;//加载完成
+
                     callback();
+
+                    //调用之前未加载的callback
+                    for(var i in window.mimiron.loadCSSCallback[url]){
+                        window.mimiron.loadCSSCallback[url][i]()
+                    }
                 };
             }
+
             node.rel = 'stylesheet';
             node.type = "text/css";
             node.href = url;
-
-            document.body.appendChild(node);
+            document.getElementsByTagName('head')[0].appendChild(node);
+            return undefined;
         }
-        return false;
+
+        //如果到这里，说明前面处于加载中状态
+        //未加载的callback压入数组中待调用
+        window.mimiron.loadCSSCallback[url] = window.mimiron.loadCSSCallback[url] || []
+        window.mimiron.loadCSSCallback[url].push(callback)
+
+        return false; 
     },
+
+
     appendJSX: function(url){
         //先删除其他无用的jsx
         var scripts = document.getElementsByTagName('script');
@@ -198,22 +188,7 @@ var Tools = {
         var script = document.createElement("script");
         script.type = "text/jsx";
         script.src = url+"?only";
-        // // 加载完成后调用runScript
-        // if (script.readyState) { //IE
-        //     script.onreadystatechange = function () {
-        //         if (script.readyState == "loaded" || script.readyState == "complete") {
-        //             script.onreadystatechange = null;
-        //             _this.scriptName = true;//加载完成
-        //             window.Mimiron.runScripts();//回调
-        //         }
-        //     };
-        // } else { // others
-        //     script.onload = function () {
-        //         _this.scriptName = true;//加载完成
-        //         console.log("called") //called
-        //         window.Mimiron.runScripts();
-        //     };
-        // }
+
         document.body.appendChild(script);
         $("#page-wrapper").html('<div class="spinner"></div>')
         //window.Mimiron.runScripts();

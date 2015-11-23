@@ -15,7 +15,6 @@ var AbstractECharts = {
 
     statics:{
 
-        chartRefs:[],
         /**
          * 获得该组件的报表引用
          * @static
@@ -125,8 +124,7 @@ var AbstractECharts = {
 
     componentDidMount: function () {
 
-        AbstractECharts.statics.chartRefs.push(this);
-
+/*
         var flag = Tools.loadScriptWithLock("echarts-all",window.Mimiron.distPath+"vendors/echarts/source/echarts-all.js",function(){
 
                         //对每一个未加载的图表进行刷新
@@ -139,7 +137,13 @@ var AbstractECharts = {
         if(flag){
             //脚本已加载，直接加载图表
             this.renderChart();
-        }
+        }*/
+
+        var self = this;
+        Tools.loadScript(window.Mimiron.distPath+"/vendors/echarts/source/echarts-all.js",function(){
+
+                            self.renderChart();
+        });
         
     },
  
