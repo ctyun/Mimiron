@@ -28,7 +28,7 @@ var PageButton=require("../page/page");
                        pageSize:10,
                        offset:1, //page:this.state.offset
                        totalRows:1,
-                       checkType:"radio",
+                       checkType:"radio", //可选"radio","checkbox","none"
                        isDummy:[true,,true,,,,],
                   }
              return (<TablePanel {...tableProps}/>);

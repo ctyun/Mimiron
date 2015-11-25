@@ -426,7 +426,7 @@ var tree1Data = {
         pageSize:10,
         offset:1, //page:this.state.offset
         totalRows:100,
-        checkType:"radio",
+        checkType:"none",
     }
 
     var markers =  [{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}];

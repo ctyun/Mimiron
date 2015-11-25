@@ -87,6 +87,7 @@ var components = {
 	//utils
 	Tools : require("./utils/tools"),
 	Ajax : require("./utils/ajax"),
+	Debug : require("./utils/debug"),
 
 	//page
 	Grid: require("./page/grid2"),
