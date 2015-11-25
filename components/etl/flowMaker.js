@@ -31,6 +31,7 @@ var Tools = require("../utils/tools");
  *    --fork
  *    --join
  *    可以传入"all"激活全部元素,(默认值为"all")
+ *  -restore (string): 用来恢复流程图的json字符串, 王俊飞比较清楚生成方法. 
  * ```
  * @class FlowMaker
  */
@@ -44,6 +45,7 @@ var FlowMaker=React.createClass({
         return{
             basePath:"/static",
             elements:"all",
+            restore:"",
         }
     },
     componentWillMount:function(){
@@ -63,7 +65,7 @@ var FlowMaker=React.createClass({
 				Tools.loadScript(basePath+"/vendors/snaker/snaker.designer.js", function(){
 		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.model.js");
 		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.editors.js");
-		    		var json="";
+		    		var json=_this.props.restore;
 					var model = "";
 					if(json) {
 						model=eval("(" + json + ")");
