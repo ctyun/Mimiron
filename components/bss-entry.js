@@ -45,6 +45,7 @@ var components = {
 	Checkbox : require("./html/checkbox"),
 	Textarea : require("./html/textarea"),
 	DatePicker: require("./html/datePicker"),
+	BSSForm : require("./html/form"),
 
 	//import ES6 patch ,no longer use, use babel-loader instead
 	//require("./utils/webpackPatch"),
@@ -86,6 +87,7 @@ var components = {
 	//utils
 	Tools : require("./utils/tools"),
 	Ajax : require("./utils/ajax"),
+	Debug : require("./utils/debug"),
 
 	//page
 	Grid: require("./page/grid2"),
@@ -96,6 +98,9 @@ var components = {
 	//ETL
 	FlowMaker : require("./etl/flowMaker"),
 
+	//layout
+	Row : require("./layout/row"),
+
 	//DEMO
 	Demo : require("./demo/demo-all-components"),
 
@@ -105,6 +110,7 @@ var components = {
 	Login : require("./deprecated/component/login/login"),
 	ManageReportGroup: require("./deprecated/component/report/report-manage-group"),
 	ReportShow : require("./deprecated/component/report/report-show"),
+	ReportShowGroup : require("./deprecated/component/report/report-show-group"),
 
 	Resource : require("./deprecated/component/resource/resource-show"),
 	ResourceDetail : require("./deprecated/component/resource/resource-detail-show")

@@ -70,6 +70,9 @@ var SideBar = React.createClass({
             list:[{}],
 		}
 	},
+    getDefaultProps: function(){
+        sidebarMenu:null
+    },
     componentWillMount: function(){
         var self = this;
         //从API中取登录用户可用的菜单
@@ -79,7 +82,7 @@ var SideBar = React.createClass({
             window.setTimeout("clickMenu()",200); //理论上可以立即操作, 但是实践中, jquery可以找到目标元素, 但是点击没有任何反应.
             return;
         }
-    	Ajax.get(API.SIDE_BAR_MENU,function(d){
+    	Ajax.get(this.props.sidebarMenu||API.SIDE_BAR_MENU,function(d){
     		if(d){
                 self.state.list = d.children;
             }

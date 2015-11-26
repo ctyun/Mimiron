@@ -33,8 +33,8 @@
     var view = modes.map(function(m, key) {
         return <div className="list-group-item"><div onClick = {self._onClick.bind(null,m)} id={m.reportMetadataId} >
             <div className = 'close-icon' > 
-            <span className="glyphicon glyphicon-arrow-up" onClick={self._swap.bind(null,"up",key)}></span>&nbsp;&nbsp;
-            <span className="glyphicon glyphicon-arrow-down" onClick={self._swap.bind(null,"down",key)}></span>&nbsp;&nbsp;
+            <span className="fa fa-angle-double-up" onClick={self._swap.bind(null,"up",key)}></span>&nbsp;&nbsp;
+            <span className="fa fa-angle-double-down" onClick={self._swap.bind(null,"down",key)}></span>&nbsp;&nbsp;
             <i className='fa fa-times fa-2' onClick = {self._delete.bind(null, m)}></i>
             </div>
             {m.reportMetadataName}

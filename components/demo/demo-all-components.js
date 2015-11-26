@@ -61,6 +61,9 @@ var Uploader = require("../resources/uploader");
 //ETL
 var FlowMaker = require("../etl/flowMaker");
 
+//layout
+var Row = require("../layout/row");
+
 
 //code
 //var Highlight = require("../code/highlight");
@@ -426,7 +429,7 @@ var tree1Data = {
         pageSize:10,
         offset:1, //page:this.state.offset
         totalRows:100,
-        checkType:"radio",
+        checkType:"none",
     }
 
     var markers =  [{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}];
@@ -488,6 +491,7 @@ var Demo = React.createClass({
     },
     FlowMakerSave : function(data){
         alert(data);
+        console.log(data);
     },
   	render:function(){
         var formValid = {
@@ -496,8 +500,7 @@ var Demo = React.createClass({
             errorMsg : "不能为空",
             handleResult:this.validTurn,
         };
-
-        console.log(this.state.textareaValue);
+        var flowMakerRestore = "{states: {start:{type:'start',text:{text:''},attr:{x:257,y:112,width:50,height:50},props:{layout:{value:'77,112,50,50'},name:{value:'start'}}},end:{type:'end',text:{text:''},attr:{x:711,y:100,width:50,height:50},props:{layout:{value:'531,100,50,50'},name:{value:'end'}}},rect3:{type:'task',text:{text:'rect3'},attr:{x:373,y:106,width:100,height:50},props:{commandName:{value:'Test1Data'},displayName:{value:'rect3'},eventName:{value:'DataTest1ed'},input:{value:'{#1param#1:#1123#1}'},layout:{value:'193,106,100,50'},name:{value:'rect3'}}},rect4:{type:'task',text:{text:'rect4'},attr:{x:541,y:108,width:100,height:50},props:{commandName:{value:'Test2Data'},displayName:{value:'rect4'},eventName:{value:'DataTest2ed'},input:{value:'{#1test2#1:#1test2Data#1}'},layout:{value:'361,108,100,50'},name:{value:'rect4'}}}},paths:{path5:{from:'start',to:'rect3', dots:[],text:{text:'p1'},textPos:{x:0,y:-10}, props:{name:{value:'path5'},expr:{value:''}}},path6:{from:'rect3',to:'rect4', dots:[],text:{text:'p2'},textPos:{x:0,y:-10}, props:{name:{value:'path6'},expr:{value:''}}},path7:{from:'rect4',to:'end', dots:[],text:{text:'p3'},textPos:{x:0,y:-10}, props:{name:{value:'path7'},expr:{value:''}}}},props:{props:{name:{name:'name',value:'1452'},displayName:{name:'displayName',value:'1452'},expireTime:{name:'expireTime',value:''},instanceUrl:{name:'instanceUrl',value:''},instanceNoClass:{name:'instanceNoClass',value:''}}}}"
 
 	    return (
 	        <div style={{padding:"10px 20px"}}>
@@ -507,27 +510,31 @@ var Demo = React.createClass({
 
 		              	<div style={infoCSS}>Header</div>
 		              	<Header pageTitle = "标题" />
-
 		              	<div style={infoCSS}>BSSPanel</div>
 		              	<BSSPanel pageTitle = "示例Panel"></BSSPanel>
-
-
 						<div style={infoCSS}>TablePanel</div>
 						<TablePanel {...tableProps}/>
-
-
 						<div style={infoCSS}>ToolBarPanel</div>
 					 	<ToolBarPanel>
 							<Button btnName="增删查改"/>
 						</ToolBarPanel>
-
 		              	<div style={infoCSS}>QueryPanel</div>
 		              	<QueryPanel submitAction={null} jsonFormat={true} okButtonName="查询">
 					     	<Input disName=" 示范输入:" name="demoInput" name="input1"/>
 					 	</QueryPanel>
-
-
 	              	</Tab>
+
+                    <Tab title="row" id="row">
+                        <div style={infoCSS}>Row</div>
+                        <Row>
+                            <Input disName="输入框1" cssClass="size-block"/>
+                            <Input disName="输入框111" cssClass="size-block"/>
+                            <Input disName="输入框11111" cssClass="size-block"/>
+                            <Input disName="输入框1111111" cssClass="size-block"/>
+                            <Input disName="输入框111111111" cssClass="size-block"/>
+                            <Input disName="输入框11111111111" cssClass="size-block"/>
+                        </Row>
+                    </Tab>
 
 	              	<Tab title="html" id="html">
 
@@ -642,7 +649,7 @@ var Demo = React.createClass({
                         <div style={infoCSS}>FlowMaker</div>
                         <Button btnName="流程图生成器" doAction={Modal.show.bind(null,"flowMakerModal")} cssClass="btn-info" />
                         <Modal id="flowMakerModal" title="编辑流程图" submitAction={this.AddHandler} jsonFormat={true} cssClass="modal-lg" hideDefaultButton={true} dragable={false}>
-                            <FlowMaker elements="all" onSave={this.FlowMakerSave}/>
+                            <FlowMaker elements="all" onSave={this.FlowMakerSave} restore={flowMakerRestore}/>
                         </Modal> 
                         
                     </Tab>

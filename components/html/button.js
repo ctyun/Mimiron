@@ -56,7 +56,7 @@ var Button=React.createClass({
         /**
          * @property {Function} doAction 点击按钮时的回调函数
          */
-          this.props.doAction();
+          this.props.doAction(e);
       }
     },
     getDefaultProps: function(){

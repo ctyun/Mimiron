@@ -86,8 +86,8 @@ var BSSForm=React.createClass({
               
               this.props.submitAction(json);
           } else{
-                this.props.submitAction(param);
-            }
+              this.props.submitAction(param);
+          }
        }
     },
     render:function(){

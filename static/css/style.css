@@ -2,7 +2,7 @@
 	overflow: auto;
 }
 
-.input-xs{
+.input-xs .size-xs{
   display: auto ;
   width: 30px ;
   padding: 5px 1px ;
@@ -10,7 +10,7 @@
   margin-top: 3px;
 }
 
-.input-md{
+.input-md .size-md{
   display: auto ;
   width: 70px ;
   padding: 5px 1px ;
@@ -18,12 +18,16 @@
   margin-top: 3px;
 }
 
-.input-nm{
+.input-nm .size-nm{
   display: auto ;
   width: 120px ;
   padding: 5px 1px ;
   margin-bottom: 3px;
   margin-top: 3px;
+}
+
+.size-block{
+
 }
 
 .form-control{
@@ -115,4 +119,18 @@ td:hover{
 
 .block{
   display: block;
+}
+
+
+.control-label{
+    text-align: right;
+    margin-top: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 0px;
+}
+
+.row{
+  margin:5px;
 }

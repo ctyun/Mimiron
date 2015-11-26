@@ -154,7 +154,7 @@ var Grid=React.createClass({
             return [<tr data-key={key} onClick={this.clickTr}>
             {this.props.jsonKey.map(function(column, columnKey) {
                 if(columnKey==0){
-                    if(self.props.noHasCheckBox&&self.props.noHasCheckBox==true){
+                    if(self.props.checkType=="none"){
                          return <td key={columnKey}>{source[column]}</td>
                     }
                     else{
