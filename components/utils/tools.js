@@ -36,8 +36,6 @@ var Tools = {
         return newObj; 
     },
 
-
-
     loadScript : function(url, callback) {
 
         window.mimiron = window.mimiron || {}
@@ -179,10 +177,11 @@ var Tools = {
                 document.body.removeChild(scripts.item(i));
             }
         }
-        //删除head中最后一个scrpit标签
+        //删除head中scrpit标签
         var scripts = document.head.getElementsByTagName('script');
-        for (var i = 0; i < scripts.length; i++) {
-            document.head.removeChild(scripts[i]);
+        var length = scripts.length;
+        for (var i = 0; i < length; i++) {
+            document.head.removeChild(scripts[0]);
         }
 
         var script = document.createElement("script");
@@ -190,7 +189,7 @@ var Tools = {
         script.src = url+"?only";
 
         document.body.appendChild(script);
-        $("#page-wrapper").html('<div class="spinner"></div>')
+        //$("#page-wrapper").html('<div class="spinner"></div>')
         //window.Mimiron.runScripts();
     },
     /**
@@ -274,6 +273,7 @@ var Tools = {
     },
     handleA: function(key){
         var key = key||"data-tohash";
+        $(document).off("click","a");
         $(document).on("click","a",function(){
             if(!$(this).attr(key))
                 return true;
@@ -281,9 +281,11 @@ var Tools = {
             window.location.hash = href;
             var RouteConfig = Mimiron.RouteConfig;
             for(var i in RouteConfig){
+                RouteConfig[i] = new RegExp(RouteConfig[i]);
                 if(RouteConfig[i].test(href)){
                     components.Tools.loadJSX(i);
                     window.Mimiron.runScripts();
+                    break;
                 }
             }
             return false;
