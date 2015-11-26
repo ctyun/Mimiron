@@ -98,6 +98,9 @@ var components = {
 	//ETL
 	FlowMaker : require("./etl/flowMaker"),
 
+	//layout
+	Row : require("./layout/row"),
+
 	//DEMO
 	Demo : require("./demo/demo-all-components"),
 

@@ -61,6 +61,9 @@ var Uploader = require("../resources/uploader");
 //ETL
 var FlowMaker = require("../etl/flowMaker");
 
+//layout
+var Row = require("../layout/row");
+
 
 //code
 //var Highlight = require("../code/highlight");
@@ -507,27 +510,31 @@ var Demo = React.createClass({
 
 		              	<div style={infoCSS}>Header</div>
 		              	<Header pageTitle = "标题" />
-
 		              	<div style={infoCSS}>BSSPanel</div>
 		              	<BSSPanel pageTitle = "示例Panel"></BSSPanel>
-
-
 						<div style={infoCSS}>TablePanel</div>
 						<TablePanel {...tableProps}/>
-
-
 						<div style={infoCSS}>ToolBarPanel</div>
 					 	<ToolBarPanel>
 							<Button btnName="增删查改"/>
 						</ToolBarPanel>
-
 		              	<div style={infoCSS}>QueryPanel</div>
 		              	<QueryPanel submitAction={null} jsonFormat={true} okButtonName="查询">
 					     	<Input disName=" 示范输入:" name="demoInput" name="input1"/>
 					 	</QueryPanel>
-
-
 	              	</Tab>
+
+                    <Tab title="row" id="row">
+                        <div style={infoCSS}>Row</div>
+                        <Row>
+                            <Input disName="输入框1" cssClass="size-block"/>
+                            <Input disName="输入框111" cssClass="size-block"/>
+                            <Input disName="输入框11111" cssClass="size-block"/>
+                            <Input disName="输入框1111111" cssClass="size-block"/>
+                            <Input disName="输入框111111111" cssClass="size-block"/>
+                            <Input disName="输入框11111111111" cssClass="size-block"/>
+                        </Row>
+                    </Tab>
 
 	              	<Tab title="html" id="html">
 
