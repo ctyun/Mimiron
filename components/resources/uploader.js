@@ -97,7 +97,7 @@ var Uploader=React.createClass({
                     addRemoveLinks:true,
                     uploadMultiple: true,
                     dictDefaultMessage:"拖拽上传或点击上传文件",
-                    paramName:'myfiles',
+                    paramName:'file',
                     init:function(){
                         this.on("removedfile", function(file) {
                             _this.props.removeHandler(file);

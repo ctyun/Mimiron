@@ -8,6 +8,14 @@ var React = require('react/addons');
  * 行布局组件, 使用此组件会使使内部组件(this.props.children)按行平均排布
  * ```
  * 使用方法
+ *  <Row itemPerLine="3">
+        <Input disName="输入框1" cssClass="size-block"/>
+        <Input disName="输入框111" cssClass="size-block"/>
+        <Input disName="输入框11111" cssClass="size-block"/>
+        <Input disName="输入框1111111" cssClass="size-block"/>
+        <Input disName="输入框111111111" cssClass="size-block"/>
+        <Input disName="输入框11111111111" cssClass="size-block"/>
+    </Row>
  *
  * ```
  * @class Row
@@ -25,8 +33,8 @@ var Row=React.createClass({
     getDefaultProps: function(){
         return{
           /**
-           * @property {String} type 按钮类型,一般不需要传入
-           * @default "button"
+           * @property {String} itemPerLine 每行存放元素数, 可选"2","3","4","6"
+           * @default "4"
            */
             itemPerLine:"4",
         }
