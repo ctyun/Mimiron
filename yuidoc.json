@@ -21,7 +21,8 @@
             "./components/tree/",
             "./components/utils/",
             "./components/demo/",
-            "./components/etl"
+            "./components/etl",
+            "./components/layout"
         ]
     }
 }

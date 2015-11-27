@@ -526,7 +526,7 @@ var Demo = React.createClass({
 
                     <Tab title="row" id="row">
                         <div style={infoCSS}>Row</div>
-                        <Row>
+                        <Row itemPerLine="3">
                             <Input disName="输入框1" cssClass="size-block"/>
                             <Input disName="输入框111" cssClass="size-block"/>
                             <Input disName="输入框11111" cssClass="size-block"/>

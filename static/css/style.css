@@ -2,7 +2,7 @@
 	overflow: auto;
 }
 
-.input-xs .size-xs{
+.input-xs{
   display: auto ;
   width: 30px ;
   padding: 5px 1px ;
@@ -10,7 +10,16 @@
   margin-top: 3px;
 }
 
-.input-md .size-md{
+.size-xs{
+  display: auto ;
+  width: 30px ;
+  padding: 5px 1px ;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+
+.input-md{
   display: auto ;
   width: 70px ;
   padding: 5px 1px ;
@@ -18,7 +27,23 @@
   margin-top: 3px;
 }
 
-.input-nm .size-nm{
+.size-md{
+  display: auto ;
+  width: 70px ;
+  padding: 5px 1px ;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+.input-nm{
+  display: auto ;
+  width: 120px ;
+  padding: 5px 1px ;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+.size-nm{
   display: auto ;
   width: 120px ;
   padding: 5px 1px ;
