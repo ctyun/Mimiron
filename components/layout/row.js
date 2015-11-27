@@ -4,6 +4,7 @@
  */
 
 var React = require('react/addons');
+var Debug = require("../utils/debug");
 /**
  * 行布局组件, 使用此组件会使使内部组件(this.props.children)按行平均排布
  * ```
@@ -43,8 +44,9 @@ var Row=React.createClass({
         var _this = this;
         var children = []
         for(var i in this.props.children){
+            this.props.children[i].props["inRow"] = true;
             console.log(this.props.children[i]);
-            children.push(<div className={"col-md-"+_this.locals.needWidth[_this.props.itemPerLine]+" col-xs-12"}>{this.props.children[i]}</div>)
+            children.push(<div className={"col-md-"+_this.locals.needWidth[_this.props.itemPerLine]+" col-xs-12"}>{this.props.children[i]}</div>);
         }
         return (<div className="row">{children}</div>);
     }

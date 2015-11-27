@@ -75,6 +75,22 @@ var API = require("../const/API");
         });
     </script>
  * ```
+ *   后端需要实现/api/resource/uploadFile的Handler来响应的文件的上传, 以一个Tornado工程为例:
+ *   ```
+ *  @app.route("/test/uploadFile")
+    class UploadFileHandler(BaseHandler):
+        @gen.coroutine
+        def post(self):
+            upload_path=os.path.join(mediaPath,'upload')
+            file_metas=self.request.files["file[0]"]
+            for meta in file_metas:
+                filename=meta['filename']
+                filepath=os.path.join(upload_path,filename)
+                with open(filepath,'wb') as up:
+                    up.write(meta['body'])
+                self.write('finished!')
+            raise gen.Return()
+    ```
  * @class Uploader
  */
 var Uploader=React.createClass({
