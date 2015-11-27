@@ -77,12 +77,16 @@ var API = require("../const/API");
  * ```
  * @class Uploader
  */
+
+var Tools = require("../utils/tools.js");
+
 var Uploader=React.createClass({
     getInitialState:function(){
     	return{}
     },
     getDefaultProps: function(){
         return{
+            id:Tools.uuid(),
             handler : API.UPLOAD,
             removeHandler : function(){return },
             opts : {},
@@ -112,9 +116,12 @@ var Uploader=React.createClass({
     },
     render:function(){
         return(
-            <form className="dropzone"
-              id="my-awesome-dropzone">
-            </form>);
+            <form className="dropzone" id={this.props.id}>
+
+            </form>
+           /* <div>dfdfd</div>*/
+
+            );
 	}
 });
 module.exports=Uploader;

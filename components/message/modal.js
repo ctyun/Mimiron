@@ -17,6 +17,7 @@ var Tools = require("../utils/tools");
  * hideDefaultButton: 是否隐藏提交按钮
  * id: 唯一id, Modal.show和hide方法调用时需要传入
  * title: 标题
+ * contentType: (form/div) 默认值为form,表示在传入的元素外层会套入一个from,并输入一个submitAction回调函数，可选值div,不在外层套form
  * submitAction: 点击提交后的回调函数
  * jsonFormat: 结果是否格式化为json
  * cssClass:(string) 默认为空, 可以传入:
@@ -58,6 +59,7 @@ var Modal=React.createClass({
         return{
             id:"modal_id",
             title:"无标题",
+            contentType:"form",//form div 2种模式
             body:null,
             footer:null,
             cssClass: "",
@@ -92,6 +94,18 @@ var Modal=React.createClass({
     render: function(){
         //using css control to hide the modal
         var cssClass="modal-dialog "+this.props.cssClass;
+
+        var content;
+        if(this.props.contentType == "form"){
+            content = (
+                <BSSForm {...this.props} submitAction={this.doAndHide}>
+                    {this.props.children}
+                </BSSForm>
+            )
+        }else if(this.props.contentType == "div"){
+            content = (<div>{this.props.children}</div>)
+        }
+
         return (
             <div className="modal fade" id={this.props.id} role="dialog" >
                 <div className={cssClass}>
@@ -106,9 +120,7 @@ var Modal=React.createClass({
                         </h4>
                         </div>
                         <div className="modal-body">
-                            <BSSForm {...this.props} submitAction={this.doAndHide}>
-                                {this.props.children}
-                            </BSSForm>
+                            {content}
                         </div>
                     </div>
                 </div>

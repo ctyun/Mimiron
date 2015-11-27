@@ -105,7 +105,7 @@ var components = {
 	Demo : require("./demo/demo-all-components"),
 
 	//deprecated
-	Report : require("./deprecated/component/report/report"),
+	/*Report : require("./deprecated/component/report/report"),
 	Metadata : require("./deprecated/component/metadata/metadata"),
 	Login : require("./deprecated/component/login/login"),
 	ManageReportGroup: require("./deprecated/component/report/report-manage-group"),
@@ -113,7 +113,7 @@ var components = {
 	ReportShowGroup : require("./deprecated/component/report/report-show-group"),
 
 	Resource : require("./deprecated/component/resource/resource-show"),
-	ResourceDetail : require("./deprecated/component/resource/resource-detail-show")
+	ResourceDetail : require("./deprecated/component/resource/resource-detail-show")*/
 };
 
 // //basic css files
