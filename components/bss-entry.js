@@ -61,8 +61,7 @@ var components = {
 	BSSFrame : require("./BSSFrame/frame"),
 	TopBar : require("./BSSFrame/topbar"),
 	SideBar : require("./BSSFrame/sidebar"),
-
-	//Login : require("./BSSFrame/login"),
+	Login : require("./BSSFrame/login"),
 
 	//TencentMap
 	TencentMap : require('./tencentMap/map'),
