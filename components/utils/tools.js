@@ -36,22 +36,22 @@ var Tools = {
         return newObj; 
     },
 
-    loadScript : function(url, callback) {
+    loadScript : function(url, callback, force) {
 
-        window.mimiron = window.mimiron || {}
-        window.mimiron.loadScriptCallback = window.mimiron.loadScriptCallback || {}
-        window.mimiron.loadScriptURL = window.mimiron.loadScriptURL || {}
+        window.Mimiron = window.Mimiron || {}
+        window.Mimiron.loadScriptCallback = window.Mimiron.loadScriptCallback || {}
+        window.Mimiron.loadScriptURL = window.Mimiron.loadScriptURL || {}
 
         if(!callback) callback  = function(){}
 
         //如果真，说明已加载，直接运行callback即可
-        if(window.mimiron.loadScriptURL[url] === true){
+        if(force || window.Mimiron.loadScriptURL[url] === true){
             callback();
             return true;
         }
         //console.log(url+"未加载，判断情况")
-        if(window.mimiron.loadScriptURL[url] == undefined){
-            window.mimiron.loadScriptURL[url] = false;
+        if(force || window.Mimiron.loadScriptURL[url] == undefined){
+            window.Mimiron.loadScriptURL[url] = false;
             //加载脚本
             var script = document.createElement("script");
             
@@ -60,12 +60,12 @@ var Tools = {
                 script.onreadystatechange = function () {
                     if (script.readyState == "loaded" || script.readyState == "complete") {
                         script.onreadystatechange = null;
-                        window.mimiron.loadScriptURL[url] = true;//加载完成
+                        window.Mimiron.loadScriptURL[url] = true;//加载完成
                         callback();//回调
 
                         //调用之前未加载的callback
-                        for(var i in window.mimiron.loadScriptCallback[url]){
-                            window.mimiron.loadScriptCallback[url][i]()
+                        for(var i in window.Mimiron.loadScriptCallback[url]){
+                            window.Mimiron.loadScriptCallback[url][i]()
                         }
 
 
@@ -73,14 +73,14 @@ var Tools = {
                 };
             } else { // others
                 script.onload = function () {
-                    window.mimiron.loadScriptURL[url] = true;//加载完成
+                    window.Mimiron.loadScriptURL[url] = true;//加载完成
 
                     callback();
 
                     //调用之前未加载的callback
-                    for(var i in window.mimiron.loadScriptCallback[url]){
+                    for(var i in window.Mimiron.loadScriptCallback[url]){
 
-                        window.mimiron.loadScriptCallback[url][i]()
+                        window.Mimiron.loadScriptCallback[url][i]()
                     }
 
                 };
@@ -98,8 +98,8 @@ var Tools = {
         }
         //如果到这里，说明前面处于加载中状态
         //未加载的callback压入数组中待调用
-        window.mimiron.loadScriptCallback[url] = window.mimiron.loadScriptCallback[url] || []
-        window.mimiron.loadScriptCallback[url].push(callback)
+        window.Mimiron.loadScriptCallback[url] = window.Mimiron.loadScriptCallback[url] || []
+        window.Mimiron.loadScriptCallback[url].push(callback)
 
         return false; 
     },
@@ -107,20 +107,20 @@ var Tools = {
 
     loadCSS : function(url, callback) {
 
-        window.mimiron = window.mimiron || {}
-        window.mimiron.loadCSSCallback = window.mimiron.loadCSSCallback || {}
-        window.mimiron.loadCSSURL = window.mimiron.loadCSSURL || {}
+        window.Mimiron = window.Mimiron || {}
+        window.Mimiron.loadCSSCallback = window.Mimiron.loadCSSCallback || {}
+        window.Mimiron.loadCSSURL = window.Mimiron.loadCSSURL || {}
 
         if(!callback) callback  = function(){}
 
         //如果真，说明已加载，直接运行callback即可
-        if(window.mimiron.loadCSSURL[url] === true){
+        if(window.Mimiron.loadCSSURL[url] === true){
             callback();
             return true;
         }
         //console.log(url+"未加载，判断情况")
-        if(window.mimiron.loadCSSURL[url] == undefined){
-            window.mimiron.loadCSSURL[url] = false;
+        if(window.Mimiron.loadCSSURL[url] == undefined){
+            window.Mimiron.loadCSSURL[url] = false;
 
             //加载CSS
             var node = document.createElement("link");
@@ -130,25 +130,25 @@ var Tools = {
                 node.onreadystatechange = function () {
                     if (node.readyState == "loaded" || node.readyState == "complete") {
                         node.onreadystatechange = null;
-                        window.mimiron.loadCSSURL[url] = true;//加载完成
+                        window.Mimiron.loadCSSURL[url] = true;//加载完成
 
                         callback();//回调
 
                         //调用之前未加载的callback
-                        for(var i in window.mimiron.loadCSSCallback[url]){
-                            window.mimiron.loadCSSCallback[url][i]()
+                        for(var i in window.Mimiron.loadCSSCallback[url]){
+                            window.Mimiron.loadCSSCallback[url][i]()
                         }
                     }
                 };
             } else { // others
                 node.onload = function () {
-                    window.mimiron.loadCSSURL[url] = true;//加载完成
+                    window.Mimiron.loadCSSURL[url] = true;//加载完成
 
                     callback();
 
                     //调用之前未加载的callback
-                    for(var i in window.mimiron.loadCSSCallback[url]){
-                        window.mimiron.loadCSSCallback[url][i]()
+                    for(var i in window.Mimiron.loadCSSCallback[url]){
+                        window.Mimiron.loadCSSCallback[url][i]()
                     }
                 };
             }
@@ -162,8 +162,8 @@ var Tools = {
 
         //如果到这里，说明前面处于加载中状态
         //未加载的callback压入数组中待调用
-        window.mimiron.loadCSSCallback[url] = window.mimiron.loadCSSCallback[url] || []
-        window.mimiron.loadCSSCallback[url].push(callback)
+        window.Mimiron.loadCSSCallback[url] = window.Mimiron.loadCSSCallback[url] || []
+        window.Mimiron.loadCSSCallback[url].push(callback)
 
         return false; 
     },
