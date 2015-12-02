@@ -24,13 +24,7 @@ var Login = React.createClass({
 				alert("用户名和/或密码错误"); //TODO 使用提示框
 			}
 			else{
-				try{
-					history.go(-1);
-				} catch(e) {
-					//TODO Log模块
-				} finally{
-					window.location.href = "/";
-				}
+				window.location.href = "/";
 			}
 		});
 	}

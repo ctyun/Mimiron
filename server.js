@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config.js'); //use './webpack.config' for Mimiron debug, './webpack.config.bss' to debug BSS
+var config = require('./webpack.config.bss'); //use './webpack.config' for Mimiron debug, './webpack.config.bss' to debug BSS
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
