@@ -189,8 +189,7 @@ var Tools = {
         script.src = url+"?only";
 
         document.body.appendChild(script);
-        //$("#page-wrapper").html('<div class="spinner"></div>')
-        //window.Mimiron.runScripts();
+        $("#page-wrapper").html('<div class="spinner"></div>');
     },
     /**
      * 前端权限验证方法

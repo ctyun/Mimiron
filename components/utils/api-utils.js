@@ -25,13 +25,15 @@ var APIUtils = {
         data: JSON.stringify(req.data)
       });
     }
-
+    $("#loading-layer")? $("#loading-layer").addClass("la-animate"): null;
 
     request.done(function(data) {
+      $("#loading-layer")? $("#loading-layer").removeClass("la-animate"): null;
       deferred.resolve(data);
     });
 
     request.fail(function(xhr, textStatus, error) {
+      $("#loading-layer")? $("#loading-layer").removeClass("la-animate"): null;
       if (xhr.status === 401) {
         window.location = '/login';
       }

@@ -110,6 +110,7 @@ var TopBar = React.createClass({
 		            </div>
 		        </nav>
 		    </div> 
+            <div id="loading-layer" className="la-anim-10"></div>
         </div>);
     }
 });
