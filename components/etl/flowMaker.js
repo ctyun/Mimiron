@@ -64,25 +64,27 @@ var FlowMaker=React.createClass({
 	    		Tools.loadScript(basePath+"/vendors/snaker/dialog.js");
 				Tools.loadScript(basePath+"/vendors/snaker/snaker.designer.js", function(){
 		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.model.js");
-		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.editors.js");
-		    		var json=_this.props.restore;
-					var model = "";
-					if(json) {
-						model=eval("(" + json + ")");
-					}
-					$('#snakerflow').snakerflow({
-						basePath : basePath+"/vendors/snaker/",
-			            ctxPath : basePath,
-						restore : model,
-			            formPath : "forms/",
-						tools : {
-							save : {
-								onclick : function(data) {
-									_this.props.onSave(data);
+		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.editors.js",function(){
+		    			var json=_this.props.restore;
+						var model = "";
+						if(json) {
+							model=eval("(" + json + ")");
+							console.log(model);
+						}
+						$('#snakerflow').snakerflow({
+							basePath : basePath+"/vendors/snaker/",
+				            ctxPath : basePath,
+							restore : model,
+				            formPath : "forms/",
+							tools : {
+								save : {
+									onclick : function(data) {
+										_this.props.onSave(data);
+									}
 								}
 							}
-						}
-					});
+						});	
+		    		});
 		    	});
 	    	});
 		});

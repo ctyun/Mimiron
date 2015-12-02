@@ -50,10 +50,9 @@ $.extend(true,snakerflow.config.tools.states,{
 				img : {src : 'images/48/task_empty.png',width :48, height:48},
 				props : {
 					name: {name:'name',label: '名称', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
-					displayName: {name:'displayName',label: '显示名称', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
+					displayName: {name:'displayName',label: '显示名称', value:'', editor: function(){return new snakerflow.editors.textEditor();}},
                     commandName: {name:'commandName',label: '命令名称', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
                     eventName: {name:'eventName',label: '事件名称', value:'', editor: function(){return new snakerflow.editors.inputEditor();}}
-
                 }},
 			custom : {
 				showType: 'text',
@@ -68,7 +67,8 @@ $.extend(true,snakerflow.config.tools.states,{
 					methodName: {name:'methodName', label : '方法名称', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
 					args: {name:'args', label : '参数变量', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
 				    preInterceptors: {name:'preInterceptors', label : '前置拦截器', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
-					postInterceptors: {name:'postInterceptors', label : '后置拦截器', value:'', editor: function(){return new snakerflow.editors.inputEditor();}}
+					postInterceptors: {name:'postInterceptors', label : '后置拦截器', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
+					assignee: {name:'assignee', value:''},
 				}},
 			subprocess : {
 				showType: 'text',
