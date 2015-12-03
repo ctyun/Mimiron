@@ -48,6 +48,30 @@ var FlowMaker=React.createClass({
             restore:"",
         }
     },
+    componentWillUpdate: function(nextProps, nextState){
+    	if(nextProps.restore != this.props.restore){
+    		var basePath = Mimiron.distPath;
+    		var json=nextProps.restore;
+			var model = "";
+			if(json) {
+				model=eval("(" + json + ")");
+			}
+			$('#snakerflow').empty();
+			$('#snakerflow').snakerflow({
+				basePath : basePath+"/vendors/snaker/",
+	            ctxPath : basePath,
+				restore : model,
+	            formPath : "forms/",
+				tools : {
+					save : {
+						onclick : function(data) {
+							nextProps.onSave(data);
+						}
+					}
+				}
+			});	
+    	}
+    },
     componentWillMount:function(){
     	if(!Mimiron.distPath){
     		throw("组件FlowMaker依赖于Mimiron.distPath, 请先定义Mimiron.distPath为dist所在目录.")
@@ -63,27 +87,27 @@ var FlowMaker=React.createClass({
 	    	Tools.loadScript(basePath+"/vendors/jquery-ui/jquery-ui.js",function(){
 	    		Tools.loadScript(basePath+"/vendors/snaker/dialog.js");
 				Tools.loadScript(basePath+"/vendors/snaker/snaker.designer.js", function(){
-		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.model.js");
-		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.editors.js",function(){
-		    			var json=_this.props.restore;
-						var model = "";
-						if(json) {
-							model=eval("(" + json + ")");
-							console.log(model);
-						}
-						$('#snakerflow').snakerflow({
-							basePath : basePath+"/vendors/snaker/",
-				            ctxPath : basePath,
-							restore : model,
-				            formPath : "forms/",
-							tools : {
-								save : {
-									onclick : function(data) {
-										_this.props.onSave(data);
+		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.model.js", function(){
+		    			Tools.loadScript(basePath+"/vendors/snaker/snaker.editors.js",function(){
+			    			var json=_this.props.restore;
+							var model = "";
+							if(json) {
+								model=eval("(" + json + ")");
+							}
+							$('#snakerflow').snakerflow({
+								basePath : basePath+"/vendors/snaker/",
+					            ctxPath : basePath,
+								restore : model,
+					            formPath : "forms/",
+								tools : {
+									save : {
+										onclick : function(data) {
+											_this.props.onSave(data);
+										}
 									}
 								}
-							}
-						});	
+							});	
+			    		});
 		    		});
 		    	});
 	    	});
