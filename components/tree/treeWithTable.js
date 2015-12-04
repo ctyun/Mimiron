@@ -6,6 +6,7 @@ var React=require("react/addons");
 var Treeview = require("./treeview");
 var Grid=require("../page/grid2");
 var PageButton=require("../page/page");
+var Tools = require("../utils/tools");
 
 /*
  * 使用说明
@@ -70,7 +71,7 @@ var TreeWithTable = React.createClass({
             doList:null,
             pageSize:10,
             offset:1,
-            totalRows:1,
+            totalRows:1
         }
     },
     treeCheck: function(uid,status){

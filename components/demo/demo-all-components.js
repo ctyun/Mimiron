@@ -426,10 +426,11 @@ var tree1Data = {
           t2:'测试2',
           t3:'测试3'}],
         doList:doList,
+        checkedValues:["1","2"],
         pageSize:10,
         offset:1, //page:this.state.offset
         totalRows:100,
-        checkType:"none",
+        checkType:"checkbox",
     }
 
     var markers =  [{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}];
@@ -633,13 +634,12 @@ var Demo = React.createClass({
 							<WordCloud title="WordCloud" subtitle="WordCloud" height="400px" width="800px"  data={wordCloudData} />
 	              	</Tab>
 
-
-	              	<Tab title="tree" id="tree" >
-	      				<div style={infoCSS}>Treeview</div>
-   						<Treeview data={tree1Data} selectType="checkbox" expandLevel={3}/>
-	      				<div style={infoCSS}>TreeWithTable</div>
-   						<TreeWithTable treeCheck={this.treeTableCheck} />
-	              	</Tab>
+                    <Tab title="tree" id="tree" >
+                        <div style={infoCSS}>Treeview</div>
+                        <Treeview data={tree1Data} selectType="checkbox" expandLevel={3}/>
+                        <div style={infoCSS}>TreeWithTable</div>
+                        <TreeWithTable treeCheck={this.treeTableCheck} />
+                    </Tab>
 
                     <Tab title="resources" id="resources" >
                         <Uploader />
@@ -664,3 +664,5 @@ var Demo = React.createClass({
 
 module.exports=Demo;
 
+
+                    
