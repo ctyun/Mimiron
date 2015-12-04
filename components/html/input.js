@@ -91,7 +91,12 @@ var Input=React.createClass({
              */
             isPassword: false,
             valid:null,
-            inRow:false
+            inRow:false,
+            /**
+             * @property disabled {Boolean} 是否disabled
+             * @default false
+             */
+            disabled:false,
 
         };
     },
@@ -172,6 +177,7 @@ var Input=React.createClass({
         }else if(this.state.validCss == "invalid"){
             spanCss = "state-error";
         }
+
         /**
          * @property {String} errorMsg 错误提示信息
          * @uses BSSForm
@@ -193,13 +199,13 @@ var Input=React.createClass({
             (<div className={"row "+spanCss}>
                 <lable htmlFor={this.props.id} className="col-xs-3 control-label" title={name}>{name}</lable>
                 <div className="col-xs-9">
-                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss}/>
+                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
                     {errorLable}
                 </div>
             </div>):
             (<span className={spanCss}>
                 {name}
-                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss}/>
+                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
                     {errorLable}
             </span>);
         return toReturn;
