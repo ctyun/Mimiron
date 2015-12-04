@@ -85,31 +85,34 @@ var FlowMaker=React.createClass({
 		Tools.loadScript(basePath+"/vendors/raphael/raphael-min.js", function(){
 			//Tools.loadScript(basePath+"/vendors/jquery-ui/jquery.min.js");
 	    	Tools.loadScript(basePath+"/vendors/jquery-ui/jquery-ui.js",function(){
-	    		Tools.loadScript(basePath+"/vendors/snaker/dialog.js");
-				Tools.loadScript(basePath+"/vendors/snaker/snaker.designer.js", function(){
-		    		Tools.loadScript(basePath+"/vendors/snaker/snaker.model.js", function(){
-		    			Tools.loadScript(basePath+"/vendors/snaker/snaker.editors.js",function(){
-			    			var json=_this.props.restore;
-							var model = "";
-							if(json) {
-								model=eval("(" + json + ")");
-							}
-							$('#snakerflow').snakerflow({
-								basePath : basePath+"/vendors/snaker/",
-					            ctxPath : basePath,
-								restore : model,
-					            formPath : "forms/",
-								tools : {
-									save : {
-										onclick : function(data) {
-											_this.props.onSave(data);
+	    		Tools.loadScript(basePath+"/vendors/snaker/dialog.js", function(){
+	    			Tools.loadScript(basePath+"/vendors/snaker/snaker.designer.js", function(){
+			    		Tools.loadScript(basePath+"/vendors/snaker/snaker.model.js", function(){
+			    			Tools.loadScript(basePath+"/vendors/snaker/snaker.editors.js",function(){
+				    			var json=_this.props.restore;
+								var model = "";
+								if(json) {
+									model=eval("(" + json + ")");
+								}
+								$('#snakerflow').snakerflow({
+									basePath : basePath+"/vendors/snaker/",
+						            ctxPath : basePath,
+						            orderId : "FIXME",
+									restore : model,
+									editable : true,
+						            formPath : "forms/",
+									tools : {
+										save : {
+											onclick : function(data) {
+												_this.props.onSave(data);
+											}
 										}
 									}
-								}
-							});	
+								});	
+				    		});
 			    		});
 		    		});
-		    	});
+	    		});
 	    	});
 		});
     },
