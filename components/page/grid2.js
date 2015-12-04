@@ -61,8 +61,10 @@ var Grid=React.createClass({
     },
     componentWillMount: function() {
 
-        this.props.id = Tools.uuid();
-
+        if(!this.props.id){
+            this.props.id = Tools.uuid();
+        }
+        
         var datas={};
         var self = this;
         this.props.checkedValues.map(function(v) {
@@ -169,10 +171,7 @@ var Grid=React.createClass({
                          return <td key={columnKey}>{source[column]}</td>
                     }
                     else{
-                        var datas = {}
-                        if(self.props.checkType=="checkbox"){
-                            datas = Grid.datas[self.props.id]; 
-                        }
+                        var datas = Grid.datas[self.props.id];
                         if(datas[self.state.prifx+source[column]]){
                             return <td key={columnKey}><input type={checkType} onChange={self._checkBoxOnChange} name="id" value={source[column]} checked="checked"/></td>
                         }else{
