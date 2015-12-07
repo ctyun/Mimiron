@@ -24,11 +24,12 @@ var PageButton=require("../page/page");
                        t1:'测试1',
                        t2:'测试2',
                        t3:'测试3'}],
+                       checkedValues:["1","2"],
                        doList:this.doList,
                        pageSize:10,
                        offset:1, //page:this.state.offset
                        totalRows:1,
-                       checkType:"radio", //可选"radio","checkbox","none"
+                       checkType:"radio", //可选"radio","checkbox","none",
                        isDummy:[true,,true,,,,],
                   }
              return (<TablePanel {...tableProps}/>);
@@ -90,7 +91,7 @@ var TablePanel=React.createClass({
     render:function(){
         return (<div>
                 <div className="fix-head"></div>
-                <Grid2 title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType} isDummy={this.props.isDummy} id={this.props.id} toShow={this.props.children}/>
+                <Grid2 title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType} isDummy={this.props.isDummy} id={this.props.id} toShow={this.props.children} checkedValues={this.props.checkedValues}/>
                 <PageButton  doList={this.props.doList}  pageSize={this.props.pageSize}  page={this.props.offset} totalRows={this.props.totalRows}/>
               </div>)
     }

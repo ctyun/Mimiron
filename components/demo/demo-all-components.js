@@ -64,6 +64,7 @@ var FlowMaker = require("../etl/flowMaker");
 //layout
 var Row = require("../layout/row");
 
+var List = require("../page/list");
 
 //code
 //var Highlight = require("../code/highlight");
@@ -426,10 +427,11 @@ var tree1Data = {
           t2:'测试2',
           t3:'测试3'}],
         doList:doList,
+        checkedValues:["1","2"],
         pageSize:10,
         offset:1, //page:this.state.offset
         totalRows:100,
-        checkType:"none",
+        checkType:"checkbox",
     }
 
     var markers =  [{x:116,y:30,description:'This is a description'},{x:117,y:31,description:'This is a description'}];
@@ -438,6 +440,15 @@ var tree1Data = {
         console.log(currentPage,pageSize);
     }
 
+
+var listData = {
+    "订单处理时间：":"这是一个测试",
+    "订单状态：":"这是一个测试！！！",
+    "任务流程状态1：":"这是一个测试！！！！！！！！",
+    "任务流程状态2：":"这是一个测试！！！！！！！！",
+    "任务流程状态3：":"这是一个测试！！！！！！！！",
+    "任务流程状态4：":<a href="#">这是一个测试！！！！！！！！</a>,
+}
 
 /**
  * 基本组件演示, 请看源码.
@@ -511,7 +522,8 @@ var Demo = React.createClass({
 	            <center><h1>Mimiron基础组件库</h1></center>
 	            <Tabs>
 	              	<Tab title="panel" id="panel" isActive={true} >
-
+                        <div style={infoCSS}>List</div>
+                        <List data={listData}/>
 		              	<div style={infoCSS}>Header</div>
 		              	<Header pageTitle = "标题" />
 		              	<div style={infoCSS}>BSSPanel</div>
@@ -637,13 +649,12 @@ var Demo = React.createClass({
 							<WordCloud title="WordCloud" subtitle="WordCloud" height="400px" width="800px"  data={wordCloudData} />
 	              	</Tab>
 
-
-	              	<Tab title="tree" id="tree" >
-	      				<div style={infoCSS}>Treeview</div>
-   						<Treeview data={tree1Data} selectType="checkbox" expandLevel={3}/>
-	      				<div style={infoCSS}>TreeWithTable</div>
-   						<TreeWithTable treeCheck={this.treeTableCheck} />
-	              	</Tab>
+                    <Tab title="tree" id="tree" >
+                        <div style={infoCSS}>Treeview</div>
+                        <Treeview data={tree1Data} selectType="checkbox" expandLevel={3}/>
+                        <div style={infoCSS}>TreeWithTable</div>
+                        <TreeWithTable treeCheck={this.treeTableCheck} />
+                    </Tab>
 
                     <Tab title="resources" id="resources" >
                         <Uploader />
@@ -669,3 +680,5 @@ var Demo = React.createClass({
 
 module.exports=Demo;
 
+
+                    

@@ -2,6 +2,8 @@
  * @module page
  */
 var React = require('react/addons');
+
+var Tools = require("../utils/tools");
 /**
  * 一个更复杂的表格, 可以直接在table-panel中使用
  * @class Grid2
@@ -54,13 +56,19 @@ var Grid=React.createClass({
         return{
             checkType :"checkbox",
             checkedValues:[],
-            id:"defaultId"
+            id:"default_id",
         }
     },
     componentWillMount: function() {
+
+        if(!this.props.id){
+            this.props.id = Tools.uuid();
+        }
+        
         var datas={};
+        var self = this;
         this.props.checkedValues.map(function(v) {
-            datas[this.state.prifx+v]=v;
+            datas[self.state.prifx+v]=v;
         });
         Grid.datas = Grid.datas||{};
         Grid.datas[this.props.id]=datas;
@@ -100,6 +108,12 @@ var Grid=React.createClass({
             datas[this.state.prifx+v]=0;
         }
         Grid.setData(this.props.id,datas);
+
+        /*this.setState({
+            datas:Grid.datas
+        })*/
+
+        this.forceUpdate();
     },
     clickTr: function(e){
         //显示children 使用的是React方式
@@ -141,7 +155,6 @@ var Grid=React.createClass({
                 titleData.push(t);
             });
         }
-
         var self=this;
         var t= <table  className="table table-hover table-bordered table-striped">
         <thead>
@@ -158,7 +171,8 @@ var Grid=React.createClass({
                          return <td key={columnKey}>{source[column]}</td>
                     }
                     else{
-                        if(Grid.datas[self.state.prifx+source[column]]){
+                        var datas = Grid.datas[self.props.id];
+                        if(datas[self.state.prifx+source[column]]){
                             return <td key={columnKey}><input type={checkType} onChange={self._checkBoxOnChange} name="id" value={source[column]} checked="checked"/></td>
                         }else{
                             return <td key={columnKey}><input type={checkType} onChange={self._checkBoxOnChange} name="id" value={source[column]}/></td>
