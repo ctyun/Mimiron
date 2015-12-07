@@ -64,6 +64,7 @@ var FlowMaker = require("../etl/flowMaker");
 //layout
 var Row = require("../layout/row");
 
+var List = require("../page/list");
 
 //code
 //var Highlight = require("../code/highlight");
@@ -440,6 +441,15 @@ var tree1Data = {
     }
 
 
+var listData = {
+    "订单处理时间：":"这是一个测试",
+    "订单状态：":"这是一个测试！！！",
+    "任务流程状态1：":"这是一个测试！！！！！！！！",
+    "任务流程状态2：":"这是一个测试！！！！！！！！",
+    "任务流程状态3：":"这是一个测试！！！！！！！！",
+    "任务流程状态4：":<a href="#">这是一个测试！！！！！！！！</a>,
+}
+
 /**
  * 基本组件演示, 请看源码.
  * ```
@@ -512,7 +522,8 @@ var Demo = React.createClass({
 	            <center><h1>Mimiron基础组件库</h1></center>
 	            <Tabs>
 	              	<Tab title="panel" id="panel" isActive={true} >
-
+                        <div style={infoCSS}>List</div>
+                        <List data={listData}/>
 		              	<div style={infoCSS}>Header</div>
 		              	<Header pageTitle = "标题" />
 		              	<div style={infoCSS}>BSSPanel</div>

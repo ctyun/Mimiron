@@ -90,6 +90,7 @@ var components = {
 
 	//page
 	Grid: require("./page/grid2"),
+	List:require("./page/list"),
 
 	//resources
 	Uploader : require("./resources/uploader"),
