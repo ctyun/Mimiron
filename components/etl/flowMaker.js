@@ -46,6 +46,8 @@ var FlowMaker=React.createClass({
             basePath:"/static",
             elements:"all",
             restore:"",
+            editable:true,
+            orderId:""
         }
     },
    //  componentWillUpdate: function(nextProps, nextState){
@@ -97,7 +99,9 @@ var FlowMaker=React.createClass({
 			$('#snakerflow').snakerflow({
 				basePath : basePath+"/vendors/snaker/",
 	            ctxPath : basePath,
+	            orderId : _this.props.orderId,
 				restore : model,
+				editable : _this.props.editable,
 	            formPath : "forms/",
 				tools : {
 					save : {
@@ -134,9 +138,9 @@ var FlowMaker=React.createClass({
 								$('#snakerflow').snakerflow({
 									basePath : basePath+"/vendors/snaker/",
 						            ctxPath : basePath,
-						            orderId : "FIXME",
+						            orderId : _this.props.orderId,
 									restore : model,
-									editable : true,
+									editable : _this.props.editable,
 						            formPath : "forms/",
 									tools : {
 										save : {
@@ -226,13 +230,15 @@ var FlowMaker=React.createClass({
 			</div>
 			{elements}
 			</div>
-
-			<div id="properties">
-			<div id="properties_handle">属性</div>
-			<table className="properties_all" cellpadding="0" cellspacing="0">
-			</table>
-			<div>&nbsp;</div>
-			</div>
+			{this.props.editable?
+				<div id="properties">
+				<div id="properties_handle">属性</div>
+				<table className="properties_all" cellpadding="0" cellspacing="0">
+				</table>
+				<div>&nbsp;</div>
+				</div>
+			:null}
+			
 
 			<div id="snakerflow">{console.log("123")}</div>
 			</div>);
