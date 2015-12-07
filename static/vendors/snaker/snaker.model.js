@@ -1,4 +1,4 @@
-(function($){
+Mimiron.snaker_model = function(){
 var snakerflow = $.snakerflow;
 
 $.extend(true,snakerflow.config.rect,{
@@ -119,4 +119,6 @@ $.extend(true,snakerflow.config.tools.states,{
 					postInterceptors: {name:'postInterceptors', label : '后置拦截器', value:'', editor: function(){return new snakerflow.editors.inputEditor();}}
 				}}
 });
-})(jQuery)
+};
+
+Mimiron.snaker_model();

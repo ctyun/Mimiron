@@ -1,4 +1,4 @@
-(function($){
+Mimiron.snaker_editors = function(){
 var snakerflow = $.snakerflow;
 
 $.extend(true, snakerflow.editors, {
@@ -84,4 +84,6 @@ $.extend(true, snakerflow.editors, {
 	}
 });
 
-})(jQuery);
+};
+
+Mimiron.snaker_editors();
