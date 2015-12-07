@@ -461,7 +461,7 @@ var listData = {
 var Demo = React.createClass({
 	displayName:'Demo',
 
-	getInitialState:function(){
+	getInitialState:function(){ 
 		return {
 		    canSubmit:false,
             textareaValue:"123",
@@ -523,7 +523,7 @@ var Demo = React.createClass({
 	            <Tabs>
 	              	<Tab title="panel" id="panel" isActive={true} >
                         <div style={infoCSS}>List</div>
-                        <List data={listData}/>
+                        <List data={listData} tableCSS={{"width":"500px","border": "1px solid red"}} leftTdCSS={{"width":"200px"}} leftCSS={{"margin-right":"10%","text-align":"right"}} rightCSS={{"margin-left":"10%","text-align":"left"}}/>
 		              	<div style={infoCSS}>Header</div>
 		              	<Header pageTitle = "标题" />
 		              	<div style={infoCSS}>BSSPanel</div>
