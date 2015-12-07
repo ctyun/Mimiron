@@ -664,7 +664,7 @@ var Demo = React.createClass({
                         <div style={infoCSS}>FlowMaker</div>
                         <Button btnName="流程图生成器" doAction={Modal.show.bind(null,"flowMakerModal")} cssClass="btn-info" />
                         <Modal id="flowMakerModal" title="编辑流程图" submitAction={this.AddHandler} jsonFormat={true} cssClass="modal-lg" hideDefaultButton={true} dragable={false}>
-                            <FlowMaker elements="all" onSave={this.FlowMakerSave} restore={flowMakerRestore} />
+                            <FlowMaker elements="all" onSave={this.FlowMakerSave} restore={flowMakerRestore} /*editable={false}*/ />
                             <Button btnName="修改流程图数据" doAction={this.changeFlow} />
                         </Modal> 
                         

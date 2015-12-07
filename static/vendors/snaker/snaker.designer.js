@@ -1,4 +1,5 @@
-(function(snaker){
+Mimiron.snaker_designer = function(){
+    var snaker = jQuery;
 	var designer={};
 	designer.config={
 		editable:true,
@@ -1268,4 +1269,6 @@
 			designer.init(this,c)
 		})
 	};
-	snaker.snakerflow=designer})(jQuery);
+	snaker.snakerflow=designer};
+
+Mimiron.snaker_designer();

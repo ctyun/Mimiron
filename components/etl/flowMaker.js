@@ -46,12 +46,51 @@ var FlowMaker=React.createClass({
             basePath:"/static",
             elements:"all",
             restore:"",
+            editable:true,
+            orderId:""
         }
     },
-    componentWillUpdate: function(nextProps, nextState){
+   //  componentWillUpdate: function(nextProps, nextState){
+   //  	if(nextProps.restore != this.props.restore){
+   //  		delete $.snakerflow;//clean up start
+   //  		delete $.fn.snakerflow;  
+   //  		$("#snakerflow_all #save").off("click");
+   //  		Mimiron.snaker_designer(); 
+   //  		Mimiron.snaker_model();
+   //  		Mimiron.snaker_editors();//clen up end
+   //  		var basePath = Mimiron.distPath;
+   //  		var json=nextProps.restore;
+			// var model = "";
+			// if(json) {
+			// 	model=eval("(" + json + ")");
+			// }
+			// $('#snakerflow').empty();
+			// $('#snakerflow').snakerflow({
+			// 	basePath : basePath+"/vendors/snaker/",
+	  //           ctxPath : basePath,
+			// 	restore : model,
+	  //           formPath : "forms/",
+			// 	tools : {
+			// 		save : {
+			// 			onclick : function(data) {
+			// 				nextProps.onSave(data);
+			// 			}
+			// 		}
+			// 	}
+			// });	
+   //  	}
+   //  },
+    componentDidUpdate: function(nextProps, nextState){
     	if(nextProps.restore != this.props.restore){
+    		var _this = this;
+    		delete $.snakerflow;//clean up start
+    		delete $.fn.snakerflow;  
+    		$("#snakerflow_all #save").off("click");
+    		Mimiron.snaker_designer(); 
+    		Mimiron.snaker_model();
+    		Mimiron.snaker_editors();//clen up end
     		var basePath = Mimiron.distPath;
-    		var json=nextProps.restore;
+    		var json=this.props.restore;
 			var model = "";
 			if(json) {
 				model=eval("(" + json + ")");
@@ -60,12 +99,14 @@ var FlowMaker=React.createClass({
 			$('#snakerflow').snakerflow({
 				basePath : basePath+"/vendors/snaker/",
 	            ctxPath : basePath,
+	            orderId : _this.props.orderId,
 				restore : model,
+				editable : _this.props.editable,
 	            formPath : "forms/",
 				tools : {
 					save : {
 						onclick : function(data) {
-							nextProps.onSave(data);
+							_this.props.onSave(data);
 						}
 					}
 				}
@@ -97,9 +138,9 @@ var FlowMaker=React.createClass({
 								$('#snakerflow').snakerflow({
 									basePath : basePath+"/vendors/snaker/",
 						            ctxPath : basePath,
-						            orderId : "FIXME",
+						            orderId : _this.props.orderId,
 									restore : model,
-									editable : true,
+									editable : _this.props.editable,
 						            formPath : "forms/",
 									tools : {
 										save : {
@@ -171,7 +212,7 @@ var FlowMaker=React.createClass({
     			}
     		}
     	}
-        return(<div>
+        return(<div id="snakerflow_all">
             <div id="toolbox">
 			<div id="toolbox_handle">工具集</div>
 			<div className="node" id="save"><img src={basePath+"/vendors/snaker/images/save.gif"} />&nbsp;&nbsp;保存</div>
@@ -189,15 +230,17 @@ var FlowMaker=React.createClass({
 			</div>
 			{elements}
 			</div>
+			{this.props.editable?
+				<div id="properties">
+				<div id="properties_handle">属性</div>
+				<table className="properties_all" cellpadding="0" cellspacing="0">
+				</table>
+				<div>&nbsp;</div>
+				</div>
+			:null}
+			
 
-			<div id="properties">
-			<div id="properties_handle">属性</div>
-			<table className="properties_all" cellpadding="0" cellspacing="0">
-			</table>
-			<div>&nbsp;</div>
-			</div>
-
-			<div id="snakerflow"></div>
+			<div id="snakerflow">{console.log("123")}</div>
 			</div>);
 	}
 });
