@@ -14,26 +14,38 @@ var List = React.createClass({
 
 	getDefaultProps: function() {
 		return {
-			data:{}
+			data:{},
+			tableCSS:{"border": "1px solid #ddd"},
+			trCSS:{},
+			leftTdCSS:{/*"width":"200px"*/},
+			rightTdCSS:{/*"text-align":"center"*/},
+			leftCSS : {"margin-right":"10%","text-align":"right"},
+			rightCSS : {"margin-left":"10%","text-align":"left"}
 		};
 	},
 
 	render: function() {
 
-		var tdCSS = {"width":"50%","text-align":"center"};
-		var leftDivCSS = {"margin-right":"20%","text-align":"right"};
-		var rightDivCSS = {"margin-left":"20%","text-align":"left"};
-
 		var content = [];
 		var data = this.props.data;
-		for (var elem in data) {
-		  content.push(<tr><td style={tdCSS}><div style={leftDivCSS}>{elem}</div></td><td style={tdCSS}><div style={rightDivCSS}>{data[elem]}</div></td></tr>);
-		}
+		var tableCSS = this.props.tableCSS;
+		var trCSS = this.props.trCSS;
+		var leftTdCSS = this.props.leftTdCSS;
+		var rightTdCSS = this.props.rightTdCSS;
+		var leftCSS = this.props.leftCSS;
+		var rightCSS = this.props.rightCSS;
 
+		for (var elem in data) {
+		  content.push(
+		  <tr style={trCSS}>
+		  	<td style={leftTdCSS}><div style={leftCSS}>{elem}</div></td>
+		  	<td style={rightTdCSS}><div style={rightCSS}>{data[elem]}</div></td>
+		  </tr>);
+		}
 
 		return (
 			<div>
-				<table className="table table-hover table-bordered table-striped">
+				<table className="table table-hover table-bordered table-striped" style={tableCSS}>
 					{
 						content.map(function(index, elem) {
 							return content[elem];
