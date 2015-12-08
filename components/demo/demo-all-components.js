@@ -465,6 +465,11 @@ var Demo = React.createClass({
 		return {
 		    canSubmit:false,
             textareaValue:"123",
+            btnDisable:{
+                "btn1": 1,
+                "btn2": 1,
+                "btn3":0,
+            },
             flowMakerRestore:"{states: {start:{type:'start',text:{text:''},attr:{x:132,y:110,width:50,height:50},props:{layout:{value:'-48,110,50,50'},name:{value:'start'}}},end:{type:'end',text:{text:''},attr:{x:756,y:9,width:50,height:50},props:{layout:{value:'576,9,50,50'},name:{value:'end'}}},rect3:{type:'task',text:{text:'rect3'},attr:{x:572,y:106,width:100,height:50},props:{commandName:{value:'Test1Data'},displayName:{value:'rect3'},eventName:{value:'DataTest1ed'},input:{value:'{#1t11#1:#1t11params#1}'},layout:{value:'392,106,100,50'},name:{value:'rect3'}}},rect4:{type:'task',text:{text:'rect4'},attr:{x:224,y:106,width:100,height:50},props:{commandName:{value:'Test1Data'},displayName:{value:'rect4'},eventName:{value:'DataTest1ed'},input:{value:'{#1t1#1:#1t1params#1}'},layout:{value:'44,106,100,50'},name:{value:'rect4'}}},rect5:{type:'task',text:{text:'rect5'},attr:{x:405,y:112,width:100,height:50},props:{commandName:{value:'Test2Data'},displayName:{value:'rect5'},eventName:{value:'DataTest2ed'},input:{value:'{#1t2#1:#1t2pram#1}'},layout:{value:'225,112,100,50'},name:{value:'rect5'}}},rect6:{type:'task',text:{text:'rect6'},attr:{x:725,y:101,width:100,height:50},props:{commandName:{value:'Test2Data'},displayName:{value:'rect6'},eventName:{value:'DataTest2ed'},input:{value:'{#1t22#1:#1t22params#1}'},layout:{value:'545,101,100,50'},name:{value:'rect6'}}}},paths:{path7:{from:'start',to:'rect4', dots:[],text:{text:'p1'},textPos:{x:0,y:-10}, props:{name:{value:'path7'},expr:{value:''}}},path10:{from:'rect3',to:'rect6', dots:[],text:{text:'p4'},textPos:{x:0,y:-10}, props:{name:{value:'path10'},expr:{value:''}}},path8:{from:'rect4',to:'rect5', dots:[],text:{text:'p2'},textPos:{x:0,y:-10}, props:{name:{value:'path8'},expr:{value:''}}},path9:{from:'rect5',to:'rect3', dots:[],text:{text:'p3'},textPos:{x:0,y:-10}, props:{name:{value:'path9'},expr:{value:''}}},path11:{from:'rect6',to:'end', dots:[],text:{text:'p5'},textPos:{x:0,y:-10}, props:{name:{value:'path11'},expr:{value:''}}}},props:{props:{name:{name:'name',value:'1201'},displayName:{name:'displayName',value:'1201name'},processParams:{name:'processParams',value:'{#11201templet#1:#1parama#1}'},expireTime:{name:'expireTime',value:''},instanceUrl:{name:'instanceUrl',value:''},instanceNoClass:{name:'instanceNoClass',value:''}}}}"
 		}
 	},
@@ -560,7 +565,11 @@ var Demo = React.createClass({
                         </BSSForm>
 						
 						<div style={infoCSS}>Button</div>
-	                  	<Button btnName="增加"  disabledName="正在请求......" doAction={this.doAction}/>
+	                  	<Button displayName="增加"  disabledName="正在请求......" onClick={this.doAction}/>
+                        <Button displayName="已禁用" disabled = {this.state.btnDisable["btn1"]}/>
+                        <Button displayName="已禁用" disabled = {this.state.btnDisable["btn2"]}/>
+                        <Button displayName="已禁用" disabled = {this.state.btnDisable["btn3"]}/>
+                        <Button cssClass="btn-success" displayName="成功" />
 
 	                  	<div style={infoCSS}>CascadeSelect</div>
 	                  	<CascadeSelect firstDisName="一级" secondDisName="二级"  firsDefaultValue="2" data={[{value:'1',text:'显示2'},{value:'2',text:'显示1'}]} url="api/test/autoselect"  />
