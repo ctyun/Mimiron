@@ -7,11 +7,11 @@ require("jquery-ui");
 
 
 /**
- * 这是一个MessageBox对象，提供显示消息的方法
+ * 这是一个MessageBox1对象，提供显示消息的方法
  * @class message
  * @deprecated
  */
-function MessageBox(){
+function MessageBox1(){
     this.dialogId="bss_portal_dialog_id";
 };
 
@@ -23,7 +23,7 @@ function MessageBox(){
  * @param  {String}   title 要显示的对话框标题
  * @param  {Function} fn    回调函数
  */
-MessageBox.alert=function(text, title, fn){
+MessageBox1.alert=function(text, title, fn){
     // Hope_Dialog_Id="dialog-message";
     this.dialogId="dialog-message";
     var html =
@@ -64,7 +64,7 @@ MessageBox.alert=function(text, title, fn){
  * @param  {String}   title 对话框的标题
  * @param  {Function} fn    回调函数
  */
-MessageBox.jqwait=function(text, title, fn){
+MessageBox1.jqwait=function(text, title, fn){
     var path=window.location.pathname;
     var d=new Date();
     this.dialogId="dialog-wait-"+d.getMilliseconds();
@@ -96,7 +96,7 @@ MessageBox.jqwait=function(text, title, fn){
  * @static
  * @method close
  */
-MessageBox.close=function(){
+MessageBox1.close=function(){
     if(typeof(this.dialogId)!="undefined"){
         $("#"+this.dialogId).dialog("close");
         $("#"+this.dialogId).dialog("destroy");
@@ -113,7 +113,7 @@ MessageBox.close=function(){
  * @param  {Strig} options 对话框设置选项
  * @param  {Strig} title   对话框标题
  */
-MessageBox.jqopen=function(url, id,options,title){
+MessageBox1.jqopen=function(url, id,options,title){
     var d=new Date();
     this.dialogId=id+"_dialog_open_"+d.getMilliseconds();
     var t="提示信息";
@@ -147,7 +147,7 @@ MessageBox.jqopen=function(url, id,options,title){
  * @param  {String} fn1   点击确定的回调函数
  * @param  {String} fn2   点击取消的回调函数
  */
-MessageBox.jqconfirm=function(text, title, fn1, fn2){
+MessageBox1.jqconfirm=function(text, title, fn1, fn2){
     this.dialogId="dialog-confirm";
     var html =
         '<div class="dialog" id="'+this.dialogId+'">' +
@@ -181,4 +181,4 @@ MessageBox.jqconfirm=function(text, title, fn1, fn2){
         }
     });
 };
-module.exports = MessageBox;
+module.exports = MessageBox1;

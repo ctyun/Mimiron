@@ -1,7 +1,7 @@
-var $ = require('jquery');
+//var $ = require('jquery');
 //var progressJS = require('Progress.js').progressJs;
 //var ActionUtils = require('./action-utils');
-var MessageBox=require("../message/message");
+// import MessageBox from "../message/messageBox";
 
 var APIUtils = {
   request: function(req) {
@@ -38,7 +38,7 @@ var APIUtils = {
         window.location = '/login';
       }
       if (xhr.status === 500 || xhr.status === 503) {
-        MessageBox.alert("服务器错误！","提示");
+        alert("服务器错误！","提示");
       }
       if (xhr.status === 200){
         deferred.resolve(); //如果返回的response完全为空, 则会抛出SyntaxError: Unexpected end of input的异常.

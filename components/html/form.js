@@ -6,7 +6,6 @@
 var React=require("react/addons");
 var Button=require("../html/button");
 var $=require("jquery");
-var Debug = require("../utils/debug");
 /**
  * 表单组件
  *```
