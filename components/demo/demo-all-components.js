@@ -510,8 +510,8 @@ var Demo = React.createClass({
         alert(data);
         console.log(data);
     },
-    onCheckChange : function(v){
-        alert(v);
+    onCheckChange : function(v,s){
+        console.log(v,s);
     },
     changeFlow : function(){
         this.setState({"flowMakerRestore":"{states: {start:{type:'start',text:{text:''},attr:{x:197,y:67,width:50,height:50},props:{layout:{value:'17,67,50,50'},name:{value:'start'}}},rect2:{type:'task',text:{text:'rect222222222222222'},attr:{x:336,y:54,width:100,height:50},props:{commandName:{value:'Test1Data'},displayName:{value:'rect2'},eventName:{value:'DataTest1ed'},input:{value:'{#1123#1:#1t1#1}'},layout:{value:'156,54,100,50'},name:{value:'rect2'}}},rect3:{type:'task',text:{text:'rect3'},attr:{x:525,y:68,width:100,height:50},props:{commandName:{value:'Test1Data'},displayName:{value:'rect3'},eventName:{value:'DataTest2ed'},input:{value:'{#1234#1:#123424#1}'},layout:{value:'345,68,100,50'},name:{value:'rect3'}}},end:{type:'end',text:{text:''},attr:{x:691,y:83,width:50,height:50},props:{layout:{value:'511,83,50,50'},name:{value:'end'}}}},paths:{path5:{from:'start',to:'rect2', dots:[],text:{text:'p1'},textPos:{x:0,y:-10}, props:{name:{value:'path5'},expr:{value:''}}},path6:{from:'rect2',to:'rect3', dots:[],text:{text:'p2'},textPos:{x:0,y:-10}, props:{name:{value:'path6'},expr:{value:''}}},path7:{from:'rect3',to:'end', dots:[],text:{text:'p3'},textPos:{x:0,y:-10}, props:{name:{value:'path7'},expr:{value:''}}}},props:{props:{name:{name:'name',value:'test'},displayName:{name:'displayName',value:'testname'},expireTime:{name:'expireTime',value:''},instanceUrl:{name:'instanceUrl',value:''},instanceNoClass:{name:'instanceNoClass',value:''}}}}"})

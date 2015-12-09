@@ -109,7 +109,7 @@ var Grid=React.createClass({
             datas[this.state.prifx+v]=0;
         }
         Grid.setData(this.props.id,datas);
-        this.props.onCheckChange?this.props.onCheckChange(v):null;
+        this.props.onCheckChange?this.props.onCheckChange(v,event.target.checked):null;
         this.forceUpdate();
     },
     clickTr: function(e){
