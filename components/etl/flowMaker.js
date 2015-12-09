@@ -213,23 +213,25 @@ var FlowMaker=React.createClass({
     		}
     	}
         return(<div id="snakerflow_all">
-            <div id="toolbox">
-			<div id="toolbox_handle">工具集</div>
-			<div className="node" id="save"><img src={basePath+"/vendors/snaker/images/save.gif"} />&nbsp;&nbsp;保存</div>
-			<div>
-			<hr />
-			</div>
-			<div className="node selectable" id="pointer">
-			    <img src={basePath+"/vendors/snaker/images/select16.gif"} />&nbsp;&nbsp;Select
-			</div>
-			<div className="node selectable" id="path">
-			    <img src={basePath+"/vendors/snaker/images/16/flow_sequence.png"} />&nbsp;&nbsp;transition
-			</div>
-			<div>
-			<hr/>
-			</div>
-			{elements}
-			</div>
+        	{this.props.elements=="none"?null:
+	        	<div id="toolbox">
+					<div id="toolbox_handle">工具集</div>
+					<div className="node" id="save"><img src={basePath+"/vendors/snaker/images/save.gif"} />&nbsp;&nbsp;保存</div>
+					<div>
+					<hr />
+					</div>
+					<div className="node selectable" id="pointer">
+					    <img src={basePath+"/vendors/snaker/images/select16.gif"} />&nbsp;&nbsp;Select
+					</div>
+					<div className="node selectable" id="path">
+					    <img src={basePath+"/vendors/snaker/images/16/flow_sequence.png"} />&nbsp;&nbsp;transition
+					</div>
+					<div>
+					<hr/>
+					</div>
+					{elements}
+				</div>               
+        	}
 			{this.props.editable?
 				<div id="properties">
 				<div id="properties_handle">属性</div>

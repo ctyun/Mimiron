@@ -57,6 +57,7 @@ var Grid=React.createClass({
             checkType :"checkbox",
             checkedValues:[],
             id:"default_id",
+            onCheckChange: null,
         }
     },
     componentWillMount: function() {
@@ -108,11 +109,7 @@ var Grid=React.createClass({
             datas[this.state.prifx+v]=0;
         }
         Grid.setData(this.props.id,datas);
-
-        /*this.setState({
-            datas:Grid.datas
-        })*/
-
+        this.props.onCheckChange?this.props.onCheckChange(v):null;
         this.forceUpdate();
     },
     clickTr: function(e){
