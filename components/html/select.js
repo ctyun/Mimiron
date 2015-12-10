@@ -105,7 +105,7 @@ var Select=React.createClass({
                 //}else{
                 //    options.push(<option value={d.value} >{d.text}</option>);
                 //}
-                options.push(<option value={d.value} >{d.text}</option>);
+                options.push(<option value={d.value} disabled={d.disabled?"disabled":""}>{d.text}</option>);
             });
         }else{
             if(!noEmptyMsg){
@@ -113,7 +113,7 @@ var Select=React.createClass({
             }
         }
         var className = "form-control "+this.props.cssClass;
-        return (<span>{this.props.disName}<select name={name} value={defaultValue} multiple={this.props.multiple} className={className} onChange={this._onChange}>{options}</select></span>);
+        return (<span>{this.props.disName}<select name={name} value={defaultValue} multiple={this.props.multiple} className={className} onChange={this._onChange} style={this.props.style}>{options}</select></span>);
     }
 });
 

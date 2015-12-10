@@ -158,6 +158,13 @@ var Input=React.createClass({
             this.props.doChange(obj);
         }
     },
+    onBlur: function(e){
+        if(this.props.onBlur){
+            var toReturn = {}
+            toReturn[e.target.name||e.target.value] = e.target.value;
+            this.props.onBlur(toReturn);
+        }
+    },
     componentDidMount : function(){
         if(this.props.value){
             this._onChange({target:{value:this.props.value,name:this.props.name}});
@@ -199,13 +206,13 @@ var Input=React.createClass({
             (<div className={"row "+spanCss}>
                 <lable htmlFor={this.props.id} className="col-xs-3 control-label" title={name}>{name}</lable>
                 <div className="col-xs-9">
-                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
+                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick} onBlur={this.onBlur}  value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
                     {errorLable}
                 </div>
             </div>):
             (<span className={spanCss}>
                 {name}
-                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick}   value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
+                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick} onBlur={this.onBlur}  value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
                     {errorLable}
             </span>);
         return toReturn;
