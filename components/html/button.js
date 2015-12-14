@@ -62,6 +62,7 @@ var Button=React.createClass({
     },
     onClick: function(e){
         e.preventDefault();
+        e.stopPropagation();
         this.props.onClick();
     },
     render:function(){

@@ -97,6 +97,7 @@ var components = {
 
 	//ETL
 	FlowMaker : require("./etl/flowMaker"),
+	AssistInput : require("./etl/assistInput"),
 
 	//layout
 	Row : require("./layout/row"),

@@ -63,7 +63,7 @@ var Modal=React.createClass({
             body:null,
             footer:null,
             cssClass: "",
-            dragable:true,
+            dragable:false,
             dragEnd:function(){return},
         };
     },

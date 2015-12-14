@@ -113,7 +113,20 @@ var Select=React.createClass({
             }
         }
         var className = "form-control "+this.props.cssClass;
-        return (<span>{this.props.disName}<select name={name} value={defaultValue} multiple={this.props.multiple} className={className} onChange={this._onChange} style={this.props.style}>{options}</select></span>);
+        var toReturn = this.props.inRow?
+            (<div className="row">
+                <lable htmlFor={this.props.id} className="col-xs-3 control-label" title={this.props.disName}>{this.props.disName}</lable>
+                <div className="col-xs-9">
+                    <select name={name} value={defaultValue} multiple={this.props.multiple} className={className} onChange={this._onChange} style={this.props.style}>{options}
+                    </select>
+                </div>
+            </div>):
+            (<span>
+                {this.props.disName}
+                <select name={name} value={defaultValue} multiple={this.props.multiple} className={className} onChange={this._onChange} style={this.props.style}>{options}
+                </select>
+            </span>);
+        return toReturn;
     }
 });
 

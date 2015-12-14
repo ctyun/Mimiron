@@ -5,7 +5,8 @@
 
 var React = require('react/addons');
 var Tools = require("../utils/tools");
-
+var Modal = require("../message/message");
+var Button = require("../html/button");
 
 /**
  * 流程图生成组件
@@ -240,10 +241,8 @@ var FlowMaker=React.createClass({
 				<div>&nbsp;</div>
 				</div>
 			:null}
-			
-
-			<div id="snakerflow">{console.log("123")}</div>
-			</div>);
+			<div id="snakerflow"></div>
+		</div>);
 	}
 });
 module.exports=FlowMaker;

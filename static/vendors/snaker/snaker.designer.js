@@ -1102,11 +1102,13 @@ Mimiron.snaker_designer = function(){
 			}
 		});
 		snaker(document).click(function(){
-			snaker(_r).data("currNode",null);
-			snaker(_r).trigger("click",{
-				getId:function(){return ""}
-			});
-			snaker(_r).trigger("showprops",[designer.config.props.props,{getId:function(){return ""}}])
+            if(!Mimiron["currentAssistInput"]){
+                snaker(_r).data("currNode",null);
+                snaker(_r).trigger("click",{
+                    getId:function(){return ""}
+                });
+                snaker(_r).trigger("showprops",[designer.config.props.props,{getId:function(){return ""}}])
+            }
 		});
 		var removeHandler = function(e, src){
 			if(!designer.config.editable){return}

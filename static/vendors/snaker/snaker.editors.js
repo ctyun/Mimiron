@@ -19,6 +19,39 @@ $.extend(true, snakerflow.editors, {
 			});
 		}
 	},
+	modalEditor : function(){
+		var _props,_k,_div,_src,_r;
+		this.init = function(props, k, div, src, r){
+			_props=props; _k=k; _div=div; _src=src; _r=r;
+			
+			$('<input style="width:98%;"/>').val(props[_k].value).click(function(){
+				$("#Mimiron_flowMakerModal").modal();
+				Mimiron["currentAssistInput"] = $(this);
+				var target = $("#Mimiron_flowMakerModal .modal-body #AltForm-default-id");
+				var reg = new RegExp("'","g");
+				currentObj = $.parseJSON($(this).val().replace(reg,'"'));
+				while($(target).children("span").length<currentObj.length){
+					$(target).children("a.btn-success").children().click()
+				}
+				var cnt=0
+				for(var i in currentObj){
+					var cTarget = $(target).children("span")[cnt];
+					$(cTarget).find("input").first().val(i);
+					$(cTarget).find("input").last().val(currentObj[i]);
+					cnt++;
+				}
+			}).bind("selfEvent", function(){
+				props[_k].value = $(this).val();
+			}).appendTo('#'+_div);
+			$('#'+_div).data('editor', this);
+		}
+		this.destroy = function(){
+			$('#'+_div+' input').each(function(){
+				_props[_k].value = $(this).val();
+			});
+		}
+	},
+
 	selectEditor : function(arg){
 		var _props,_k,_div,_src,_r;
 		this.init = function(props, k, div, src, r){

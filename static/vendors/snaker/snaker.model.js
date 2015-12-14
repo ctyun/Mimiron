@@ -13,7 +13,7 @@ $.extend(true,snakerflow.config.rect,{
 $.extend(true,snakerflow.config.props.props,{
 	name : {name:'name', label:'名称', value:'', editor:function(){return new snakerflow.editors.inputEditor();}},
 	displayName : {name:'displayName', label:'显示名称', value:'', editor:function(){return new snakerflow.editors.inputEditor();}},
-    processParams : {name:'processParams', label:'流程参数', value:'', editor:function(){return new snakerflow.editors.inputEditor();}}
+    processParams : {name:'processParams', label:'流程参数', value:'', editor:function(){return new snakerflow.editors.modalEditor();}}
 });
 
 
@@ -52,8 +52,9 @@ $.extend(true,snakerflow.config.tools.states,{
 					name: {name:'name',label: '名称', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
 					displayName: {name:'displayName',label: '显示名称', value:'', editor: function(){return new snakerflow.editors.textEditor();}},
                     commandName: {name:'commandName',label: '命令名称', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
-                    eventName: {name:'eventName',label: '事件名称', value:'', editor: function(){return new snakerflow.editors.inputEditor();}},
-                    input: {name:'input',label: '节点参数', value:'', editor: function(){return new snakerflow.editors.inputEditor();}}
+                    eventName: {name:'eventName',label: '事件名称', value:'', editor: function(){return new snakerflow.editors.selectEditor([{"value":"string value1","name":"string name 1"},{"value":"string value1","name":"string name 1"}]
+);}},
+                    input: {name:'input',label: '节点参数', value:'', editor: function(){return new snakerflow.editors.modalEditor();}}
                 }},
 			custom : {
 				showType: 'text',

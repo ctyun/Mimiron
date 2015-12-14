@@ -21,6 +21,7 @@ var DatePicker = require("../html/datePicker");
 var ExpressionSelect = require("../html/expression");
 var Select = require("../html/select");
 var Textarea = require("../html/textarea");
+var AltForm = require("../html/altForm");
 
 //panel
 var BSSPanel=require("../panel/panel");
@@ -60,6 +61,7 @@ var Uploader = require("../resources/uploader");
 
 //ETL
 var FlowMaker = require("../etl/flowMaker");
+var AssistInput = require("../etl/assistInput");
 
 //layout
 var Row = require("../layout/row");
@@ -521,6 +523,9 @@ var Demo = React.createClass({
         console.log("onblur");
         console.log(param);
     },
+    AltFormHandler: function(param){
+        console.log(param);
+    },
     spCss: {
         "background-color": "black",
         "color": "white"
@@ -533,12 +538,11 @@ var Demo = React.createClass({
             handleResult:this.validTurn,
         };
         var flowMakerRestore = this.state.flowMakerRestore;
-
 	    return (
 	        <div style={{padding:"10px 20px"}}>
 	            <center><h1>Mimiron基础组件库</h1></center>
 	            <Tabs>
-	              	<Tab title="panel" id="panel" isActive={true} >
+	              	<Tab title="panel" id="panel" >
                         <div style={infoCSS}>List</div>
                         <List data={listData} tableCSS={{"width":"500px","border": "1px solid red"}} leftTdCSS={{"width":"200px"}} leftCSS={{"margin-right":"10%","text-align":"right"}} rightCSS={{"margin-left":"10%","text-align":"left"}}/>
 		              	<div style={infoCSS}>Header</div>
@@ -566,6 +570,7 @@ var Demo = React.createClass({
                             <Input disName="输入框1111111" cssClass="size-block"/>
                             <Input disName="输入框111111111" cssClass="size-block"/>
                             <Input disName="输入框11111111111" cssClass="size-block"/>
+                            <Select data={[{value:'1',text:'显示2',disabled:"yes"},{value:'2',text:'显示1'}]} defaultValue="2" onSelect={this.onSelectAction} disName="Select"/>
                         </Row>
                     </Tab>
 
@@ -615,6 +620,12 @@ var Demo = React.createClass({
                             <Input disName="非空:  " valid={formValid}  /><br/>
                             <Input disName="Email: " valid={{type:"email",errorMsg:"请输入有效Email地址"}}  /><br/>
                         </BSSForm>
+
+                        <div style={infoCSS}>AltForm Validation</div>
+                        <AltForm jsonFormat={true} submitAction={this.AltFormHandler}> 
+                            <Input disName="输入1" name="input1" />
+                            <Input disName="输入2" name="input2" />
+                        </AltForm>
 	              	</Tab>
 
 
@@ -681,13 +692,14 @@ var Demo = React.createClass({
                         <Uploader />
                     </Tab>
 
-                    <Tab title="ETL" id="ETL">
+                    <Tab title="ETL" id="ETL" isActive={true} >
                         <div style={infoCSS}>FlowMaker</div>
                         <Button btnName="流程图生成器" doAction={Modal.show.bind(null,"flowMakerModal")} cssClass="btn-info" />
-                        <Modal id="flowMakerModal" title="编辑流程图" submitAction={this.AddHandler} jsonFormat={true} cssClass="modal-lg" hideDefaultButton={true} dragable={false}>
-                            <FlowMaker elements="none" onSave={this.FlowMakerSave} restore={flowMakerRestore} /*editable={false}*/ />
+                        <Modal id="flowMakerModal" title="编辑流程图" submitAction={this.AddHandler} jsonFormat={true} cssClass="modal-lg" hideDefaultButton={true} dragable={false} contentType="div">
+                            <FlowMaker elements="all" onSave={this.FlowMakerSave} restore={flowMakerRestore} /*editable={false}*/ />
                             <Button btnName="修改流程图数据" doAction={this.changeFlow} />
                         </Modal> 
+                        <AssistInput />
                         
                     </Tab>
 
