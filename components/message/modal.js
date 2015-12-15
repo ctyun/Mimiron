@@ -93,6 +93,11 @@ var Modal=React.createClass({
       }
       Tools.loadScript(Mimiron.distPath+"/vendors/bootstrap/modal.js");
     },
+    onClickX: function(e){
+        if(this.props.onClickX){
+           this.props.onClickX(e);
+        }
+    },
     render: function(){
         //using css control to hide the modal
         var cssClass="modal-dialog "+this.props.cssClass;
@@ -114,7 +119,7 @@ var Modal=React.createClass({
                     <div className="modal-content">
                         <div className="modal-header">
                             {this.props.noX?null:
-                            <button type="button" className="close" data-dismiss="modal" >
+                            <button type="button" className="close" data-dismiss="modal" onClick={this.onClickX}>
                             &times;
                             </button>
                             }

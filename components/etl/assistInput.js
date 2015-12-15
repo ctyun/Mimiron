@@ -30,8 +30,11 @@ var AssistInput = React.createClass({
         Modal.hide(this.props.id);
         Mimiron["currentAssistInput"] = null;
 	},
+	onX: function(){
+		Mimiron["currentAssistInput"] = null;
+	},
 	render: function(){
-		return (<Modal id={this.props.id} title="编辑节点" jsonFormat={true} contentType="div" noX={true}>
+		return (<Modal id={this.props.id} title="编辑节点" jsonFormat={true} contentType="div" onClickX = {this.onX}>
 	                <AltForm jsonFormat={true} submitAction={this.assistModalHandler}> 
 	                    <Input disName="键" name="key" /><Input disName="值" name="value" />
 	                </AltForm>
