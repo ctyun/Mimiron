@@ -41,7 +41,8 @@ $.extend(true, snakerflow.editors, {
 					cnt++;
 				}
 			}).bind("selfEvent", function(){
-				props[_k].value = $(this).val();
+				var reg = new RegExp('"',"g");
+				props[_k].value = $(this).val().replace(reg,"'");
 			}).appendTo('#'+_div);
 			$('#'+_div).data('editor', this);
 		}
