@@ -69,7 +69,7 @@ var Button=React.createClass({
         var cssClass = this.props.cssClass?this.props.cssClass:'btn-primary';
         var className = this.props.customClass? this.props.customClass: "btn "+cssClass
 
-        return (<button type={this.props.type} className={className} onClick={this.onClick} disabled={this.props.disabled?"disabled":""}>
+        return (<button {...this.props} type={this.props.type} className={className} onClick={this.onClick} disabled={this.props.disabled?"disabled":""} >
                 {this.props.disabled?this.props.disabledName?this.props.disabledName:this.props.displayName:this.props.displayName}
             </button>);
         }

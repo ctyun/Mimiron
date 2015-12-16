@@ -29,7 +29,7 @@ $.extend(true, snakerflow.editors, {
 				Mimiron["currentAssistInput"] = $(this);
 				var target = $("#Mimiron_flowMakerModal .modal-body #AltForm-default-id");
 				var reg = new RegExp("'","g");
-				currentObj = $.parseJSON($(this).val().replace(reg,'"'));
+				var currentObj = $.parseJSON($(this).val().replace(reg,'"'));
 				while($(target).children("span").length<currentObj.length){
 					$(target).children("a.btn-success").children().click()
 				}

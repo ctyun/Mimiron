@@ -51,6 +51,7 @@ var BSSForm=React.createClass({
         return{
             id:"BSSForm-default-id",
             checkValid:false,
+            okButtonCss:null,
         };
     },
     componentDidMount:function(){
@@ -97,7 +98,7 @@ var BSSForm=React.createClass({
         if(this.props.okButtonName){
             okName=this.props.okButtonName;
         };
-        return (<form  {...props}>{this.props.children}{this.props.hideDefaultButton&&this.props.hideDefaultButton==true?null:<Button btnName={okName} disabledName={this.props.disabledName} disabled={this.props.disabledSubmitBtn}   doAction={this._submitAction} type="submit"/>}</form>);
+        return (<form  {...props}>{this.props.children}{this.props.hideDefaultButton&&this.props.hideDefaultButton==true?null:<Button displayName={okName} disabledName={this.props.disabledName} disabled={this.props.disabledSubmitBtn}   onClick={this._submitAction} type="submit" style={this.props.okButtonCss}/>}</form>);
     }
 });
 module.exports=BSSForm;

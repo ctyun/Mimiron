@@ -9,17 +9,48 @@ var Ajax = require("../utils/ajax");
 var Input = require("../html/input");
 
 var Login = React.createClass({
-	locals:{},
+	locals:{
+		okButtonCss:{
+			"margin":"20px",
+			"float":"right"
+		}
+	},
+	getInitialState:function(){
+    	return{
+    		error:false,
+    	}
+    },
+    getDefaultProps: function(){
+        return{
+            title:"请登录",
+            loginUrl:API.LOGIN,
+        }
+    },
 	render: function(){
 		return(<div className="page-form">
-				<BSSForm okButtonName="登陆" jsonFormat={true} submitAction={this.submitAction}>
-					<Input name="userLoginName" disName="用户名" placeholder="用户名" value={this.locals.username}/>
-					<Input name="userPassword" disName="密码" placeholder="密码" value={this.locals.password}/>
-				</BSSForm>
-			</div>);
+
+              <BSSForm okButtonName="登陆" jsonFormat={true} submitAction={this.submitAction} okButtonCss={this.locals.okButtonCss}>
+                  <div className="header-content"><h1>{this.props.title}</h1></div>
+                  <div className="body-content">
+                      <div className="form-group">
+                          <div className="input-icon right">
+                              <i className="fa fa-user"></i>
+                              <input type="text" placeholder="用户名" name="userLoginName" className="form-control" required autofocus />
+                          </div>
+                      </div>
+                      <div className="form-group">
+                          <div className="input-icon right">
+                              <i className="fa fa-key"></i>
+                              <input type="password" placeholder="密码" name="userPassword" className="form-control" required />
+                          </div>
+                      </div>	
+                  </div>
+              </BSSForm>
+              <div className="clearfix"></div>
+          </div>);
 	},
 	submitAction: function(param){
-		Ajax.post(API.LOGIN,param,function(d){
+		Ajax.post(this.props.loginUrl,param,function(d){
 			if(d.handled){
 				alert("用户名和/或密码错误"); //TODO 使用提示框
 			}

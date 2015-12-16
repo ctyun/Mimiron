@@ -10,7 +10,7 @@
   "author": "",
   "license": "BSD",
   "dependencies": {
-    "react": "~0.14.2"
+    "react": "~0.13.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.1.0",
