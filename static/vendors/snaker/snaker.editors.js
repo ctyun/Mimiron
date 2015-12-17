@@ -30,16 +30,23 @@ $.extend(true, snakerflow.editors, {
 				var target = $("#Mimiron_flowMakerModal .modal-body #AltForm-default-id");
 				var reg = new RegExp("'","g");
 				var currentObj = $.parseJSON($(this).val().replace(reg,'"'));
-				while($(target).children("span").length<currentObj.length){
-					$(target).children("a.btn-success").children().click()
-				}
-				var cnt=0
+				var objLength = 0;
+				var spanLength = $(target).children("span").length;
 				for(var i in currentObj){
-					var cTarget = $(target).children("span")[cnt];
-					$(cTarget).find("input").first().val(i);
-					$(cTarget).find("input").last().val(currentObj[i]);
-					cnt++;
+					objLength++;
 				}
+				while(spanLength++<objLength){
+					$(target).children("a.btn-success").children().click();
+				}
+				setTimeout(function(){
+					var cnt=0
+					for(var i in currentObj){
+						var cTarget = $(target).children("span")[cnt];
+						$(cTarget).find("input").first().val(i);
+						$(cTarget).find("input").last().val(currentObj[i]);
+						cnt++;
+					}
+				}.bind(target),200);
 			}).bind("selfEvent", function(){
 				var reg = new RegExp('"',"g");
 				props[_k].value = $(this).val().replace(reg,"'");

@@ -51,7 +51,7 @@ var Textarea=React.createClass({
     render:function(){
         return (<div className="form-group">
                     <label for="name">{this.props.name}</label>
-                    <textarea className="form-control" rows={""+this.props.rows} onChange={this.onChange} value={this.state.text}>
+                    <textarea {...this.props} className="form-control" rows={""+this.props.rows} onChange={this.onChange} value={this.state.text}>
                     </textarea>
                 </div>);
     }
