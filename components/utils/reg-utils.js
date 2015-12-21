@@ -10,11 +10,17 @@ var RegUtils = {
             return false;
         if(valid.minlength && v.length<valid.minlength)
             return false;
+        if(valid.same){
+            var node = $.find("[name='"+ valid.same +"']")[0];
+            return $(node).val() == v;
+        }
         switch(valid.type)
         {
             case "fail":
                 return false;
             case "success":
+                return true;
+            case "ajax":
                 return true;
             case 'noEmpty':
                 return v.length!=0;

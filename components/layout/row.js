@@ -44,8 +44,10 @@ var Row=React.createClass({
         var _this = this;
         var children = []
         for(var i in this.props.children){
-            this.props.children[i].props["inRow"] = true;
-            children.push(<div className={"col-md-"+_this.locals.needWidth[_this.props.itemPerLine]+" col-xs-12"}>{this.props.children[i]}</div>);
+            if(this.props.children[i].props){
+                this.props.children[i].props["inRow"] = true;
+                children.push(<div className={"col-md-"+_this.locals.needWidth[_this.props.itemPerLine]+" col-xs-12"}>{this.props.children[i]}</div>);
+            }
         }
         return (<div className="row">{children}</div>);
     }

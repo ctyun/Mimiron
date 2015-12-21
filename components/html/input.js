@@ -7,6 +7,7 @@
 var React = require('react/addons');
 var BSSForm = require('../html/form');
 var RegUtils = require('../utils/reg-utils');
+var Ajax = require("../utils/ajax");
 
 
 /* 第一次 render
@@ -54,12 +55,16 @@ var RegUtils = require('../utils/reg-utils');
  *      string
  *      email
  *      mobile-phone
+ *      ajax
  *    valid.maxlength (int)最大长度
  *    valid.minlength (int)最小长度
  *    valid.handleResult (function)验证结束回调函数, 带有一个参数, 为Boolean型验证结果.
+ *    valid.errorMsg (string) 错误提示
+ *    valid.on (enum) "change"(默认)发生变化时进行校验, "blur"失去焦点时校验
+ *    valid.url (string) 仅valid.type为"ajax"时有效, ajax验证的url
  *
  *  注意:
- *  由于React的数据单项绑定特性, 当input中value发生变化时, 新值不会体现在this.state.inputValue上, 如果需要取到当前用户输入, 可以在doChange方法中进行处理.
+ *  由于React的数据单项绑定特性, 当input中value发生变化时, 新值不会体现在this.state.inputValue上, 如果需要取到当前用户输入, 可以在onChange方法中进行处理.
  *  ```
  *  @class Input
  */
@@ -103,62 +108,72 @@ var Input=React.createClass({
     getInitialState:function(){
         return {
             dis:false,
-            defValue:"",
+            value:"",
             validCss:""
         };
     },
 
     componentWillReceiveProps:function(){
-
         this.setState({
             /**
              * @property {String} value 默认值
              */
-            defValue:this.props.value
+            value:this.props.value
         })
     },
     componentDidUpdate: function (prevProps, prevState) {
         if (prevProps.value !== this.props.value) {
             this.setState({
-                defValue:this.props.value
+                value:this.props.value
             })
         }
     },
-
-
-    _onChange:function(e){
-        var v= e.target.value;
-        var n= e.target.name;
-
-        var obj={};
-
+    checkValid: function(v){
+        if(typeof v == "undefined"){
+            v = this.state.value;
+        }
+        if(!RegUtils.validate(this.props.valid,v)){
+            if(this.props.valid.handleResult)
+                this.props.valid.handleResult(false);
+            this.setState({validCss:"invalid"});
+            return false;
+        } else{
+            if(this.props.valid.handleResult)
+                this.props.valid.handleResult(true);
+            this.setState({validCss:"valid"});
+            return true;
+        }
+    },
+    reset: function(){
+        this.setState({validCss:"",value:""});
+    },
+    onChange:function(e){
         this.setState({
-            defValue:v
+            value:e.target.value
         });
-
-        if(this.props.valid){
-            if(!RegUtils.validate(this.props.valid,v)){
-                if(this.props.valid.handleResult)
-                    this.props.valid.handleResult(false);
-                this.setState({validCss:"invalid"});
-            } else{
-                if(this.props.valid.handleResult)
-                    this.props.valid.handleResult(true);
-                this.setState({validCss:"valid"});
-            }
-        }else{
-            this.setState({validCss:""});
+        if(this.props.valid && this.props.valid.on !="blur"){
+            this.checkValid(e.target.value);
         }
-        if(n){
-            obj[n]=v;
-        }else{
-            obj[v]=v;
-        }
-        if(this.props.doChange){
-            this.props.doChange(obj);
+        if(this.state.doChange){
+            var toReturn = {}
+            toReturn[e.target.name||e.target.value] = e.target.value;
+            this.props.doChange(toReturn);
         }
     },
     onBlur: function(e){
+        var _this = this;
+        if(this.props.valid && this.props.valid["on"]=="blur"){
+            if(this.props.valid["type"]=="ajax"){
+                var params = {};
+                params[e.target.name] = e.target.value;
+                Ajax.post(this.props.valid["url"],params,function(r){
+                    _this.setState({validCss:r["valid"]?"valid":"invalid"});
+                })
+            }
+            else{
+                this.checkValid(e.target.value);
+            }
+        }
         if(this.props.onBlur){
             var toReturn = {}
             toReturn[e.target.name||e.target.value] = e.target.value;
@@ -167,7 +182,7 @@ var Input=React.createClass({
     },
     componentDidMount : function(){
         if(this.props.value){
-            this._onChange({target:{value:this.props.value,name:this.props.name}});
+            this.onChange({target:{value:this.props.value,name:this.props.name}});
         }
     },
     render:function(){
@@ -175,7 +190,7 @@ var Input=React.createClass({
         if(this.props.disName){
             name=this.props.disName
         };
-        var v=this.state.defValue;
+        var v=this.state.value;
         var className = "form-control "+this.props.cssClass;
         var errorLable = this.state.validCss == "invalid"?<em className="invalid">{this.props.valid.errorMsg||"输入有误"}</em>:null;
         var spanCss = "";
@@ -184,7 +199,6 @@ var Input=React.createClass({
         }else if(this.state.validCss == "invalid"){
             spanCss = "state-error";
         }
-
         /**
          * @property {String} errorMsg 错误提示信息
          * @uses BSSForm
@@ -206,13 +220,13 @@ var Input=React.createClass({
             (<div className={"row "+spanCss}>
                 <lable htmlFor={this.props.id} className="col-xs-3 control-label" title={name}>{name}</lable>
                 <div className="col-xs-9">
-                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick} onBlur={this.onBlur}  value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
+                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this.onChange} onClick={this.props.onClick} onBlur={this.onBlur}  value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
                     {errorLable}
                 </div>
             </div>):
             (<span className={spanCss}>
                 {name}
-                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this._onChange} onClick={this.props.onClick} onBlur={this.onBlur}  value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
+                <input  id={this.props.id} name={this.props.name} reg={this.props.reg} className={className} onChange={this.onChange} onClick={this.props.onClick} onBlur={this.onBlur}  value={v}  type={this.props.isPassword?"password":null} placeholder={this.props.placeholder} valid={this.state.validCss} disabled={this.props.disabled}  />
                     {errorLable}
             </span>);
         return toReturn;

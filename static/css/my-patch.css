@@ -175,3 +175,7 @@ td:hover{
 .row{
   margin:5px;
 }
+
+.row .invalid{
+  text-align: left;
+}

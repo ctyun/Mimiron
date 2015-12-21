@@ -69,11 +69,11 @@ var Modal=React.createClass({
             noX: false,
         };
     },
-    doAndHide: function(params){
-        Modal.hide(this.props.id);
+    doAndHide: function(params,e){
         if(this.props.submitAction){
             this.props.submitAction(params);
         }
+        Modal.hide(this.props.id);
     },
     componentWillMount:function(){
       if(!Mimiron.distPath){
@@ -105,7 +105,7 @@ var Modal=React.createClass({
         var content;
         if(this.props.contentType == "form"){
             content = (
-                <BSSForm {...this.props} submitAction={this.doAndHide}>
+                <BSSForm {...this.props} submitAction={this.doAndHide} checkValid={this.props.checkValid}>
                     {this.props.children}
                 </BSSForm>
             )

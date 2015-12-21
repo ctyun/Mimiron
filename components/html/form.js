@@ -34,13 +34,29 @@ var $=require("jquery");
  *   此参数非必须
  *   禁用提交按钮时显示的名称
  *  -checkValid: 
- *   如果为真, 则在提交时对所有Children元素进行表单验证, 默认值为false
+ *   提交时需要校验的元素
  *
  * 此组件使用可参考QueryPanel使用
  *```
  * @class BSSForm
  */
 var BSSForm=React.createClass({
+    statics:{
+        check: function(checkList){
+            var chcekResult = true;
+            for(var ins in checkList){
+                chcekResult = checkList[ins].checkValid() && chcekResult;
+            }
+            if(chcekResult){
+                for(var ins in checkList){
+                    checkList[ins].reset();
+                }
+                return true;
+            } else{
+                return false;
+            }
+        }
+    },
     getInitialState : function(){
         return {
             elem:{}
@@ -50,7 +66,7 @@ var BSSForm=React.createClass({
     getDefaultProps : function(){
         return{
             id:"BSSForm-default-id",
-            checkValid:false,
+            checkValid:[],
             okButtonCss:null,
         };
     },
@@ -59,13 +75,9 @@ var BSSForm=React.createClass({
         this.state.elem=node;
     },
 
-    _submitAction:function(){
+    _submitAction:function(e){
+      console.log(e);
         var node=this.state.elem;
-        if(this.props.checkValid && $(node).children().hasClass("state-error")){
-            alert("表单存在错误"); //这里使用MessageBox报type.toUpperCase is not a function
-            return;
-        }
-
         var param={};
         param=$(node).serialize();
         if(this.props.submitAction){
@@ -84,9 +96,9 @@ var BSSForm=React.createClass({
                 json[obj[0]]=obj[1];
               }
               
-              this.props.submitAction(json);
+              this.props.submitAction(json, e);
           } else{
-              this.props.submitAction(param);
+              this.props.submitAction(param, e);
           }
        }
     },

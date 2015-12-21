@@ -46,6 +46,7 @@ var components = {
 	Textarea : require("./html/textarea"),
 	DatePicker: require("./html/datePicker"),
 	BSSForm : require("./html/form"),
+	Form : require("./html/form"),
 
 	//import ES6 patch ,no longer use, use babel-loader instead
 	//require("./utils/webpackPatch"),
