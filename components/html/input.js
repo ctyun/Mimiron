@@ -113,13 +113,12 @@ var Input=React.createClass({
         };
     },
 
-    componentWillReceiveProps:function(){
-        this.setState({
-            /**
-             * @property {String} value 默认值
-             */
-            value:this.props.value
-        })
+    componentWillReceiveProps:function(nextProps){
+        if(nextProps.value && nextProps.value!=this.state.value){
+            this.setState({
+                value:this.props.value
+            });
+        }
     },
     componentDidUpdate: function (prevProps, prevState) {
         if (prevProps.value !== this.props.value) {

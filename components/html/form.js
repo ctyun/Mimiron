@@ -45,11 +45,21 @@ var BSSForm=React.createClass({
         check: function(checkList){
             var chcekResult = true;
             for(var ins in checkList){
-                chcekResult = checkList[ins].checkValid() && chcekResult;
+                if(checkList[ins]){
+                    chcekResult = checkList[ins].checkValid() && chcekResult;
+                }else{
+                    console.info("未找到表单检查项:"+checkList[ins]);
+                }
+                
             }
             if(chcekResult){
                 for(var ins in checkList){
-                    checkList[ins].reset();
+                    if(checkList[ins]){
+                      checkList[ins].reset();
+                    }else{
+                      console.log("未找到表单重置项:"+checkList[ins]);
+                    }
+                    
                 }
                 return true;
             } else{

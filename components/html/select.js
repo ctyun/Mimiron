@@ -17,9 +17,11 @@ var React=require("react/addons");
  *
  * 使用说明
  *  <Select data={this.state.selectData} defaultValue="2" onSelect={this._onSelect}/>
+ *  name: 同html 的name属性
  *  disName:显示在左边的名称
  *  data:select的下拉列表要显示的值,数据格式为：[{value:'1',text:'显示2'},{value:'2',text:'显示1'}]
  *  defaultValue:默认要显示的值
+ *  blankOpt: 未选择时显示的文字
  *  onSelect：选重下拉列表的值所触发的事件
  *  multiple:true
  *  支持多选
@@ -54,7 +56,8 @@ var Select=React.createClass({
     getDefaultProps:function(){
         return{
             disName:"",
-            cssClass:"input-nm"
+            cssClass:"input-nm",
+            blankOpt:"==全部=="
         }       
     },
     getInitialState:function(){
@@ -96,7 +99,7 @@ var Select=React.createClass({
         var noEmptyMsg=this.props.noEmptyMsg;
         if(data&&data.length>0){
             if(!noEmptyMsg){
-                options.push(<option value="" >选择全部</option>);
+                options.push(<option value="" >{this.props.blankOpt}</option>);
             }
 
             data.forEach(function(d){
@@ -109,7 +112,7 @@ var Select=React.createClass({
             });
         }else{
             if(!noEmptyMsg){
-                options.push(<option value="">请选择</option>);
+                options.push(<option value="">{this.props.blankOpt}</option>);
             }
         }
         var className = "form-control "+this.props.cssClass;

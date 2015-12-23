@@ -23,6 +23,8 @@ var RegUtils = {
             case "ajax":
                 return true;
             case 'noEmpty':
+                if(typeof v == "undefined")
+                    return false
                 return v.length!=0;
             case "int": 
                 return /^\d*$/.test(v);
@@ -31,7 +33,7 @@ var RegUtils = {
             case "email":
                 return /^([a-zA-Z0-9\-]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9\-]+[_|\_|\.]?)*[a-zA-Z0-9\-]+\.[a-zA-Z]{2,3}$/.test(v);
             case "mobile-phone":
-                return /^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$/.test(v);
+                return  /^1[3|4|5|7|8][0-9]\d{8}$/.test(v);
             default:
                 console.info("没找到这种规则,默认返回成功验证了"+valid.type)
         }

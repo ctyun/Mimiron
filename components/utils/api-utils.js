@@ -32,7 +32,7 @@ var APIUtils = {
       deferred.resolve(data);
     });
 
-    request.fail(function(xhr, textStatus, error) {
+    request.fail(function(xhr, textStatus, error,a,b,c) {
       $("#loading-layer")? $("#loading-layer").removeClass("la-animate"): null;
       if (xhr.status === 401) {
         window.location = '/login';
@@ -41,6 +41,7 @@ var APIUtils = {
         alert("服务器错误！","提示");
       }
       if (xhr.status === 200){
+        alert("发生如下错误"+error);
         deferred.resolve(); //如果返回的response完全为空, 则会抛出SyntaxError: Unexpected end of input的异常.
         return;
       }

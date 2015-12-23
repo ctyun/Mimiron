@@ -26,6 +26,7 @@ var Tools = require("../utils/tools");
  * dragable:(Boolean) 可拖拽, 默认为true
  * dragEnd:(Function) 拖拽结束的回调函数,此函数返回两个参数,估计一般用不到,可以log出来看看, 也可以来问我. 
  * noX:(Boolean) 取消右上角的X按钮, 默认为false
+ * contentType:(String) 如果为"div", 则不在Modal中使用From表单
  * ```
  * 注意:
  * 通过Modal.show("modalId")打开模态框,尽量避免在同一页面打开多个模态框, 如果一定要这么做, 注意限制模态框内元素的高度.
