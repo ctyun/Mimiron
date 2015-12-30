@@ -22,7 +22,7 @@ How to start
 2. 'npm install' 
 3. 'npm start'
 4.  open your browser and go to `http://127.0.0.1:3000/webpack-dev-server/client?http://0.0.0.0:3000`
-5. if you want to release js file , use `webpack --config webpack.config.min.js`
+5. if you want to release js file , use `npm run release`
 
 How to use the yuidoc to create documents
 ------

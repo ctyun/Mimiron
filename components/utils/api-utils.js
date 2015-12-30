@@ -25,15 +25,17 @@ var APIUtils = {
         data: JSON.stringify(req.data)
       });
     }
+    Mimiron.loadingStack = Mimiron.loadingStack || 0;
+    Mimiron.loadingStack++;
     $("#loading-layer")? $("#loading-layer").addClass("la-animate"): null;
 
     request.done(function(data) {
-      $("#loading-layer")? $("#loading-layer").removeClass("la-animate"): null;
+      --Mimiron.loadingStack==0?$("#loading-layer")? $("#loading-layer").removeClass("la-animate"): null:null;
       deferred.resolve(data);
     });
 
-    request.fail(function(xhr, textStatus, error,a,b,c) {
-      $("#loading-layer")? $("#loading-layer").removeClass("la-animate"): null;
+    request.fail(function(xhr, textStatus, error) {
+      --Mimiron.loadingStack==0?$("#loading-layer")? $("#loading-layer").removeClass("la-animate"): null:null;
       if (xhr.status === 401) {
         window.location = '/login';
       }

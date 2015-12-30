@@ -45,6 +45,7 @@ var TopBar = React.createClass({
     		return
     	}else{
     		Ajax.get(API.LOGOUT,function(d){
+    			console.log("logout returnd");
     			window.location.href = "/";
     		});
 

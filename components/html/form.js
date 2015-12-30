@@ -57,7 +57,7 @@ var BSSForm=React.createClass({
                     if(checkList[ins]){
                       checkList[ins].reset();
                     }else{
-                      console.log("未找到表单重置项:"+checkList[ins]);
+                      console.info("未找到表单重置项:"+checkList[ins]);
                     }
                     
                 }
@@ -86,7 +86,6 @@ var BSSForm=React.createClass({
     },
 
     _submitAction:function(e){
-      console.log(e);
         var node=this.state.elem;
         var param={};
         param=$(node).serialize();

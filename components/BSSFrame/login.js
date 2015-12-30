@@ -24,9 +24,24 @@ var Login = React.createClass({
         return{
             title:"请登录",
             loginUrl:API.LOGIN,
+            select:null,
         }
     },
 	render: function(){
+    if(this.props.select){
+      var opts = [];
+      for(var i in this.props.select){
+        opts.push(<option value={this.props.select[i]["value"]}>{this.props.select[i]["text"]}</option>)
+      }
+      var select = (<div className="form-group">
+                  <select name="userSelect" id="selCountry" className="form-control">
+                      <option>==请选择==</option>
+                      {opts}
+                  </select>
+              </div>);
+    } else{
+      var select = null;
+    }
 		return(<div className="page-form">
 
               <BSSForm okButtonName="登陆" jsonFormat={true} submitAction={this.submitAction} okButtonCss={this.locals.okButtonCss}>
@@ -44,6 +59,7 @@ var Login = React.createClass({
                               <input type="password" placeholder="密码" name="userPassword" className="form-control" required />
                           </div>
                       </div>	
+                      {select}
                   </div>
               </BSSForm>
               <div className="clearfix"></div>
