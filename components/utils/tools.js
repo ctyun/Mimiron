@@ -270,6 +270,18 @@ var Tools = {
         }
         console.info(url+"匹配不到任何现有路由!");
     },
+    redirect: function(url){
+        window.location.hash = url;
+        var RouteConfig = Mimiron.RouteConfig;
+        for(var i in RouteConfig){
+            RouteConfig[i] = new RegExp(RouteConfig[i]);
+            if(RouteConfig[i].test(url)){
+                components.Tools.loadJSX(i);
+                window.Mimiron.runScripts();
+                break;
+            }
+        }
+    },
     handleA: function(key){
         var key = key||"data-tohash";
         $(document).off("click","a");

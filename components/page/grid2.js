@@ -58,6 +58,7 @@ var Grid=React.createClass({
             checkedValues:[],
             id:"default_id",
             onCheckChange: null,
+            clickTr:function(){},
         }
     },
     componentWillMount: function() {
@@ -112,7 +113,8 @@ var Grid=React.createClass({
         this.props.onCheckChange?this.props.onCheckChange(v,event.target.checked):null;
         this.forceUpdate();
     },
-    clickTr: function(e){
+    clickTr: function(key,source,e){
+        this.props.clickTr(key,source);
         //显示children 使用的是React方式
         if(this.props.toShow){
             if(this.state.activeTr==$(e.target).parent().attr("data-key")){
@@ -161,7 +163,7 @@ var Grid=React.createClass({
         </thead>
         <tbody className="grid-2">
         {data&&data.length>0? this.props.data.map(function(source, key) {
-            return [<tr data-key={key} onClick={this.clickTr}>
+            return [<tr data-key={key} onClick={this.clickTr.bind(null,key,source)}>
             {this.props.jsonKey.map(function(column, columnKey) {
                 if(columnKey==0){
                     if(self.props.checkType=="none"){

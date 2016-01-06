@@ -33,6 +33,9 @@ var RegUtils = require('../utils/reg-utils');
  *
  */
 var Select=React.createClass({
+    locals:{
+        onChange:false  //引入这个本地变量, 主要是为了满足需求: 当用户点击opt时, 可以修改this.state.value, 当父组件重新渲染时, 使用defaultValue作为this.state.value
+    },
     _onChange:function(e){
         e.preventDefault();
         var v = e.target.value;
@@ -55,6 +58,7 @@ var Select=React.createClass({
         if(this.props.onSelect){
             this.props.onSelect(v);
         }
+        this.locals.onChange = true;
     },
     checkValid: function(v){
         if(typeof v == "undefined"){
@@ -111,6 +115,25 @@ var Select=React.createClass({
                     });
                 }
             }  
+        }
+        if(nextProps.defaultValue!=this.state.value){
+            if(this.locals.onChange){
+                this.locals.onChange = false;
+            }else{
+                if(nextProps.valid){
+                    if(this.checkValid(nextProps.defaultValue)){
+                        this.setState({
+                            value:nextProps.defaultValue,
+                            validCss:"valid"
+                        });
+                    }else{
+                        this.setState({
+                            value:nextProps.defaultValue,
+                            validCss:"invalid"
+                        });
+                    }
+                }  
+            }
         }
     },
     render:function(){

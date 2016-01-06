@@ -42,7 +42,11 @@ var PageButton=require("../page/page");
      * @class TablePanel
      */
 var TablePanel=React.createClass({
-
+    getDefaultProps: function(){
+      return{
+        clickTr:function(){},
+      }
+    },
     componentDidMount: function(){
         //冻结表头
         window.freezeTableHead = function(){
@@ -91,7 +95,7 @@ var TablePanel=React.createClass({
     render:function(){
         return (<div>
                 <div className="fix-head"></div>
-                <Grid2 title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType} isDummy={this.props.isDummy} id={this.props.id} toShow={this.props.children} checkedValues={this.props.checkedValues} onCheckChange={this.props.onCheckChange}/>
+                <Grid2 title={this.props.title} noHasCheckBox={this.props.noHasCheckBox} jsonKey={this.props.jsonKey} data={this.props.data} checkType={this.props.checkType} isDummy={this.props.isDummy} id={this.props.id} toShow={this.props.children} checkedValues={this.props.checkedValues} onCheckChange={this.props.onCheckChange} clickTr={this.props.clickTr}/>
                 <PageButton  doList={this.props.doList}  pageSize={this.props.pageSize}  page={this.props.offset} totalRows={this.props.totalRows}/>
               </div>)
     }

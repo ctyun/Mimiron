@@ -56,7 +56,7 @@ var DatePicker=React.createClass({
             id:'DataPicker',
             displayName:"请选择日期",
             foramt:"yy-mm-dd",
-            cssClass:"size-nm",
+            cssClass:"size-md",
         }
     },
     componentDidMount:function(){
