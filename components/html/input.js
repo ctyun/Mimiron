@@ -153,7 +153,7 @@ var Input=React.createClass({
         if(this.props.valid && this.props.valid.on !="blur"){
             this.checkValid(e.target.value);
         }
-        if(this.state.doChange){
+        if(this.props.doChange){
             var toReturn = {}
             toReturn[e.target.name||e.target.value] = e.target.value;
             this.props.doChange(toReturn);
