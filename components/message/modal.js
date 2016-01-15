@@ -68,13 +68,16 @@ var Modal=React.createClass({
             dragable:false,
             dragEnd:function(){return},
             noX: false,
+            noAutoHide: false,
         };
     },
     doAndHide: function(params,e){
         if(this.props.submitAction){
-            this.props.submitAction(params);
+            var flag = this.props.submitAction(params);
         }
-        Modal.hide(this.props.id);
+        if(!this.props.noAutoHide){
+            Modal.hide(this.props.id);
+        }
     },
     componentWillMount:function(){
       if(!Mimiron.distPath){

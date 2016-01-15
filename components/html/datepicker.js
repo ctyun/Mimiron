@@ -2,7 +2,7 @@
  * @module html
  */
 var React = require('react/addons');
-var $ = require('jquery');
+//var $ = require('jquery');
 require("jquery-ui");
 /**
  * 日期选择组件

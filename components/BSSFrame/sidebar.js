@@ -7,7 +7,6 @@ var API = require("../const/API");
 var Debug = require("../utils/debug");
 var Ajax = require("../utils/ajax");
 
-var H5 = require("../utils/h5");
 /*
  * 由Route取代, 这里是临时使用
  */
@@ -75,27 +74,23 @@ var SideBar = React.createClass({
     },
     componentWillMount: function(){
         var self = this;
-        //从API中取登录用户可用的菜单
-        var result = H5.localStorage.get("SideBar");
-        if(result){
-            this.FormSidebar(self,result);
-            window.setTimeout("clickMenu()",200); //理论上可以立即操作, 但是实践中, jquery可以找到目标元素, 但是点击没有任何反应.
-            return;
-        }
     	Ajax.get(this.props.sidebarMenu||API.SIDE_BAR_MENU,function(d){
     		if(d){
                 self.state.list = d.children;
             }
             self.FormSidebar(self,self.state.list);
-            H5.localStorage.set("SideBar",self.state.list);
         });
     },
     componentDidMount: function(){
         window.clickMenu = function(url){
             var url = url||window.location.hash;
             url = url.split("/");
-            url = "/"+url[1]+"/"+url[2]; 
-            var targetOpt = $("a[href='"+url+"']");
+            var url1 = "/"+url[1];
+            var url2 = "/"+url[1]+"/"+url[2]; 
+            var targetOpt = $("a[href='"+url2+"']");
+            if(targetOpt.length==0){
+                targetOpt = $("a[href='"+url1+"']");
+            }
             if(targetOpt){
                 if(targetOpt.parent().parent().prev().prop("tagName")=="A"){
                     var targetParent = targetOpt.parent().parent().prev();
@@ -115,6 +110,7 @@ var SideBar = React.createClass({
         }
         //update之后调用
         //clickMenu();
+        window.setTimeout("clickMenu()",500); //理论上可以立即操作, 但是实践中, jquery可以找到目标元素, 但是点击没有任何反应.
     },
     componentDidUpdate : function(prevProps,prevState){
         if(this.state.selectFlag){

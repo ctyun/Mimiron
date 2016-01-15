@@ -67,12 +67,13 @@ var Login = React.createClass({
 	},
 	submitAction: function(param){
 		Ajax.post(this.props.loginUrl,param,function(d){
-			if(d.handled){
-				alert("用户名和/或密码错误"); //TODO 使用提示框
-			}
-			else{
+			if(d.error){
+				alert("服务器错误!"); //TODO 使用提示框
+			} else if(d.result=="login success"){
 				window.location.href = "/";
-			}
+			} else{
+        alert(d.result);
+      }
 		});
 	}
 });
