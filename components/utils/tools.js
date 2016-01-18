@@ -307,7 +307,7 @@ var Tools = {
  * for example:
  * in url http://127.0.0.1:8081/sample?id=1 you can use $_GET["id"] to get "1"
  */
-window.$_GET = (function(){
+window.$_GET = function(){
     var url = window.document.location.href.toString();
     var u = url.split("?");
     if(typeof(u[1]) == "string"){
@@ -321,7 +321,7 @@ window.$_GET = (function(){
     } else { 
         return {};
     }
-})();
+};
 
 
 module.exports = Tools;

@@ -43,7 +43,7 @@ var APIUtils = {
         alert("服务器错误！","提示");
       }
       if (xhr.status === 200){
-        alert("发生如下错误"+error);
+        console.info("AJAX发生如下错误"+error);
         deferred.resolve(); //如果返回的response完全为空, 则会抛出SyntaxError: Unexpected end of input的异常.
         return;
       }

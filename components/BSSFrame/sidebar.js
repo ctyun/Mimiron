@@ -83,6 +83,7 @@ var SideBar = React.createClass({
     },
     componentDidMount: function(){
         window.clickMenu = function(url){
+            console.log("即将模拟点击");
             var url = url||window.location.hash;
             url = url.split("/");
             var url1 = "/"+url[1];
@@ -107,15 +108,15 @@ var SideBar = React.createClass({
                     targetOpt.parent().addClass("active");
                 }
             }
+            //防止CSS无效
+            $(".mtn.collapse").prev().on("click", function(){
+              $(this).next().hasClass("in")?$(this).next().removeClass("in"):$(this).next().addClass("in");
+              console.log(this);
+            });
         }
         //update之后调用
         //clickMenu();
-        window.setTimeout("clickMenu()",500); //理论上可以立即操作, 但是实践中, jquery可以找到目标元素, 但是点击没有任何反应.
-    },
-    componentDidUpdate : function(prevProps,prevState){
-        if(this.state.selectFlag){
-            window.setTimeout("clickMenu()",200); //理论上可以立即操作, 但是实践中, jquery可以找到目标元素, 但是点击没有任何反应.
-        }
+        window.setTimeout("clickMenu()",1000); //理论上可以立即操作, 但是实践中, jquery可以找到目标元素, 但是点击没有任何反应.
     },
     render: function () {
         return (<div>
