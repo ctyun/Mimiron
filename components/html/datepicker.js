@@ -62,7 +62,17 @@ var DatePicker=React.createClass({
     componentDidMount:function(){
         var node=this.getDOMNode();
         this.state.elem=node;
-        $('#'+this.props.id).datepicker({dateFormat:this.props.format,changeMonth: true, changeYear: true
+        $('#'+this.props.id).datepicker({
+            dateFormat:this.props.format,
+            changeMonth: true,
+            changeYear: true,
+            monthNames: ['一月','二月','三月','四月','五月','六月', '七月','八月','九月','十月','十一月','十二月'],
+            monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'],
+            monthNamesShort: ['一','二','三','四','五','六', '七','八','九','十','十一','十二'],
+            dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'], 
+            dayNamesMin: ['日','一','二','三','四','五','六'],   //日期名称简称
+            firstDay: 1,         //0为已周日作为一周开始，1为周一作为一周开始，默认是0
+            isRTL: false         //是否从右到左排列
         });
     },
     render:function(){

@@ -83,7 +83,6 @@ var SideBar = React.createClass({
     },
     componentDidMount: function(){
         window.clickMenu = function(url){
-            console.log("即将模拟点击");
             var url = url||window.location.hash;
             url = url.split("/");
             var url1 = "/"+url[1];
@@ -108,10 +107,14 @@ var SideBar = React.createClass({
                     targetOpt.parent().addClass("active");
                 }
             }
-            //防止CSS无效
+            //防止展开收起CSS无效
             $(".mtn.collapse").prev().on("click", function(){
-              $(this).next().hasClass("in")?$(this).next().removeClass("in"):$(this).next().addClass("in");
-              console.log(this);
+                if($(this).next().hasClass("in")){
+                    $(this).next().removeClass("in");
+                } else {
+                    //$(".mtn.collapse").removeClass("in");
+                    $(this).next().addClass("in");
+                }
             });
         }
         //update之后调用

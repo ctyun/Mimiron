@@ -128,20 +128,28 @@ th{
     text-align: center;
 }
 
-td{
+.table-hover td{
     max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: keep-all;
 }
 
-td:hover{
+.table-hover td:hover{
     max-width: 150px;
     background-color: rgba(39, 45, 210, 0.23);
     overflow: auto;
     word-break: keep-all;
     word-wrap: break-word;
+}
 
+.ui-datepicker-calendar td:hover {
+    background: #d75252;
+    overflow: hidden;
+}
+
+.ui-datepicker-calendar td a:hover{
+    color: black;
 }
 
 .page-content{
